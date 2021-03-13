@@ -1,0 +1,65 @@
+<div class="row make-center">
+  <div class="col-md-12">
+    <h2>Add new category</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form (ngSubmit)="onSubmit()" #addForm="ngForm">
+      <div class="row">
+        <div class="col-md-2"><h4>Category name:</h4></div>
+        <div class="col-md-10">
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            placeholder="Category name"
+            ngModel
+            required
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"><h4>Category description:</h4></div>
+        <div class="col-md-10">
+          <textarea
+            class="form-control"
+            placeholder="Category description please."
+            name="desc"
+            cols="6"
+            rows="4"
+            ngModel
+            required
+          ></textarea>
+        </div>
+      </div>
+      <button
+        class="btn btn-success"
+        type="submit"
+        [disabled]="addForm.invalid"
+      >
+        Save category
+      </button>
+      <div class="row">
+        <div class="col-md-12" *ngIf="inProgress && submitted">
+          <div class="alert alert-info">
+            <h4>Please wait...</h4>
+          </div>
+        </div>
+        <div class="col-md-12" *ngIf="addStatus && submitted">
+          <div class="alert alert-success">
+            <h4>Category is added successfully!</h4>
+          </div>
+        </div>
+        <div
+          class="col-md-12"
+          *ngIf="!addStatus && addStatus !== undefined && submitted"
+        >
+          <div class="alert alert-danger">
+            <h4>Error happened, try again!</h4>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

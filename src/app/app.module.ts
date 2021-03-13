@@ -2,15 +2,50 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { CategoryComponent } from './categories/category/category.component';
+import { ItemsComponent } from './items/items.component';
+import { ItemComponent } from './items/item/item.component';
+import { ServicesComponent } from './services/services.component';
+import { ServiceComponent } from './services/service/service.component';
+import { ClientsComponent } from './clients/clients.component';
+import { ClientComponent } from './clients/client/client.component';
+import { BillsComponent } from './bills/bills.component';
+import { BillComponent } from './bills/bill/bill.component';
+import { StoreComponent } from './store/store.component';
+import { AddCategoryComponent } from './categories/add-category/add-category.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+
+const appRoutes: Routes = [
+  { path: 'add-category', component: AddCategoryComponent },
+  { path: 'new-sell', component: CategoriesComponent },
+];
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CategoriesComponent,
+    CategoryComponent,
+    ItemsComponent,
+    ItemComponent,
+    ServicesComponent,
+    ServiceComponent,
+    ClientsComponent,
+    ClientComponent,
+    BillsComponent,
+    BillComponent,
+    StoreComponent,
+    AddCategoryComponent,
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
