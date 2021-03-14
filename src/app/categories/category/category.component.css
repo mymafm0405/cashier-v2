@@ -1,3 +1,11 @@
 .make-center {
   text-align: center;
 }
+.category {
+  background-color: wheat;
+  cursor: pointer;
+  border-radius: 7px;
+}
+.category:hover {
+  background-color: bisque;
+}

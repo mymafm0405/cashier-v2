@@ -15,13 +15,16 @@ export class CategoriesComponent implements OnInit, OnDestroy {
   constructor(private appService: AppService) {}
 
   ngOnInit(): void {
-    this.appService.loadCategoryStatus.subscribe((status: boolean) => {
-      if (status) {
-        this.categories = this.appService.getCategories();
-      } else {
-        console.log('An error happened while loading our categories!');
+    this.appService.loadCategories();
+    this.loadStatusSub = this.appService.loadCategoryStatus.subscribe(
+      (status: boolean) => {
+        if (status) {
+          this.categories = this.appService.getCategories();
+        } else {
+          console.log('An error happened while loading our categories!');
+        }
       }
-    });
+    );
   }
 
   ngOnDestroy() {

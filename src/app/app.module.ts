@@ -17,10 +17,13 @@ import { AddCategoryComponent } from './categories/add-category/add-category.com
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { AddItemComponent } from './items/add-item/add-item.component';
 
 const appRoutes: Routes = [
   { path: 'add-category', component: AddCategoryComponent },
+  { path: 'add-item', component: AddItemComponent },
   { path: 'new-sell', component: CategoriesComponent },
+  { path: 'category/:id', component: ItemsComponent },
 ];
 
 @NgModule({
@@ -38,6 +41,7 @@ const appRoutes: Routes = [
     BillComponent,
     StoreComponent,
     AddCategoryComponent,
+    AddItemComponent,
   ],
   imports: [
     BrowserModule,
