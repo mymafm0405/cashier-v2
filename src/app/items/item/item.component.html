@@ -1,1 +1,56 @@
-<p>item works!</p>
+<div class="row">
+  <div class="col-md-12 item">
+    <h3>{{ item.name }}</h3>
+    <h4>
+      Price: <span class="price">{{ item.price }}</span>
+    </h4>
+    <button
+      class="btn btn-default"
+      *ngIf="userType === 'admin'"
+      (click)="onShowDetails()"
+    >
+      Show details
+    </button>
+  </div>
+</div>
+
+<div class="row details" *ngIf="showDetails && userType === 'admin'">
+  <div class="col-md-12">
+    <h4 class="note">Some options will be available to admin only</h4>
+    <div class="row">
+      <div class="col-md-6"><h4>Quantity:</h4></div>
+      <div class="col-md-6">
+        <h4>
+          <span class="data">{{ item.quantity }}</span>
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <form (ngSubmit)="onSubmit()" #addForm="ngForm">
+          <div class="row">
+            <div class="col-md-8">
+              <input
+                type="number"
+                name="quantity"
+                class="form-control"
+                placeholder="Add Quantity"
+                ngModel
+                required
+              />
+            </div>
+            <div class="col-md-4">
+              <button
+                class="btn btn-success"
+                type="submit"
+                [disabled]="addForm.invalid"
+              >
+                Add
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,34 @@
-<p>items works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <button
+      class="btn btn-danger back-button"
+      [routerLink]="['../../new-sell']"
+    >
+      Back
+    </button>
+  </div>
+</div>
+<div class="row cat-title" *ngIf="category !== undefined">
+  <div class="col-md-12">
+    <h2>{{ category.name }}</h2>
+  </div>
+</div>
+<div class="row" *ngIf="catItems === undefined">
+  <div class="col-md-12">
+    <div class="alert alert-warning">
+      <h4>Loading please wait...</h4>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="catItems !== undefined && catItems.length === 0">
+  <div class="col-md-12">
+    <div class="alert alert-danger">
+      <h4>No items in this category, please add some!</h4>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="catItems !== undefined && catItems.length > 0">
+  <div class="col-md-3" *ngFor="let item of catItems">
+    <app-item [category]="category" [item]="item"></app-item>
+  </div>
+</div>

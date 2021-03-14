@@ -15,7 +15,11 @@
       </div>
     </div>
     <div class="row" *ngIf="categories.length > 0">
-      <div class="col-md-3" *ngFor="let category of categories">
+      <div
+        class="col-md-3"
+        *ngFor="let category of categories"
+        [routerLink]="['../category', category.id]"
+      >
         <app-category [category]="category"></app-category>
       </div>
     </div>

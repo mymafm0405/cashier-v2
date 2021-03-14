@@ -1,0 +1,10 @@
+.cat-title {
+    text-align: center;
+    color: #333;
+    background-color: #ffba7d;
+    margin-bottom: 20px;
+}
+.back-button {
+    border-color: white;
+    margin: 20px 0;
+}

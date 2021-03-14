@@ -8,12 +8,13 @@ import { AppService } from './shared/app.service';
 })
 export class AppComponent implements OnInit {
   title = 'cashier-v1';
-  userType = 'admin';
+  userType: string;
 
   constructor(private appService: AppService) {}
 
   ngOnInit() {
     this.appService.loadCategories();
     this.appService.loadItems();
+    this.userType = this.appService.getUserType();
   }
 }

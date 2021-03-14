@@ -15,6 +15,7 @@ export class AppService {
   loadItemsStatus = new Subject<boolean>();
   addItemStatus = new Subject<boolean>();
 
+  userType = 'admin';
   categories: Category[] = [];
   items: Item[] = [];
 
@@ -72,6 +73,10 @@ export class AppService {
   getCategories() {
     return this.categories;
   }
+
+  getCategoryById(catId: string) {
+    return this.categories.find((cat) => cat.id === catId);
+  }
   // End of categories
 
   // All about Items from here
@@ -113,9 +118,33 @@ export class AppService {
       });
   }
 
+  updateItemQuantity(itemId: string, newQuantity: number) {
+    this.http
+      .patch(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/items/' +
+          itemId +
+          '.json',
+        { quantity: newQuantity }
+      )
+      .subscribe(() => {
+        this.loadItems();
+        // this.items.find(item => item.id === itemId).quantity = newQuantity;
+      });
+  }
+
   getItems() {
     return this.items;
   }
 
+  getItemsForCat(catId: string) {
+    return this.items.filter((item) => item.catId === catId);
+  }
+
   // End of items.
+
+  // All about users
+  getUserType() {
+    return this.userType;
+  }
+  // End of users
 }
