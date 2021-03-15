@@ -1,16 +1,24 @@
 <div class="row">
   <div class="col-md-12 item">
-    <h3>{{ item.name }}</h3>
-    <h4>
-      Price: <span class="price">{{ item.price }}</span>
-    </h4>
-    <button
-      class="btn btn-default"
-      *ngIf="userType === 'admin'"
-      (click)="onShowDetails()"
-    >
-      Show details
-    </button>
+    <div class="row" [routerLink]="['sell', item.id]">
+      <div class="col-md-12">
+        <h3>{{ item.name }}</h3>
+        <h4>
+          Price: <span class="price">{{ item.price }}</span>
+        </h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          class="btn btn-default"
+          *ngIf="userType === 'admin'"
+          (click)="onShowDetails()"
+        >
+          Show details
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 

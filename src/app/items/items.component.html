@@ -28,11 +28,7 @@
   </div>
 </div>
 <div class="row" *ngIf="catItems !== undefined && catItems.length > 0">
-  <div
-    class="col-md-3"
-    *ngFor="let item of catItems"
-    [routerLink]="['sell', item.id]"
-  >
+  <div class="col-md-3" *ngFor="let item of catItems">
     <app-item [category]="category" [item]="item"></app-item>
   </div>
 </div>

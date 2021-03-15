@@ -15,6 +15,9 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.appService.loadCategories();
     this.appService.loadItems();
+    this.appService.loadBills();
+    this.appService.loadClients();
+    console.log(this.appService.getTodayDate());
     this.userType = this.appService.getUserType();
   }
 }

@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Bill } from './bill.model';
 import { Category } from './category.model';
+import { Client } from './client.model';
 import { Item } from './item.model';
 
 @Injectable({
@@ -15,9 +17,17 @@ export class AppService {
   loadItemsStatus = new Subject<boolean>();
   addItemStatus = new Subject<boolean>();
 
+  addClientStatus = new Subject<{ status: boolean; clientId: string }>();
+  loadClientsStatus = new Subject<boolean>();
+
+  addBillStatus = new Subject<boolean>();
+  loadBillsStatus = new Subject<boolean>();
+
   userType = 'admin';
   categories: Category[] = [];
   items: Item[] = [];
+  bills: Bill[] = [];
+  clients: Client[] = [];
 
   constructor(private http: HttpClient) {}
 
@@ -165,4 +175,121 @@ export class AppService {
     return this.userType;
   }
   // End of users
+
+  // All about bills
+  addBill(bill: Bill) {
+    this.http
+      .post(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/bills.json',
+        bill
+      )
+      .subscribe(
+        (res: { name: string }) => {
+          this.bills.push({ ...bill, id: res.name });
+          this.addBillStatus.next(true);
+          console.log(res.name);
+          console.log('bill added');
+        },
+        (error) => {
+          this.addBillStatus.next(false);
+          console.log(error);
+        }
+      );
+  }
+
+  loadBills() {
+    this.http
+      .get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/bills.json')
+      .pipe(
+        map((resData): Bill[] => {
+          const resBills: Bill[] = [];
+          for (const key in resData) {
+            if (resData.hasOwnProperty(key)) {
+              resBills.push({ ...resData[key], id: key });
+            }
+          }
+          return resBills;
+        })
+      )
+      .subscribe(
+        (resBills: Bill[]) => {
+          this.bills = resBills;
+          this.loadBillsStatus.next(true);
+          console.log(this.bills);
+        },
+        (error) => {
+          console.log(error);
+          this.loadBillsStatus.next(false);
+        }
+      );
+  }
+
+  getNextBillSerial() {
+    const startSerial = 1000;
+    const nextSerial = startSerial + this.bills.length + 1;
+    return nextSerial;
+  }
+
+  getTodayDate() {
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    const yyyy = today.getFullYear();
+
+    const todayDate = new Date();
+    const currentDate = dd + '-' + mm + '-' + yyyy;
+    return currentDate;
+  }
+  // End bills
+
+  // All about clients
+  getClientById(clientId: string) {
+    return this.clients.find((client) => client.id === clientId);
+  }
+  getClientByPhone(phone: string) {
+    return this.clients.find((client) => client.phone === phone);
+  }
+  addClient(client: Client) {
+    this.http
+      .post(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/clients.json',
+        client
+      )
+      .subscribe(
+        (res: { name: string }) => {
+          this.clients.push({ ...client, id: res.name });
+          this.addClientStatus.next({ status: true, clientId: res.name });
+        },
+        (error) => {
+          console.log(error);
+          this.addClientStatus.next({ status: true, clientId: '' });
+        }
+      );
+  }
+  loadClients() {
+    this.http
+      .get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/clients.json')
+      .pipe(
+        map((resData): Client[] => {
+          const resClients: Client[] = [];
+          for (const key in resData) {
+            if (resData.hasOwnProperty(key)) {
+              resClients.push({ ...resData[key], id: key });
+            }
+          }
+          return resClients;
+        })
+      )
+      .subscribe(
+        (resClients: Client[]) => {
+          this.clients = resClients;
+          this.loadClientsStatus.next(true);
+        },
+        (error) => {
+          console.log(error);
+          this.loadClientsStatus.next(false);
+        }
+      );
+  }
+  // End clients
 }
