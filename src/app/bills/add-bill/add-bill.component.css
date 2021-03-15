@@ -1,0 +1,42 @@
+.back {
+    margin: 20px 0px;
+    border-color: white;
+}
+.error {
+    color: red;
+    font-style: italic;
+}
+.cat-title {
+    text-align: center;
+    background-color: blanchedalmond;
+    margin: 20px 0px;
+    border-radius: 7px;
+}
+.note {
+    font-style: italic;
+    color: #666;
+}
+.bill {
+    border: 1px dashed #333;
+    background-color: bisque;
+    text-align: center;
+    box-shadow: 10px 10px 10px #666;
+    padding: 20px;
+    border-radius: 7px;
+}
+.price {
+    color: red;
+    font-weight: bold;
+}
+.original {
+    color: #0083da;
+    font-style: italic;
+    font-size: 18px;
+}
+.final-price {
+    font-weight: bold;
+    font-style: italic;
+}
+.confirm-button {
+    margin-top: 30px;
+}

@@ -11,6 +11,7 @@ import { Item } from 'src/app/shared/item.model';
 })
 export class ItemComponent implements OnInit {
   @ViewChild('addForm', { static: false }) addForm: NgForm;
+  @ViewChild('priceForm', { static: false }) priceForm: NgForm;
 
   @Input() category: Category;
   @Input() item: Item;
@@ -33,5 +34,11 @@ export class ItemComponent implements OnInit {
     const newQuantity = this.item.quantity + this.addForm.value.quantity;
     this.appService.updateItemQuantity(this.item.id, newQuantity);
     this.addForm.reset();
+  }
+
+  onSubmitPrice() {
+    const newPrice = this.priceForm.value.price;
+    this.appService.updateItemPrice(this.item.id, newPrice);
+    this.priceForm.reset();
   }
 }

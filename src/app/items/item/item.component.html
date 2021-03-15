@@ -14,9 +14,11 @@
   </div>
 </div>
 
+<!-- Here is the details that shows only for the admin -->
 <div class="row details" *ngIf="showDetails && userType === 'admin'">
   <div class="col-md-12">
     <h4 class="note">Some options will be available to admin only</h4>
+    <!-- Show current Quantity -->
     <div class="row">
       <div class="col-md-6"><h4>Quantity:</h4></div>
       <div class="col-md-6">
@@ -25,11 +27,14 @@
         </h4>
       </div>
     </div>
+    <!-- End of current quantity -->
+
+    <!-- form to add more quantity -->
     <div class="row">
       <div class="col-md-12">
         <form (ngSubmit)="onSubmit()" #addForm="ngForm">
           <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-7">
               <input
                 type="number"
                 name="quantity"
@@ -39,7 +44,7 @@
                 required
               />
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
               <button
                 class="btn btn-success"
                 type="submit"
@@ -52,5 +57,37 @@
         </form>
       </div>
     </div>
+    <!-- End of form -->
+
+    <!-- form to change price -->
+    <div class="row price-row">
+      <div class="col-md-12">
+        <form (ngSubmit)="onSubmitPrice()" #priceForm="ngForm">
+          <div class="row">
+            <div class="col-md-7">
+              <input
+                type="number"
+                name="price"
+                class="form-control"
+                placeholder="New price"
+                ngModel
+                required
+              />
+            </div>
+            <div class="col-md-5">
+              <button
+                class="btn btn-success"
+                type="submit"
+                [disabled]="priceForm.invalid"
+              >
+                Update
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- End of form -->
   </div>
 </div>
+<!-- End of the details section -->

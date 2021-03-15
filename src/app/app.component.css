@@ -15,11 +15,11 @@
 }
 .content {
   background-color: salmon;
-  min-height: 500px;
+  min-height: 1000px;
 }
 .menu {
   background-color: sandybrown;
-  min-height: 500px;
+  min-height: 1000px;
 }
 .main-row {
   border-top: 1px dashed #333;

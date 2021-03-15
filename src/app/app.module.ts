@@ -18,12 +18,16 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { AddItemComponent } from './items/add-item/add-item.component';
+import { WelcomeComponent } from './utility/welcome/welcome.component';
+import { AddBillComponent } from './bills/add-bill/add-bill.component';
 
 const appRoutes: Routes = [
+  { path: '', component: WelcomeComponent },
   { path: 'add-category', component: AddCategoryComponent },
   { path: 'add-item', component: AddItemComponent },
   { path: 'new-sell', component: CategoriesComponent },
   { path: 'category/:id', component: ItemsComponent },
+  { path: 'category/:catId/sell/:itemId', component: AddBillComponent },
 ];
 
 @NgModule({
@@ -42,6 +46,8 @@ const appRoutes: Routes = [
     StoreComponent,
     AddCategoryComponent,
     AddItemComponent,
+    WelcomeComponent,
+    AddBillComponent,
   ],
   imports: [
     BrowserModule,

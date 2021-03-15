@@ -132,12 +132,30 @@ export class AppService {
       });
   }
 
+  updateItemPrice(itemId: string, newPrice: number) {
+    this.http
+      .patch(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/items/' +
+          itemId +
+          '.json',
+        { price: newPrice }
+      )
+      .subscribe(() => {
+        this.loadItems();
+        // this.items.find(item => item.id === itemId).quantity = newQuantity;
+      });
+  }
+
   getItems() {
     return this.items;
   }
 
   getItemsForCat(catId: string) {
     return this.items.filter((item) => item.catId === catId);
+  }
+
+  getItemById(itemId: string) {
+    return this.items.find((item) => item.id === itemId);
   }
 
   // End of items.
