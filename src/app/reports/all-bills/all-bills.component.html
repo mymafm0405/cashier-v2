@@ -14,29 +14,32 @@
   <div class="col-md-12">
     <table class="table table-bordered">
       <tr class="add-border">
-        <th class="add-border">Notes</th>
-        <th class="add-border"></th>
-        <th class="add-border">Final Price</th>
-        <th class="add-border">Discount %</th>
-        <th class="add-border">Quantity</th>
-        <th class="add-border">Price</th>
-        <th class="add-border">Item</th>
-        <th class="add-border">Date</th>
         <th class="add-border">S.N</th>
+        <th class="add-border">Date</th>
+        <th class="add-border">Item</th>
+        <th class="add-border">Price</th>
+        <th class="add-border">Quantity</th>
+        <th class="add-border">Discount %</th>
+        <th class="add-border">Final Price</th>
+        <th class="add-border">Client name</th>
+        <th class="add-border">Notes</th>
       </tr>
       <tr class="add-border" *ngFor="let bill of allBills">
         {{
           getItem(bill.itemId)
         }}
-        <td class="add-border">{{ bill.notes }}</td>
-        <td class="add-border">Client name</td>
-        <td class="add-border final-price">{{ bill.finalPrice }}</td>
-        <td class="add-border">{{ bill.discount }}</td>
-        <td class="add-border">{{ bill.quantity }}</td>
-        <td class="add-border">{{ currentItem.price }}</td>
-        <td class="add-border">{{ currentItem.name }}</td>
-        <td class="add-border">{{ bill.date }}</td>
+        {{
+          getClient(bill.clientId)
+        }}
         <td class="add-border">{{ bill.serial }}</td>
+        <td class="add-border">{{ bill.date }}</td>
+        <td class="add-border">{{ currentItem.name }}</td>
+        <td class="add-border">{{ currentItem.price }}</td>
+        <td class="add-border">{{ bill.quantity }}</td>
+        <td class="add-border">{{ bill.discount }}</td>
+        <td class="add-border final-price">{{ bill.finalPrice }}</td>
+        <td class="add-border">{{ currentClient.name }}</td>
+        <td class="add-border">{{ bill.notes }}</td>
       </tr>
     </table>
   </div>

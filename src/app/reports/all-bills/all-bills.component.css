@@ -10,9 +10,11 @@ tr, th, td {
 }
 .title {
     text-align: center;
-    color: green;
+    color: #fbff00;
+    margin-top: 40px;
 }
 .final-price {
-    color: green;
+    background-color: green;
+    color: white;
     font-weight: bold;
 }

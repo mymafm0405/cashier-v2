@@ -236,8 +236,8 @@ export class AppService {
     const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
     const yyyy = today.getFullYear();
 
-    const todayDate = new Date();
-    const currentDate = dd + '-' + mm + '-' + yyyy;
+    const currentDate = yyyy + '-' + mm + '-' + dd;
+    console.log(new Date(currentDate).getTime());
     return currentDate;
   }
 

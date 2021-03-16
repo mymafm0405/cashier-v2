@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { AppService } from './shared/app.service';
 
 @Component({
@@ -11,6 +12,8 @@ export class AppComponent implements OnInit {
   userType: string;
 
   constructor(private appService: AppService) {}
+
+  @ViewChild('addForm', { static: false }) addForm: NgForm;
 
   ngOnInit() {
     this.appService.loadCategories();
