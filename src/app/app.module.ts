@@ -20,6 +20,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddItemComponent } from './items/add-item/add-item.component';
 import { WelcomeComponent } from './utility/welcome/welcome.component';
 import { AddBillComponent } from './bills/add-bill/add-bill.component';
+import { ReportsComponent } from './reports/reports.component';
+import { AllBillsComponent } from './reports/all-bills/all-bills.component';
+import { ByDateComponent } from './reports/by-date/by-date.component';
+import { SearchComponent } from './reports/search/search.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -28,6 +32,15 @@ const appRoutes: Routes = [
   { path: 'new-sell', component: CategoriesComponent },
   { path: 'category/:id', component: ItemsComponent },
   { path: 'category/:catId/sell/:itemId', component: AddBillComponent },
+  {
+    path: 'reports',
+    component: ReportsComponent,
+    children: [
+      { path: 'all-bills', component: AllBillsComponent },
+      { path: 'by-date', component: ByDateComponent },
+      { path: 'search', component: SearchComponent },
+    ],
+  },
 ];
 
 @NgModule({
@@ -48,6 +61,10 @@ const appRoutes: Routes = [
     AddItemComponent,
     WelcomeComponent,
     AddBillComponent,
+    ReportsComponent,
+    ByDateComponent,
+    SearchComponent,
+    AllBillsComponent,
   ],
   imports: [
     BrowserModule,

@@ -240,6 +240,10 @@ export class AppService {
     const currentDate = dd + '-' + mm + '-' + yyyy;
     return currentDate;
   }
+
+  getAllBills() {
+    return this.bills;
+  }
   // End bills
 
   // All about clients

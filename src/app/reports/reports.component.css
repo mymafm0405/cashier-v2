@@ -1,0 +1,18 @@
+.btn-info {
+    width: 100%;
+    color: white;
+    font-weight: bold;
+    background-color: #0069af;
+    border-color: white;
+}
+.title {
+    text-align: center;
+    background-color: wheat;
+    padding: 20px;
+    border-radius: 7px;
+    margin-bottom: 50px;
+    box-shadow: 10px 10px 5px #666;
+}
+.btn-info:hover {
+    background-color: #007dd1;
+}

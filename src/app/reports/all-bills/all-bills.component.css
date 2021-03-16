@@ -1,0 +1,18 @@
+table {
+    margin-top: 40px;
+}
+tr, th, td {
+    text-align: center;
+    padding: 10px;
+}
+.add-border {
+    border: 1px solid white;
+}
+.title {
+    text-align: center;
+    color: green;
+}
+.final-price {
+    color: green;
+    font-weight: bold;
+}
