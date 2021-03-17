@@ -16,10 +16,12 @@
 .content {
   background-color: salmon;
   min-height: 1000px;
+  height: 100vw;
 }
 .menu {
   background-color: sandybrown;
   min-height: 1000px;
+  height: 100vw;
 }
 .main-row {
   border-top: 1px dashed #333;

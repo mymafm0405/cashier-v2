@@ -1,1 +1,78 @@
-<p>search works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <h2 class="title">Search for a bill</h2>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
+      <div class="row">
+        <div class="col-md-2">
+          <h4>Search For:</h4>
+        </div>
+        <div class="col-md-10">
+          <input
+            type="number"
+            class="form-control"
+            name="search"
+            placeholder="Search by bill number."
+            ngModel
+            required
+          />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 button-holder">
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="searchForm.invalid"
+          >
+            Search
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row" *ngIf="bill">
+  <div class="col-md-12">
+    <table class="table table-bordered">
+      <tr class="add-border">
+        <th class="add-border">S.N</th>
+        <th class="add-border">Date</th>
+        <th class="add-border">Item</th>
+        <th class="add-border">Price</th>
+        <th class="add-border">Quantity</th>
+        <th class="add-border">Discount %</th>
+        <th class="add-border">Final Price</th>
+        <th class="add-border">Client name</th>
+        <th class="add-border">Notes</th>
+      </tr>
+      <tr class="add-border">
+        {{
+          getItem(bill.itemId)
+        }}
+        {{
+          getClient(bill.clientId)
+        }}
+        <td class="add-border">{{ bill.serial }}</td>
+        <td class="add-border">{{ bill.date }}</td>
+        <td class="add-border">{{ currentItem.name }}</td>
+        <td class="add-border">{{ currentItem.price }}</td>
+        <td class="add-border">{{ bill.quantity }}</td>
+        <td class="add-border">{{ bill.discount }}</td>
+        <td class="add-border final-price">{{ bill.finalPrice }}</td>
+        <td class="add-border">{{ currentClient.name }}</td>
+        <td class="add-border">{{ bill.notes }}</td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row" *ngIf="bill === undefined && submitted">
+  <div class="col-md-12">
+    <div class="alert alert-danger">
+      <h3>No bills found in the system</h3>
+    </div>
+  </div>
+</div>
