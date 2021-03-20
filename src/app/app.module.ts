@@ -39,6 +39,7 @@ const appRoutes: Routes = [
       { path: 'all-bills', component: AllBillsComponent },
       { path: 'by-date', component: ByDateComponent },
       { path: 'search', component: SearchComponent },
+      { path: 'bill/:billId', component: BillComponent },
     ],
   },
 ];

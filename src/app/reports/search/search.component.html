@@ -35,44 +35,4 @@
     </form>
   </div>
 </div>
-<div class="row" *ngIf="bill">
-  <div class="col-md-12">
-    <table class="table table-bordered">
-      <tr class="add-border">
-        <th class="add-border">S.N</th>
-        <th class="add-border">Date</th>
-        <th class="add-border">Item</th>
-        <th class="add-border">Price</th>
-        <th class="add-border">Quantity</th>
-        <th class="add-border">Discount %</th>
-        <th class="add-border">Final Price</th>
-        <th class="add-border">Client name</th>
-        <th class="add-border">Notes</th>
-      </tr>
-      <tr class="add-border">
-        {{
-          getItem(bill.itemId)
-        }}
-        {{
-          getClient(bill.clientId)
-        }}
-        <td class="add-border">{{ bill.serial }}</td>
-        <td class="add-border">{{ bill.date }}</td>
-        <td class="add-border">{{ currentItem.name }}</td>
-        <td class="add-border">{{ currentItem.price }}</td>
-        <td class="add-border">{{ bill.quantity }}</td>
-        <td class="add-border">{{ bill.discount }}</td>
-        <td class="add-border final-price">{{ bill.finalPrice }}</td>
-        <td class="add-border">{{ currentClient.name }}</td>
-        <td class="add-border">{{ bill.notes }}</td>
-      </tr>
-    </table>
-  </div>
-</div>
-<div class="row" *ngIf="bill === undefined && submitted">
-  <div class="col-md-12">
-    <div class="alert alert-danger">
-      <h3>No bills found in the system</h3>
-    </div>
-  </div>
-</div>
+<app-bills [allBills]="foundBills"></app-bills>

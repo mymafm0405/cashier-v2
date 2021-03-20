@@ -244,6 +244,10 @@ export class AppService {
   getAllBills() {
     return this.bills;
   }
+
+  getBillById(billId: string) {
+    return this.bills.find((bill) => bill.id === billId);
+  }
   // End bills
 
   // All about clients

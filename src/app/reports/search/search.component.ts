@@ -2,8 +2,6 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AppService } from 'src/app/shared/app.service';
 import { Bill } from 'src/app/shared/bill.model';
-import { Client } from 'src/app/shared/client.model';
-import { Item } from 'src/app/shared/item.model';
 
 @Component({
   selector: 'app-search',
@@ -14,8 +12,7 @@ export class SearchComponent implements OnInit {
   @ViewChild('searchForm', { static: false }) searchForm: NgForm;
   allBills: Bill[];
   bill: Bill;
-  currentItem: Item;
-  currentClient: Client;
+  foundBills: Bill[];
   submitted = false;
 
   constructor(private appService: AppService) {}
@@ -34,15 +31,11 @@ export class SearchComponent implements OnInit {
     this.bill = this.allBills.find(
       (bill) => bill.serial === this.searchForm.value.search
     );
-    console.log(this.searchForm);
-    setTimeout(() => {
-      this.submitted = false;
-    }, 2000);
-  }
-  getItem(itemId: string) {
-    this.currentItem = this.appService.getItemById(itemId);
-  }
-  getClient(clientId: string) {
-    this.currentClient = this.appService.getClientById(clientId);
+    if (this.bill) {
+      this.foundBills = [];
+      this.foundBills.push(this.bill);
+    } else {
+      this.foundBills = [];
+    }
   }
 }

@@ -3,8 +3,6 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AppService } from 'src/app/shared/app.service';
 import { Bill } from 'src/app/shared/bill.model';
-import { Client } from 'src/app/shared/client.model';
-import { Item } from 'src/app/shared/item.model';
 
 @Component({
   selector: 'app-by-date',
@@ -15,8 +13,6 @@ export class ByDateComponent implements OnInit, OnDestroy {
   allBills: Bill[];
   loadBillsSub: Subscription;
   foundBills: Bill[];
-  currentItem: Item;
-  currentClient: Client;
 
   @ViewChild('findForm', { static: false }) findForm: NgForm;
 
@@ -43,13 +39,6 @@ export class ByDateComponent implements OnInit, OnDestroy {
         new Date(bill.date).getTime() <= toDateTimestamp
     );
     console.log(this.foundBills);
-  }
-
-  getItem(itemId: string) {
-    this.currentItem = this.appService.getItemById(itemId);
-  }
-  getClient(clientId: string) {
-    this.currentClient = this.appService.getClientById(clientId);
   }
 
   ngOnDestroy() {
