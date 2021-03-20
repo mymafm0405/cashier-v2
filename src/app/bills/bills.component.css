@@ -16,7 +16,32 @@ td {
   margin-top: 40px;
 }
 .final-price {
+  background-color: #0064a7;
+  color: white;
+  font-weight: bold;
+}
+.total-cost {
+  background-color: #900;
+  color: white;
+  font-weight: bold;
+}
+.total-income {
   background-color: green;
   color: white;
   font-weight: bold;
+}
+.tot-fin {
+  font-weight: bold;
+  color: #0064a7;
+  background-color: #dadada;
+}
+.tot-cos {
+  font-weight: bold;
+  color: #900;
+  background-color: #dadada;
+}
+.tot-inc {
+  font-weight: bold;
+  color: green;
+  background-color: #dadada;
 }

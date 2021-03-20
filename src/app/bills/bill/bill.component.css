@@ -1,1 +1,18 @@
-
+.make-center {
+  text-align: center;
+}
+.bill-style {
+  border: 1px dashed #333;
+  background-color: honeydew;
+}
+.value {
+  color: #09f;
+  font-weight: bold;
+}
+.row {
+  margin: 40px 0;
+}
+.total {
+  color: red;
+  font-weight: bold;
+}

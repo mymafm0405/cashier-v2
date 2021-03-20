@@ -7,6 +7,8 @@ export class Bill {
     public notes: string,
     public serial: number,
     public date: string,
+    public totalCost: number,
+    public totalIncome: number,
     public clientId?: string,
     public id?: string
   ) {}

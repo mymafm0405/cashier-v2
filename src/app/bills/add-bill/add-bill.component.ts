@@ -106,6 +106,15 @@ export class AddBillComponent implements OnInit, OnDestroy {
     this.discount = 0;
   }
 
+  calculateCostAndIncome() {
+    const totalCost = this.item.cost * this.billForm.value.quantity;
+    const totalIncome = this.finalPrice - totalCost;
+    return {
+      totalCost,
+      totalIncome,
+    };
+  }
+
   onSubmit() {
     this.client = this.appService.getClientByPhone(this.billForm.value.phone);
     this.bill = new Bill(
@@ -115,7 +124,9 @@ export class AddBillComponent implements OnInit, OnDestroy {
       this.finalPrice,
       this.billForm.value.notes,
       this.appService.getNextBillSerial(),
-      this.appService.getTodayDate()
+      this.appService.getTodayDate(),
+      this.calculateCostAndIncome().totalCost,
+      this.calculateCostAndIncome().totalIncome
     );
     if (this.client) {
       this.addNewBill(this.bill, this.client.id);

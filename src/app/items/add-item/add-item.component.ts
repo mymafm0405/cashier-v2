@@ -48,6 +48,7 @@ export class AddItemComponent implements OnInit, OnDestroy {
     this.inProgress = true;
     const item: Item = new Item(
       this.addForm.value.name,
+      this.addForm.value.cost,
       this.addForm.value.price,
       this.addForm.value.quantity,
       this.addForm.value.catId,

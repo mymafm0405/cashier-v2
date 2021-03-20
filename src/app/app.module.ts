@@ -24,6 +24,7 @@ import { ReportsComponent } from './reports/reports.component';
 import { AllBillsComponent } from './reports/all-bills/all-bills.component';
 import { ByDateComponent } from './reports/by-date/by-date.component';
 import { SearchComponent } from './reports/search/search.component';
+import { FinancialsComponent } from './reports/financials/financials.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -32,8 +33,9 @@ const appRoutes: Routes = [
   { path: 'new-sell', component: CategoriesComponent },
   { path: 'category/:id', component: ItemsComponent },
   { path: 'category/:catId/sell/:itemId', component: AddBillComponent },
+  { path: 'financials', component: FinancialsComponent },
   {
-    path: 'reports',
+    path: 'mybills',
     component: ReportsComponent,
     children: [
       { path: 'all-bills', component: AllBillsComponent },
@@ -66,6 +68,7 @@ const appRoutes: Routes = [
     ByDateComponent,
     SearchComponent,
     AllBillsComponent,
+    FinancialsComponent,
   ],
   imports: [
     BrowserModule,

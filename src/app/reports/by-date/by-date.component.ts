@@ -13,6 +13,7 @@ export class ByDateComponent implements OnInit, OnDestroy {
   allBills: Bill[];
   loadBillsSub: Subscription;
   foundBills: Bill[];
+  submitted = false;
 
   @ViewChild('findForm', { static: false }) findForm: NgForm;
 
@@ -39,6 +40,7 @@ export class ByDateComponent implements OnInit, OnDestroy {
         new Date(bill.date).getTime() <= toDateTimestamp
     );
     console.log(this.foundBills);
+    this.submitted = true;
   }
 
   ngOnDestroy() {

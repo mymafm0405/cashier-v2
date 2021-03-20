@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from 'src/app/shared/app.service';
 import { Bill } from 'src/app/shared/bill.model';
+import { Client } from 'src/app/shared/client.model';
+import { Item } from 'src/app/shared/item.model';
 
 @Component({
   selector: 'app-bill',
@@ -11,6 +13,8 @@ import { Bill } from 'src/app/shared/bill.model';
 export class BillComponent implements OnInit {
   bill: Bill;
   billId: string;
+  currentItem: Item;
+  currentClient: Client;
 
   constructor(
     private route: ActivatedRoute,
@@ -22,6 +26,8 @@ export class BillComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.billId = params.billId;
       this.getCurrentBill(this.billId);
+      this.getCurrentItem(this.bill.itemId);
+      this.getCurrentClient(this.bill.clientId);
       console.log(this.bill);
     });
   }
@@ -31,6 +37,13 @@ export class BillComponent implements OnInit {
     if (!this.bill) {
       this.router.navigate(['../../']);
     }
+  }
+
+  getCurrentItem(itemId: string) {
+    this.currentItem = this.appService.getItemById(itemId);
+  }
+  getCurrentClient(clientId: string) {
+    this.currentClient = this.appService.getClientById(clientId);
   }
 
   onPrint() {
