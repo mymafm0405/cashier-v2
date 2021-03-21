@@ -29,6 +29,9 @@ export class AddBillComponent implements OnInit, OnDestroy {
   addBillStatusSub: Subscription;
   submitted = false;
   inProgress = false;
+  userType: string;
+  openDiscount: boolean;
+  openDiscountSub: Subscription;
 
   constructor(
     private appService: AppService,
@@ -47,6 +50,17 @@ export class AddBillComponent implements OnInit, OnDestroy {
       console.log(this.category);
       console.log(this.item);
     });
+
+    this.openDiscount = this.appService.getCurrentOpenDiscount();
+    console.log(this.openDiscount);
+    this.openDiscountSub = this.appService.openDiscountStatusChanged.subscribe(
+      (status: boolean) => {
+        this.openDiscount = status;
+        console.log(this.openDiscount);
+      }
+    );
+
+    this.userType = this.appService.getUserType();
 
     this.addClientStatusSub = this.appService.addClientStatus.subscribe(
       (resData: { status: boolean; clientId: string }) => {
@@ -152,5 +166,6 @@ export class AddBillComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.addClientStatusSub.unsubscribe();
     this.addBillStatusSub.unsubscribe();
+    this.openDiscountSub.unsubscribe();
   }
 }

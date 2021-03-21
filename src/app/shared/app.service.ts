@@ -24,6 +24,10 @@ export class AppService {
   loadBillsStatus = new Subject<boolean>();
 
   userType = 'admin';
+  openDiscount = false;
+  openDiscountId: string;
+  openDiscountStatusChanged = new Subject<boolean>();
+
   categories: Category[] = [];
   items: Item[] = [];
   bills: Bill[] = [];
@@ -173,6 +177,72 @@ export class AppService {
   // All about users
   getUserType() {
     return this.userType;
+  }
+  setOpenDiscount(openDiscountOption: { status: boolean }) {
+    this.http
+      .post(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/openDiscount.json',
+        openDiscountOption
+      )
+      .subscribe((res: { name: string }) => {
+        this.openDiscountId = res.name;
+        this.openDiscount = openDiscountOption.status;
+        this.openDiscountStatusChanged.next(openDiscountOption.status);
+        console.log(this.openDiscount);
+      });
+  }
+  deleteOpenDiscount() {
+    this.http
+      .delete(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/openDiscount.json'
+      )
+      .subscribe((res) => {
+        console.log(res);
+        this.openDiscountId = undefined;
+        this.openDiscount = false;
+        this.openDiscountStatusChanged.next(false);
+      });
+  }
+  getOpenDiscountStatus() {
+    this.http
+      .get(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/openDiscount.json'
+      )
+      .pipe(
+        map((resData) => {
+          const discountObject: { id: string; status: boolean } = {
+            id: '',
+            status: false,
+          };
+          for (const key in resData) {
+            if (resData.hasOwnProperty(key)) {
+              discountObject.id = key;
+              discountObject.status = resData[key].status;
+            }
+          }
+          console.log(discountObject);
+          return discountObject;
+        })
+      )
+      .subscribe(
+        (resObject: { id: string; status: boolean }) => {
+          this.openDiscountId = resObject.id;
+          this.openDiscount = resObject.status;
+          this.openDiscountStatusChanged.next(resObject.status);
+          console.log(this.openDiscountId);
+          console.log(this.openDiscount);
+        },
+        (error) => {
+          this.openDiscountStatusChanged.next(false);
+          console.log(error);
+        }
+      );
+  }
+
+  getCurrentOpenDiscount() {
+    console.log(this.openDiscount);
+    console.log(this.openDiscountId);
+    return this.openDiscount;
   }
   // End of users
 

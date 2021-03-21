@@ -54,6 +54,7 @@
             class="form-control"
             placeholder="Discount by %"
             [(ngModel)]="discount"
+            [disabled]="!openDiscount && userType === 'user'"
             required
           />
         </div>

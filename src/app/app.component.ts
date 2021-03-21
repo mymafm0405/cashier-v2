@@ -22,5 +22,6 @@ export class AppComponent implements OnInit {
     this.appService.loadClients();
     console.log(this.appService.getTodayDate());
     this.userType = this.appService.getUserType();
+    this.appService.getOpenDiscountStatus();
   }
 }

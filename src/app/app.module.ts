@@ -25,6 +25,7 @@ import { AllBillsComponent } from './reports/all-bills/all-bills.component';
 import { ByDateComponent } from './reports/by-date/by-date.component';
 import { SearchComponent } from './reports/search/search.component';
 import { FinancialsComponent } from './reports/financials/financials.component';
+import { PermissionsComponent } from './utility/permissions/permissions.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -34,6 +35,7 @@ const appRoutes: Routes = [
   { path: 'category/:id', component: ItemsComponent },
   { path: 'category/:catId/sell/:itemId', component: AddBillComponent },
   { path: 'financials', component: FinancialsComponent },
+  { path: 'permissions', component: PermissionsComponent },
   {
     path: 'mybills',
     component: ReportsComponent,
@@ -69,6 +71,7 @@ const appRoutes: Routes = [
     SearchComponent,
     AllBillsComponent,
     FinancialsComponent,
+    PermissionsComponent,
   ],
   imports: [
     BrowserModule,

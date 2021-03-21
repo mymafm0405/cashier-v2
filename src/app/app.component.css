@@ -3,6 +3,7 @@
 }
 .logo {
   margin: 0 auto;
+  cursor: pointer;
 }
 .under {
   font-size: 18px;

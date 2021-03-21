@@ -1,0 +1,19 @@
+<div class="row make-center">
+  <div class="col-md-12">
+    <h2>You can manage some of user permissions here.</h2>
+  </div>
+</div>
+<div class="row make-center">
+  <div class="col-md-12">
+    <button *ngIf="loading" class="btn btn-default" [disabled]="loading">
+      Loading...
+    </button>
+    <button
+      *ngIf="!loading"
+      [ngClass]="openDiscount ? 'btn btn-danger' : 'btn btn-success'"
+      (click)="onDiscountClicked(openDiscount)"
+    >
+      {{ openDiscount ? "Disable discount" : "Enable discount" }}
+    </button>
+  </div>
+</div>
