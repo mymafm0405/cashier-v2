@@ -26,6 +26,8 @@ import { ByDateComponent } from './reports/by-date/by-date.component';
 import { SearchComponent } from './reports/search/search.component';
 import { FinancialsComponent } from './reports/financials/financials.component';
 import { PermissionsComponent } from './utility/permissions/permissions.component';
+import { SignInFormComponent } from './users/sign-in-form/sign-in-form.component';
+import { SignUpComponent } from './users/sign-up/sign-up.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -46,6 +48,7 @@ const appRoutes: Routes = [
       { path: 'bill/:billId', component: BillComponent },
     ],
   },
+  { path: 'signUp', component: SignUpComponent}
 ];
 
 @NgModule({
@@ -72,6 +75,8 @@ const appRoutes: Routes = [
     AllBillsComponent,
     FinancialsComponent,
     PermissionsComponent,
+    SignInFormComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,37 +1,32 @@
 <div class="container make-border">
   <div class="row">
-    <div class="col-md-2">
-      <img
-        src="../assets/images/basem-logo.png"
-        alt="Logo"
-        class="img-responsive logo"
-        height="400"
-        [routerLink]="['']"
-      />
+    <div class="col-md-12 make-center">
+      <img src="../assets/images/basem-logo.png" alt="Logo" class="logo" height="300"
+        [routerLink]="['']" />
+      <h1>
+        Cashier System - V 1.0 <span class="under">Under Construction</span>
+      </h1>
+
     </div>
-    <div class="col-md-8">
-      <div class="row make-center">
-        <div class="col-md-12">
-          <h1>
-            Cashier System - V 1.0 <span class="under">Under Construction</span>
-          </h1>
-        </div>
-      </div>
-      <div class="row make-center">
-        <div class="col-md-12">
-          <h1>Here will be the LOGIN FORM</h1>
-          <h4>Login as an ADMIN is Totaly different than as USER</h4>
-          <p style="font-style: italic; color: #09f">
-            But we will consider that we logged in as an ADMIN for development
-            purposes!
-          </p>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-2"></div>
   </div>
 
-  <div class="row main-row">
+  <div class="row make-center">
+    <div class="col-md-12" *ngIf="!userLoggedIn">
+      <app-sign-in-form></app-sign-in-form>
+      <!-- <h1>Here will be the LOGIN FORM</h1>
+      <h4>Login as an ADMIN is Totaly different than as USER</h4>
+      <p style="font-style: italic; color: #09f">
+        But we will consider that we logged in as an ADMIN for development
+        purposes!
+      </p> -->
+    </div>
+    <div class="col-md-12" *ngIf="userLoggedIn">
+      <h3>Name: {{user.name}} - ({{user.userType === 'admin' ? 'Admin' : 'User'}})</h3>
+      <button class="btn btn-danger" (click)="onSignOut()">Sign-Out</button>
+    </div>
+  </div>
+
+  <div class="row main-row" *ngIf="userLoggedIn">
     <div class="col-md-10 content">
       <router-outlet></router-outlet>
     </div>
@@ -46,20 +41,14 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button
-                class="btn btn-danger full-btn"
-                [routerLink]="['add-category']"
-              >
+              <button class="btn btn-danger full-btn" [routerLink]="['add-category']">
                 Add Category
               </button>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button
-                class="btn btn-danger full-btn"
-                [routerLink]="['add-item']"
-              >
+              <button class="btn btn-danger full-btn" [routerLink]="['add-item']">
                 Add Item
               </button>
             </div>
@@ -78,20 +67,14 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button
-                class="btn btn-danger full-btn"
-                [routerLink]="['mybills']"
-              >
+              <button class="btn btn-danger full-btn" [routerLink]="['mybills']">
                 My Bills
               </button>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button
-                class="btn btn-danger full-btn"
-                [routerLink]="['financials']"
-              >
+              <button class="btn btn-danger full-btn" [routerLink]="['financials']">
                 Financials
               </button>
             </div>
@@ -105,15 +88,12 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button class="btn btn-danger full-btn" disabled>Add User</button>
+              <button class="btn btn-danger full-btn" [routerLink]="['signUp']">Add User</button>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button
-                class="btn btn-danger full-btn"
-                [routerLink]="['permissions']"
-              >
+              <button class="btn btn-danger full-btn" [routerLink]="['permissions']">
                 Permissions
               </button>
             </div>
@@ -132,10 +112,7 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button
-                class="btn btn-primary full-btn"
-                [routerLink]="['new-sell']"
-              >
+              <button class="btn btn-primary full-btn" [routerLink]="['new-sell']">
                 New Sell
               </button>
             </div>

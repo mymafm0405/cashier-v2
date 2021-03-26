@@ -6,6 +6,7 @@ import { Bill } from './bill.model';
 import { Category } from './category.model';
 import { Client } from './client.model';
 import { Item } from './item.model';
+import { User } from './user.model';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,13 @@ export class AppService {
   addBillStatus = new Subject<boolean>();
   loadBillsStatus = new Subject<boolean>();
 
+  userSignInStatusChanges = new Subject<boolean>();
+  userSignUpStatusChanges = new Subject<boolean>();
+
+  allUsers: User[] = [];
+  user: User;
   userType = 'admin';
+
   openDiscount = false;
   openDiscountId: string;
   openDiscountStatusChanged = new Subject<boolean>();
@@ -175,9 +182,85 @@ export class AppService {
   // End of items.
 
   // All about users
+  getUser() {
+    return this.user;
+  }
   getUserType() {
     return this.userType;
   }
+  loadAllUsers() {
+    this.http.get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/users.json')
+    .pipe(map(
+      (resData): User[] => {
+        const resUsers: User[] = [];
+        for (const key in resData) {
+          if (resData.hasOwnProperty(key)) {
+            resUsers.push({...resData[key], id: key})
+          }
+        }
+        return resUsers;
+      }
+    ))
+    .subscribe(
+      (resUsers) => {
+        this.allUsers = resUsers;
+      } , error => {
+        console.log('We could not load our users');
+        console.log(error);
+      }
+    )
+  }
+    // Here is the sign in out code
+    signInUser(username: string, password: string) {
+      const foundUser = this.allUsers.find(user => user.username === username);
+      if (foundUser) {
+        if (foundUser.password === password) {
+          this.user = foundUser;
+          this.userType = foundUser.userType;
+          this.userSignInStatusChanges.next(true);
+          console.log('user logged in success');
+          console.log(this.user);
+          console.log(this.userType);
+        } else {
+          console.log('user logged in failed');
+          this.userSignInStatusChanges.next(false);
+        }
+      } else {
+        console.log('user logged in failed');
+        this.userSignInStatusChanges.next(false);
+      }
+    }
+
+    // Here to add user to the system
+    checkUserExist(username: string) {
+      if (this.allUsers.find(user => user.username.toLowerCase() === username.toLowerCase())) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    signUpUser(user: User) {
+      if (!this.checkUserExist(user.username)) {
+        this.http.post('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/users.json', user)
+        .subscribe(
+          (res: {name: string}) => {
+            this.user = user;
+            this.userType = user.userType;
+            this.loadAllUsers();
+            this.userSignUpStatusChanges.next(true);
+            console.log(res.name);
+            console.log('User added successfully');
+          }, error => {
+            this.userSignUpStatusChanges.next(false);
+            console.log(error)
+          }
+        )
+      } else {
+        console.log('Sorry this username is exist');
+      }
+    }
+
   setOpenDiscount(openDiscountOption: { status: boolean }) {
     this.http
       .post(

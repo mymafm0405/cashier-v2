@@ -39,3 +39,6 @@
   border-bottom: 1px dashed #333;
   padding-bottom: 10px;
 }
+.row {
+  margin: 20px 0px;
+}
