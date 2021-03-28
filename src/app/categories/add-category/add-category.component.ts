@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AppService } from 'src/app/shared/app.service';
 import { Category } from 'src/app/shared/category.model';
+import { Company } from 'src/app/shared/company.model';
 
 @Component({
   selector: 'app-add-category',
@@ -15,11 +16,25 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   addStatus: boolean;
   submitted = false;
   inProgress = false;
+  companies: Company[];
+  companiesLoadSub: Subscription;
 
   constructor(private appService: AppService) {}
 
   ngOnInit(): void {
     this.appService.checkAdminPermissions();
+
+    this.appService.loadCompanies();
+    this.companiesLoadSub = this.appService.loadCompaniesStatus.subscribe(
+      (status: boolean) => {
+        if (status) {
+          this.companies = this.appService.getCompanies();
+          console.log('hello after companies loaded');
+        } else {
+          console.log('Sorry no loaded comp yet');
+        }
+      }
+    );
 
     this.addStatusSub = this.appService.addCategoryStatus.subscribe(
       (status: boolean) => {
@@ -37,7 +52,8 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
     this.submitted = true;
     const category: Category = new Category(
       this.addForm.value.name,
-      this.addForm.value.desc
+      this.addForm.value.desc,
+      this.addForm.value.companyId
     );
     this.appService.addCategory(category);
     this.addForm.reset();
@@ -45,5 +61,6 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.addStatusSub.unsubscribe();
+    this.companiesLoadSub.unsubscribe();
   }
 }

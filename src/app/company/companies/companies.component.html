@@ -1,0 +1,12 @@
+<div class="row" *ngIf="companies !== undefined && companies.length === 0">
+  <div class="col-md-12">
+    <div class="alert alert-danger">
+      <h4>No companies found, please add one!</h4>
+    </div>
+  </div>
+</div>
+<div class="row" *ngIf="companies !== undefined && companies.length > 0">
+  <div class="col-md-6" *ngFor="let company of companies">
+    <h3>{{ company.name }}</h3>
+  </div>
+</div>

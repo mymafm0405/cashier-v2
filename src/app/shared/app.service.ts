@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Bill } from './bill.model';
 import { Category } from './category.model';
 import { Client } from './client.model';
+import { Company } from './company.model';
 import { Item } from './item.model';
 import { User } from './user.model';
 
@@ -28,6 +29,9 @@ export class AppService {
   userSignInStatusChanges = new Subject<boolean>();
   userSignUpStatusChanges = new Subject<boolean>();
 
+  addCompanyStatus = new Subject<boolean>();
+  loadCompaniesStatus = new Subject<boolean>();
+
   allUsers: User[] = [];
   user: User;
   userType = 'admin';
@@ -40,6 +44,7 @@ export class AppService {
   items: Item[] = [];
   bills: Bill[] = [];
   clients: Client[] = [];
+  companies: Company[] = [];
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -94,6 +99,12 @@ export class AppService {
 
   getCategories() {
     return this.categories;
+  }
+  getCategoriesForCompany(companyId: string) {
+    const foundCategories = this.categories.filter(
+      (category) => category.companyId === companyId
+    );
+    return foundCategories;
   }
 
   getCategoryById(catId: string) {
@@ -473,4 +484,60 @@ export class AppService {
       this.router.navigate(['/']);
     }
   }
+
+  // End navigation
+
+  // Company things are here
+  addCompany(company: Company) {
+    this.http
+      .post(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/companies.json',
+        company
+      )
+      .subscribe(
+        (res: { name: string }) => {
+          console.log('company has been added');
+          this.companies.push({ ...company, id: res.name });
+          this.addCompanyStatus.next(true);
+        },
+        (error) => {
+          this.addCompanyStatus.next(false);
+        }
+      );
+  }
+
+  loadCompanies() {
+    this.http
+      .get(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/companies.json'
+      )
+      .pipe(
+        map((resData): Company[] => {
+          const resCompanies: Company[] = [];
+          for (const key in resData) {
+            if (resData.hasOwnProperty(key)) {
+              resCompanies.push({ ...resData[key], id: key });
+            }
+          }
+          return resCompanies;
+        })
+      )
+      .subscribe(
+        (resCompanies: Company[]) => {
+          this.companies = resCompanies;
+          console.log('companies loaded success');
+          this.loadCompaniesStatus.next(true);
+        },
+        (error) => {
+          console.log(error);
+          this.loadCompaniesStatus.next(false);
+        }
+      );
+  }
+
+  getCompanies() {
+    return this.companies;
+  }
+
+  // End company
 }

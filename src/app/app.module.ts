@@ -28,9 +28,12 @@ import { FinancialsComponent } from './reports/financials/financials.component';
 import { PermissionsComponent } from './utility/permissions/permissions.component';
 import { SignInFormComponent } from './users/sign-in-form/sign-in-form.component';
 import { SignUpComponent } from './users/sign-up/sign-up.component';
+import { AddCompanyComponent } from './company/add-company/add-company.component';
+import { CompaniesComponent } from './company/companies/companies.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
+  { path: 'add-company', component: AddCompanyComponent },
   { path: 'add-category', component: AddCategoryComponent },
   { path: 'add-item', component: AddItemComponent },
   { path: 'new-sell', component: CategoriesComponent },
@@ -48,7 +51,7 @@ const appRoutes: Routes = [
       { path: 'bill/:billId', component: BillComponent },
     ],
   },
-  { path: 'signUp', component: SignUpComponent}
+  { path: 'signUp', component: SignUpComponent },
 ];
 
 @NgModule({
@@ -77,6 +80,8 @@ const appRoutes: Routes = [
     PermissionsComponent,
     SignInFormComponent,
     SignUpComponent,
+    AddCompanyComponent,
+    CompaniesComponent,
   ],
   imports: [
     BrowserModule,

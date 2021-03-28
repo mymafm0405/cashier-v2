@@ -6,6 +6,7 @@ export class Item {
     public quantity: number,
     public catId: string,
     public imgUrl: string,
+    public companyId: string,
     public id?: string
   ) {}
 }

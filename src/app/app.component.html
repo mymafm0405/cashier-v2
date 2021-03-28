@@ -1,12 +1,16 @@
 <div class="container make-border">
   <div class="row">
     <div class="col-md-12 make-center">
-      <img src="../assets/images/basem-logo.png" alt="Logo" class="logo" height="300"
-        [routerLink]="['']" />
+      <img
+        src="../assets/images/basem-logo.png"
+        alt="Logo"
+        class="logo"
+        height="300"
+        [routerLink]="['']"
+      />
       <h1>
         Cashier System - V 1.0 <span class="under">Under Construction</span>
       </h1>
-
     </div>
   </div>
 
@@ -21,7 +25,11 @@
       </p> -->
     </div>
     <div class="col-md-12" *ngIf="userLoggedIn">
-      <h3>Name: {{user.name}} - ({{user.userType === 'admin' ? 'Admin' : 'User'}})</h3>
+      <h3>
+        Name: {{ user.name }} - ({{
+          user.userType === "admin" ? "Admin" : "User"
+        }})
+      </h3>
       <button class="btn btn-danger" (click)="onSignOut()">Sign-Out</button>
     </div>
   </div>
@@ -41,14 +49,30 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button class="btn btn-danger full-btn" [routerLink]="['add-category']">
+              <button
+                class="btn btn-danger full-btn"
+                [routerLink]="['add-company']"
+              >
+                Add Company
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <button
+                class="btn btn-danger full-btn"
+                [routerLink]="['add-category']"
+              >
                 Add Category
               </button>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button class="btn btn-danger full-btn" [routerLink]="['add-item']">
+              <button
+                class="btn btn-danger full-btn"
+                [routerLink]="['add-item']"
+              >
                 Add Item
               </button>
             </div>
@@ -67,14 +91,20 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button class="btn btn-danger full-btn" [routerLink]="['mybills']">
+              <button
+                class="btn btn-danger full-btn"
+                [routerLink]="['mybills']"
+              >
                 My Bills
               </button>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button class="btn btn-danger full-btn" [routerLink]="['financials']">
+              <button
+                class="btn btn-danger full-btn"
+                [routerLink]="['financials']"
+              >
                 Financials
               </button>
             </div>
@@ -88,12 +118,17 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button class="btn btn-danger full-btn" [routerLink]="['signUp']">Add User</button>
+              <button class="btn btn-danger full-btn" [routerLink]="['signUp']">
+                Add User
+              </button>
             </div>
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button class="btn btn-danger full-btn" [routerLink]="['permissions']">
+              <button
+                class="btn btn-danger full-btn"
+                [routerLink]="['permissions']"
+              >
                 Permissions
               </button>
             </div>
@@ -112,7 +147,10 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <button class="btn btn-primary full-btn" [routerLink]="['new-sell']">
+              <button
+                class="btn btn-primary full-btn"
+                [routerLink]="['new-sell']"
+              >
                 New Sell
               </button>
             </div>

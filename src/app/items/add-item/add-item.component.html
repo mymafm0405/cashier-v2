@@ -12,17 +12,27 @@
 </div>
 <div class="row" *ngIf="categories !== undefined && categories.length === 0">
   <div class="col-md-12">
-    <h3 class="red-message">You don't have any categories, please add some!</h3>
+    <h3 class="red-message">
+      You don't have any categories, please add some or select a company from
+      the form below!
+    </h3>
   </div>
 </div>
-<div class="row" *ngIf="categories !== undefined && categories.length > 0">
+<div class="row" *ngIf="companies !== undefined && companies.length === 0">
+  <div class="col-md-12">
+    <h3 class="red-message">You don't have any company, please add one!</h3>
+  </div>
+</div>
+<div class="row" *ngIf="companies !== undefined && companies.length > 0">
   <div class="col-md-12">
     <form (ngSubmit)="onSubmit()" #addForm="ngForm">
       <div class="row">
         <div class="col-md-2"><h4>Category:</h4></div>
         <div class="col-md-10">
           <select name="catId" class="form-control" ngModel required>
-            <option value="" selected>Choose category</option>
+            <option value="" selected>
+              Choose category after select a company
+            </option>
             <option *ngFor="let category of categories" [value]="category.id">
               {{ category.name }}
             </option>
@@ -79,6 +89,23 @@
             ngModel
             required
           />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-2"><h4>Company:</h4></div>
+        <div class="col-md-10">
+          <select
+            class="form-control"
+            name="companyId"
+            [(ngModel)]="companyId"
+            (change)="onCompChange()"
+            required
+          >
+            <option value="" selected>Select company</option>
+            <option value="{{ company.id }}" *ngFor="let company of companies">
+              {{ company.name }}
+            </option>
+          </select>
         </div>
       </div>
       <div class="row">

@@ -26,6 +26,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.appService.loadBills();
     this.appService.loadClients();
     this.appService.loadAllUsers();
+    this.appService.loadCompanies();
     console.log(this.appService.getTodayDate());
     this.appService.getOpenDiscountStatus();
 
@@ -37,8 +38,7 @@ export class AppComponent implements OnInit, OnDestroy {
         }
         this.userLoggedIn = status;
       }
-    )
-
+    );
   }
 
   onSignOut() {
