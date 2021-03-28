@@ -13,6 +13,8 @@ export class PermissionsComponent implements OnInit {
   constructor(private appService: AppService) {}
 
   ngOnInit(): void {
+    this.appService.checkAdminPermissions();
+
     setTimeout(() => {
       this.loading = false;
     }, 2000);

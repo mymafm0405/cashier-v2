@@ -11,7 +11,14 @@
           <h4>Username:</h4>
         </div>
         <div class="col-md-10">
-          <input type="text" class="form-control" placeholder="Username" name="username" ngModel required/>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Username"
+            name="username"
+            ngModel
+            required
+          />
         </div>
       </div>
       <div class="row">
@@ -19,7 +26,14 @@
           <h4>Password:</h4>
         </div>
         <div class="col-md-10">
-          <input type="password" class="form-control" placeholder="Password" name="password" ngModel required/>
+          <input
+            type="password"
+            class="form-control"
+            placeholder="Password"
+            name="password"
+            ngModel
+            required
+          />
         </div>
       </div>
       <div class="row">
@@ -27,7 +41,14 @@
           <h4>Name:</h4>
         </div>
         <div class="col-md-10">
-          <input type="text" class="form-control" placeholder="Name" name="name" ngModel required/>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Name"
+            name="name"
+            ngModel
+            required
+          />
         </div>
       </div>
       <div class="row">
@@ -42,7 +63,25 @@
           </select>
         </div>
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="signUpForm.invalid">Save user</button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="signUpForm.invalid"
+      >
+        Save user
+      </button>
     </form>
+    <div
+      class="alert alert-danger"
+      *ngIf="userCreated !== undefined && !userCreated"
+    >
+      <h4>Username might already exist, try again!</h4>
+    </div>
+    <div
+      class="alert alert-success"
+      *ngIf="userCreated !== undefined && userCreated"
+    >
+      <h4>User created successfully, now you can sign in!</h4>
+    </div>
   </div>
 </div>

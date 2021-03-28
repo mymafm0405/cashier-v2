@@ -51,7 +51,8 @@ export class AddBillComponent implements OnInit, OnDestroy {
       console.log(this.item);
     });
 
-    this.openDiscount = this.appService.getCurrentOpenDiscount();
+    // this.openDiscount = this.appService.getCurrentOpenDiscount();
+    this.appService.getOpenDiscountStatus();
     console.log(this.openDiscount);
     this.openDiscountSub = this.appService.openDiscountStatusChanged.subscribe(
       (status: boolean) => {
@@ -131,26 +132,60 @@ export class AddBillComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.client = this.appService.getClientByPhone(this.billForm.value.phone);
-    this.bill = new Bill(
-      this.item.id,
-      this.billForm.value.quantity,
-      this.billForm.value.discount,
-      this.finalPrice,
-      this.billForm.value.notes,
-      this.appService.getNextBillSerial(),
-      this.appService.getTodayDate(),
-      this.calculateCostAndIncome().totalCost,
-      this.calculateCostAndIncome().totalIncome
-    );
-    if (this.client) {
-      this.addNewBill(this.bill, this.client.id);
-    } else {
-      const newClient: Client = new Client(
-        this.billForm.value.name,
-        this.billForm.value.phone
-      );
-      this.appService.addClient(newClient);
-    }
+    // Check if it is allowed to add discount or not
+    this.appService.getOpenDiscountStatus();
+    setTimeout(() => {
+      if (!this.openDiscount) {
+        const allowedDiscount = 0;
+        this.discount = allowedDiscount;
+
+        this.bill = new Bill(
+          this.item.id,
+          this.billForm.value.quantity,
+          this.discount,
+          this.calculateFinalPrice(),
+          this.billForm.value.notes,
+          this.appService.getNextBillSerial(),
+          this.appService.getTodayDate(),
+          this.calculateCostAndIncome().totalCost,
+          this.calculateCostAndIncome().totalIncome
+        );
+        if (this.client) {
+          this.addNewBill(this.bill, this.client.id);
+        } else {
+          const newClient: Client = new Client(
+            this.billForm.value.name,
+            this.billForm.value.phone
+          );
+          this.appService.addClient(newClient);
+        }
+      } else {
+        const allowedDiscount = this.billForm.value.discount;
+        this.discount = allowedDiscount;
+
+        this.bill = new Bill(
+          this.item.id,
+          this.billForm.value.quantity,
+          allowedDiscount,
+          this.calculateFinalPrice(),
+          this.billForm.value.notes,
+          this.appService.getNextBillSerial(),
+          this.appService.getTodayDate(),
+          this.calculateCostAndIncome().totalCost,
+          this.calculateCostAndIncome().totalIncome
+        );
+        if (this.client) {
+          this.addNewBill(this.bill, this.client.id);
+        } else {
+          const newClient: Client = new Client(
+            this.billForm.value.name,
+            this.billForm.value.phone
+          );
+          this.appService.addClient(newClient);
+        }
+      }
+    }, 3000);
+    //
   }
 
   addNewBill(bill: Bill, clientId: string) {

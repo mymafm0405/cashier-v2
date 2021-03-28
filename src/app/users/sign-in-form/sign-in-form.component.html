@@ -6,7 +6,14 @@
           <h4>Username:</h4>
         </div>
         <div class="col-md-10">
-          <input class="form-control" type="text" placeholder="Username" name="username" ngModel required/>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Username"
+            name="username"
+            ngModel
+            required
+          />
         </div>
       </div>
       <div class="row">
@@ -14,10 +21,26 @@
           <h4>Password:</h4>
         </div>
         <div class="col-md-10">
-          <input class="form-control" type="password" placeholder="Password" name="password" ngModel required/>
+          <input
+            class="form-control"
+            type="password"
+            placeholder="Password"
+            name="password"
+            ngModel
+            required
+          />
         </div>
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="signInForm.invalid">Sign-in</button>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [disabled]="signInForm.invalid"
+      >
+        Sign-in
+      </button>
     </form>
+    <div class="alert alert-danger" *ngIf="notAllowed">
+      <h4>Username and Password are not correct!</h4>
+    </div>
   </div>
 </div>

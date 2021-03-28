@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Bill } from './bill.model';
@@ -40,7 +41,7 @@ export class AppService {
   bills: Bill[] = [];
   clients: Client[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   // All about categories from here...
   addCategory(category: Category) {
@@ -189,77 +190,89 @@ export class AppService {
     return this.userType;
   }
   loadAllUsers() {
-    this.http.get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/users.json')
-    .pipe(map(
-      (resData): User[] => {
-        const resUsers: User[] = [];
-        for (const key in resData) {
-          if (resData.hasOwnProperty(key)) {
-            resUsers.push({...resData[key], id: key})
+    this.http
+      .get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/users.json')
+      .pipe(
+        map((resData): User[] => {
+          const resUsers: User[] = [];
+          for (const key in resData) {
+            if (resData.hasOwnProperty(key)) {
+              resUsers.push({ ...resData[key], id: key });
+            }
           }
+          return resUsers;
+        })
+      )
+      .subscribe(
+        (resUsers) => {
+          this.allUsers = resUsers;
+        },
+        (error) => {
+          console.log('We could not load our users');
+          console.log(error);
         }
-        return resUsers;
-      }
-    ))
-    .subscribe(
-      (resUsers) => {
-        this.allUsers = resUsers;
-      } , error => {
-        console.log('We could not load our users');
-        console.log(error);
-      }
-    )
+      );
   }
-    // Here is the sign in out code
-    signInUser(username: string, password: string) {
-      const foundUser = this.allUsers.find(user => user.username === username);
-      if (foundUser) {
-        if (foundUser.password === password) {
-          this.user = foundUser;
-          this.userType = foundUser.userType;
-          this.userSignInStatusChanges.next(true);
-          console.log('user logged in success');
-          console.log(this.user);
-          console.log(this.userType);
-        } else {
-          console.log('user logged in failed');
-          this.userSignInStatusChanges.next(false);
-        }
+  // Here is the sign in out code
+  signInUser(username: string, password: string) {
+    const foundUser = this.allUsers.find((user) => user.username === username);
+    if (foundUser) {
+      if (foundUser.password === password) {
+        this.user = foundUser;
+        this.userType = foundUser.userType;
+        this.userSignInStatusChanges.next(true);
+        console.log('user logged in success');
+        console.log(this.user);
+        console.log(this.userType);
       } else {
         console.log('user logged in failed');
         this.userSignInStatusChanges.next(false);
       }
+    } else {
+      console.log('user logged in failed');
+      this.userSignInStatusChanges.next(false);
     }
+  }
 
-    // Here to add user to the system
-    checkUserExist(username: string) {
-      if (this.allUsers.find(user => user.username.toLowerCase() === username.toLowerCase())) {
-        return true;
-      } else {
-        return false;
-      }
+  // Here to add user to the system
+  checkUserExist(username: string) {
+    if (
+      this.allUsers.find(
+        (user) => user.username.toLowerCase() === username.toLowerCase()
+      )
+    ) {
+      return true;
+    } else {
+      return false;
     }
+  }
 
-    signUpUser(user: User) {
-      if (!this.checkUserExist(user.username)) {
-        this.http.post('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/users.json', user)
+  signUpUser(user: User) {
+    if (!this.checkUserExist(user.username)) {
+      this.http
+        .post(
+          'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/users.json',
+          user
+        )
         .subscribe(
-          (res: {name: string}) => {
+          (res: { name: string }) => {
             this.user = user;
             this.userType = user.userType;
             this.loadAllUsers();
             this.userSignUpStatusChanges.next(true);
             console.log(res.name);
             console.log('User added successfully');
-          }, error => {
+          },
+          (error) => {
             this.userSignUpStatusChanges.next(false);
-            console.log(error)
+            console.log(error);
           }
-        )
-      } else {
-        console.log('Sorry this username is exist');
-      }
+        );
+    } else {
+      this.userSignUpStatusChanges.next(false);
+      console.log('Sorry this username is exist');
     }
+  }
 
   setOpenDiscount(openDiscountOption: { status: boolean }) {
     this.http
@@ -453,4 +466,11 @@ export class AppService {
       );
   }
   // End clients
+
+  // Navigation security
+  checkAdminPermissions() {
+    if (this.userType !== 'admin') {
+      this.router.navigate(['/']);
+    }
+  }
 }

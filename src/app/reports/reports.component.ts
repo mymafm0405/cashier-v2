@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AppService } from '../shared/app.service';
 
 @Component({
   selector: 'app-reports',
@@ -6,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./reports.component.css'],
 })
 export class ReportsComponent implements OnInit {
-  constructor() {}
+  constructor(private appService: AppService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.appService.checkAdminPermissions();
+  }
 }

@@ -19,6 +19,8 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   constructor(private appService: AppService) {}
 
   ngOnInit(): void {
+    this.appService.checkAdminPermissions();
+
     this.addStatusSub = this.appService.addCategoryStatus.subscribe(
       (status: boolean) => {
         this.inProgress = false;

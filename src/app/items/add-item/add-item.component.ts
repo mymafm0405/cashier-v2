@@ -22,6 +22,8 @@ export class AddItemComponent implements OnInit, OnDestroy {
   constructor(private appService: AppService) {}
 
   ngOnInit(): void {
+    this.appService.checkAdminPermissions();
+
     this.appService.loadCategories();
     this.loadStatusSub = this.appService.loadCategoryStatus.subscribe(
       (status: boolean) => {
