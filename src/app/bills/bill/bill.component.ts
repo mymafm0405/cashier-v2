@@ -3,6 +3,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { AppService } from 'src/app/shared/app.service';
 import { Bill } from 'src/app/shared/bill.model';
 import { Client } from 'src/app/shared/client.model';
+import { Company } from 'src/app/shared/company.model';
 import { Item } from 'src/app/shared/item.model';
 
 @Component({
@@ -15,6 +16,7 @@ export class BillComponent implements OnInit {
   billId: string;
   currentItem: Item;
   currentClient: Client;
+  company: Company;
 
   constructor(
     private route: ActivatedRoute,
@@ -28,6 +30,7 @@ export class BillComponent implements OnInit {
       this.getCurrentBill(this.billId);
       this.getCurrentItem(this.bill.itemId);
       this.getCurrentClient(this.bill.clientId);
+      this.getCompany(this.bill.companyId);
       console.log(this.bill);
     });
   }
@@ -44,6 +47,9 @@ export class BillComponent implements OnInit {
   }
   getCurrentClient(clientId: string) {
     this.currentClient = this.appService.getClientById(clientId);
+  }
+  getCompany(companyId: string) {
+    this.company = this.appService.getCompanyById(companyId);
   }
 
   onPrint() {

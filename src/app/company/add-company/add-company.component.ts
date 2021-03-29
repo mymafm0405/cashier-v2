@@ -13,17 +13,23 @@ export class AddCompanyComponent implements OnInit, OnDestroy {
   @ViewChild('companyForm', { static: false }) companyForm: NgForm;
   companyAddSub: Subscription;
   addingStatus: boolean;
+  submitted = false;
   constructor(private appService: AppService) {}
 
   ngOnInit(): void {
     this.companyAddSub = this.appService.addCompanyStatus.subscribe(
       (status: boolean) => {
         this.addingStatus = status;
+        setTimeout(() => {
+          this.addingStatus = undefined;
+          this.submitted = false;
+        }, 2000);
       }
     );
   }
 
   onSubmit() {
+    this.submitted = true;
     const company: Company = new Company(this.companyForm.value.name);
     this.appService.addCompany(company);
   }

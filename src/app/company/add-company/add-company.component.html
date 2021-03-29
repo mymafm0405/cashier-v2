@@ -1,3 +1,8 @@
+<div class="row make-center add-margin">
+  <div class="col-md-12">
+    <h1>Add new Company</h1>
+  </div>
+</div>
 <div class="row">
   <div class="col-md-12">
     <form (ngSubmit)="onSubmit()" #companyForm="ngForm">
@@ -10,12 +15,23 @@
             type="text"
             name="name"
             class="form-control"
+            placeholder="Please enter your new company name..."
             ngModel
             required
           />
         </div>
       </div>
-      <button class="btn btn-danger" type="submit">Save company</button>
+      <div class="row make-center add-margin">
+        <div class="col-md-12">
+          <button
+            class="btn btn-danger"
+            type="submit"
+            [disabled]="companyForm.invalid || submitted"
+          >
+            Save company
+          </button>
+        </div>
+      </div>
     </form>
     <div
       class="alert alert-danger"

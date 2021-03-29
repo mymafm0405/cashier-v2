@@ -7,6 +7,7 @@ import { Bill } from 'src/app/shared/bill.model';
 import { Category } from 'src/app/shared/category.model';
 import { Client } from 'src/app/shared/client.model';
 import { Item } from 'src/app/shared/item.model';
+import { User } from 'src/app/shared/user.model';
 
 @Component({
   selector: 'app-add-bill',
@@ -32,6 +33,7 @@ export class AddBillComponent implements OnInit, OnDestroy {
   userType: string;
   openDiscount: boolean;
   openDiscountSub: Subscription;
+  user: User;
 
   constructor(
     private appService: AppService,
@@ -40,6 +42,7 @@ export class AddBillComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.user = this.appService.getUser();
     this.route.params.subscribe((params: Params) => {
       this.category = this.appService.getCategoryById(params.catId);
       this.item = this.appService.getItemById(params.itemId);
@@ -131,11 +134,13 @@ export class AddBillComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.submitted = true;
+    this.inProgress = true;
     this.client = this.appService.getClientByPhone(this.billForm.value.phone);
     // Check if it is allowed to add discount or not
     this.appService.getOpenDiscountStatus();
     setTimeout(() => {
-      if (!this.openDiscount) {
+      if (!this.openDiscount && this.user.userType !== 'admin') {
         const allowedDiscount = 0;
         this.discount = allowedDiscount;
 
@@ -148,7 +153,8 @@ export class AddBillComponent implements OnInit, OnDestroy {
           this.appService.getNextBillSerial(),
           this.appService.getTodayDate(),
           this.calculateCostAndIncome().totalCost,
-          this.calculateCostAndIncome().totalIncome
+          this.calculateCostAndIncome().totalIncome,
+          this.item.companyId
         );
         if (this.client) {
           this.addNewBill(this.bill, this.client.id);
@@ -172,7 +178,8 @@ export class AddBillComponent implements OnInit, OnDestroy {
           this.appService.getNextBillSerial(),
           this.appService.getTodayDate(),
           this.calculateCostAndIncome().totalCost,
-          this.calculateCostAndIncome().totalIncome
+          this.calculateCostAndIncome().totalIncome,
+          this.item.companyId
         );
         if (this.client) {
           this.addNewBill(this.bill, this.client.id);
@@ -189,8 +196,6 @@ export class AddBillComponent implements OnInit, OnDestroy {
   }
 
   addNewBill(bill: Bill, clientId: string) {
-    this.submitted = true;
-    this.inProgress = true;
     this.appService.addBill({ ...bill, clientId: clientId });
     this.billForm.reset();
     this.quantity = 1;

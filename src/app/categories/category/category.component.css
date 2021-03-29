@@ -11,3 +11,7 @@
 .category:hover {
   background-color: bisque;
 }
+p {
+  font-style: italic;
+  color: red;
+}

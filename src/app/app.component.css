@@ -42,3 +42,11 @@
 .row {
   margin: 20px 0px;
 }
+.user-type {
+  font-size: 16px;
+  font-style: italic;
+  color: red;
+}
+.company-name {
+  color: #09f;
+}

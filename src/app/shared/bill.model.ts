@@ -9,6 +9,7 @@ export class Bill {
     public date: string,
     public totalCost: number,
     public totalIncome: number,
+    public companyId: string,
     public clientId?: string,
     public id?: string
   ) {}

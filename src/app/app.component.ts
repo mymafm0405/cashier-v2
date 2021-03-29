@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AppService } from './shared/app.service';
+import { Company } from './shared/company.model';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   userType: string;
   userLoggedIn = false;
   signInSub: Subscription;
+  company: Company;
 
   constructor(private appService: AppService) {}
 
@@ -35,6 +37,7 @@ export class AppComponent implements OnInit, OnDestroy {
         if (status) {
           this.user = this.appService.getUser();
           this.userType = this.appService.getUserType();
+          this.company = this.appService.getCompanyById(this.user.companyId);
         }
         this.userLoggedIn = status;
       }

@@ -49,7 +49,9 @@ export class SignUpComponent implements OnInit, OnDestroy {
       this.signUpForm.value.password,
       this.signUpForm.value.name,
       this.signUpForm.value.userType,
-      this.signUpForm.value.companyId
+      this.signUpForm.value.userType === 'admin'
+        ? ''
+        : this.signUpForm.value.companyId
     );
     this.appService.signUpUser(newUser);
     console.log(this.signUpForm);

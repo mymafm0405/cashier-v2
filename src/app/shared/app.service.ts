@@ -539,5 +539,9 @@ export class AppService {
     return this.companies;
   }
 
+  getCompanyById(companyId: string) {
+    return this.companies.find((company) => company.id === companyId);
+  }
+
   // End company
 }

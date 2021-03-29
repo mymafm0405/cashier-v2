@@ -1,4 +1,4 @@
-<div class="container make-border">
+<div class="container-fluid make-border">
   <div class="row">
     <div class="col-md-12 make-center">
       <img
@@ -26,11 +26,19 @@
     </div>
     <div class="col-md-12" *ngIf="userLoggedIn">
       <h3>
-        Name: {{ user.name }} - ({{
-          user.userType === "admin" ? "Admin" : "User"
-        }})
+        Name: {{ user.name }} -
+        <span class="user-type"
+          >({{ user.userType === "admin" ? "Admin" : "User" }}) at
+          <span class="company-name">
+            {{ company ? company.name : "OUR" }}
+          </span>
+          company</span
+        >
       </h3>
-      <button class="btn btn-danger" (click)="onSignOut()">Sign-Out</button>
+      <button class="btn btn-danger" (click)="onSignOut()">Sign-Out</button> |
+      <button class="btn btn-success" (click)="onSignOut()">
+        Change Password
+      </button>
     </div>
   </div>
 
@@ -104,6 +112,7 @@
               <button
                 class="btn btn-danger full-btn"
                 [routerLink]="['financials']"
+                disabled
               >
                 Financials
               </button>

@@ -1,11 +1,11 @@
-<div class="row" *ngIf="categories === undefined">
+<div class="row make-center add-margin" *ngIf="categories === undefined">
   <div class="col-md-12">
     <div class="alert alert-warning">
       <h4>Loading our data, please wait...</h4>
     </div>
   </div>
 </div>
-<div class="row" *ngIf="categories !== undefined">
+<div class="row make-center add-margin" *ngIf="categories !== undefined">
   <div class="col-md-12">
     <div class="row" *ngIf="categories.length === 0">
       <div class="col-md-12">

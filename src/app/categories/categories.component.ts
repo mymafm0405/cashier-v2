@@ -22,9 +22,13 @@ export class CategoriesComponent implements OnInit, OnDestroy {
     this.loadStatusSub = this.appService.loadCategoryStatus.subscribe(
       (status: boolean) => {
         if (status) {
-          this.categories = this.appService.getCategoriesForCompany(
-            this.user.companyId
-          );
+          if (this.user.userType !== 'admin') {
+            this.categories = this.appService.getCategoriesForCompany(
+              this.user.companyId
+            );
+          } else if (this.user.userType === 'admin') {
+            this.categories = this.appService.getCategories();
+          }
         } else {
           console.log('An error happened while loading our categories!');
         }

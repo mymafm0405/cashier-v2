@@ -14,6 +14,7 @@
       <tr class="add-border">
         <th class="add-border">S.N</th>
         <th class="add-border">Date</th>
+        <th class="add-border">Company ID</th>
         <th class="add-border">Item</th>
         <th class="add-border">Price</th>
         <th class="add-border">Quantity</th>
@@ -32,8 +33,12 @@
         {{
           getClient(bill.clientId)
         }}
+        {{
+          getCompany(bill.companyId)
+        }}
         <td class="add-border">{{ bill.serial }}</td>
         <td class="add-border">{{ bill.date }}</td>
+        <td class="add-border">{{ company ? company.name : "" }}</td>
         <td class="add-border">{{ currentItem.name }}</td>
         <td class="add-border">{{ currentItem.price }}</td>
         <td class="add-border">{{ bill.quantity }}</td>
@@ -50,7 +55,7 @@
         </td>
       </tr>
       <tr>
-        <td class="add-border" colspan="6">Total</td>
+        <td class="add-border" colspan="7">Total</td>
         <td class="add-border tot-fin">{{ totalFinal }}</td>
         <td class="add-border tot-cos">{{ totalCost }}</td>
         <td class="add-border tot-inc">{{ totalIncome }}</td>

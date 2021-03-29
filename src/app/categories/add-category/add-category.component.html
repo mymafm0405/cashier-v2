@@ -1,16 +1,22 @@
-<div class="row make-center">
+<div class="row make-center add-margin">
   <div class="col-md-12">
     <h2>Add new category</h2>
   </div>
 </div>
-<div class="row" *ngIf="companies !== undefined && companies.length === 0">
+<div
+  class="row make-center add-margin"
+  *ngIf="companies !== undefined && companies.length === 0"
+>
   <div class="col-md-12">
     <div class="alert alert-danger">
       <h4>No companies found, please add one!</h4>
     </div>
   </div>
 </div>
-<div class="row" *ngIf="companies !== undefined && companies.length > 0">
+<div
+  class="row make-center add-margin"
+  *ngIf="companies !== undefined && companies.length > 0"
+>
   <div class="col-md-12">
     <form (ngSubmit)="onSubmit()" #addForm="ngForm">
       <div class="row">

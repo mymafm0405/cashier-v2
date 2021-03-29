@@ -13,8 +13,8 @@
 <div class="row" *ngIf="categories !== undefined && categories.length === 0">
   <div class="col-md-12">
     <h3 class="red-message">
-      You don't have any categories, please add some or select a company from
-      the form below!
+      Select a company first from the form below if you already have some
+      categories in your company, Or please add a category first!
     </h3>
   </div>
 </div>
@@ -114,13 +114,17 @@
           <input type="file" class="form-control" name="image" ngModel />
         </div>
       </div>
-      <button
-        class="btn btn-success"
-        type="submit"
-        [disabled]="addForm.invalid"
-      >
-        Save Item
-      </button>
+      <div class="row make-center add-margin">
+        <div class="col-md-12">
+          <button
+            class="btn btn-success"
+            type="submit"
+            [disabled]="addForm.invalid"
+          >
+            Save Item
+          </button>
+        </div>
+      </div>
       <div class="row">
         <div class="col-md-12" *ngIf="inProgress && submitted">
           <div class="alert alert-warning">

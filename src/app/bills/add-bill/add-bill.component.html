@@ -117,7 +117,8 @@
           billForm.invalid ||
           quantity <= 0 ||
           discount < 0 ||
-          quantity > item.quantity
+          quantity > item.quantity ||
+          submitted
         "
       >
         Confirm

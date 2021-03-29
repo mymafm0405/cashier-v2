@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { AppService } from '../shared/app.service';
 import { Bill } from '../shared/bill.model';
 import { Client } from '../shared/client.model';
+import { Company } from '../shared/company.model';
 import { Item } from '../shared/item.model';
 
 @Component({
@@ -13,6 +14,7 @@ import { Item } from '../shared/item.model';
 export class BillsComponent implements OnInit, OnDestroy {
   currentItem: Item;
   currentClient: Client;
+  company: Company;
   showError = false;
   @Input() allBills: Bill[];
   totalFinal = 0;
@@ -52,6 +54,9 @@ export class BillsComponent implements OnInit, OnDestroy {
   }
   getClient(clientId: string) {
     this.currentClient = this.appService.getClientById(clientId);
+  }
+  getCompany(companyId: string) {
+    this.company = this.appService.getCompanyById(companyId);
   }
 
   calculateTotals() {
