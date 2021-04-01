@@ -108,6 +108,9 @@
           <h3 class="final-price">
             Final price: <span class="price">{{ calculateFinalPrice() }}</span>
           </h3>
+          <p class="note">
+            Client name and Phone are not required if you want to add it to CART
+          </p>
         </div>
       </div>
       <button
@@ -123,6 +126,21 @@
       >
         Confirm
       </button>
+      <button
+        class="btn btn-success confirm-button"
+        type="button"
+        [disabled]="quantity <= 0 || discount < 0 || quantity > item.quantity"
+        (click)="onAddToCart()"
+      >
+        Add to Cart <span class="glyphicon glyphicon-shopping-cart"></span>
+      </button>
+      <div class="row" *ngIf="addedToCart">
+        <div class="col-md-12">
+          <div class="alert alert-success">
+            <h4>Items added to Shopping Cart!</h4>
+          </div>
+        </div>
+      </div>
       <div class="row" *ngIf="submitted">
         <div class="col-md-12">
           <div

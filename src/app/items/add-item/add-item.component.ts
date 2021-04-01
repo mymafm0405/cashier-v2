@@ -69,7 +69,8 @@ export class AddItemComponent implements OnInit, OnDestroy {
       this.addForm.value.quantity,
       this.addForm.value.catId,
       '',
-      this.addForm.value.companyId
+      this.addForm.value.companyId,
+      'active'
     );
     this.appService.addItem(item);
     this.addForm.reset();

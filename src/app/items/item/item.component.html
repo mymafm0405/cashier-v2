@@ -19,6 +19,17 @@
         </button>
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-12">
+        <button
+          class="btn btn-danger"
+          *ngIf="userType === 'admin'"
+          (click)="onDeleteItem()"
+        >
+          <span class="glyphicon glyphicon-remove"></span>
+        </button>
+      </div>
+    </div>
   </div>
 </div>
 

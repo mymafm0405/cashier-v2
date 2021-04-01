@@ -4,6 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AppService } from 'src/app/shared/app.service';
 import { Bill } from 'src/app/shared/bill.model';
+import { CartItem } from 'src/app/shared/cart-item.model';
 import { Category } from 'src/app/shared/category.model';
 import { Client } from 'src/app/shared/client.model';
 import { Item } from 'src/app/shared/item.model';
@@ -35,6 +36,9 @@ export class AddBillComponent implements OnInit, OnDestroy {
   openDiscountSub: Subscription;
   user: User;
 
+  addToCartStatusSub: Subscription;
+  addedToCart = false;
+
   constructor(
     private appService: AppService,
     private route: ActivatedRoute,
@@ -53,6 +57,19 @@ export class AddBillComponent implements OnInit, OnDestroy {
       console.log(this.category);
       console.log(this.item);
     });
+
+    // CartItems Operations
+    this.addToCartStatusSub = this.appService.cartItemsChanged.subscribe(
+      (status: boolean) => {
+        if (status) {
+          this.addedToCart = true;
+          setTimeout(() => {
+            this.addedToCart = false;
+          }, 2000);
+        }
+      }
+    );
+    //
 
     // this.openDiscount = this.appService.getCurrentOpenDiscount();
     this.appService.getOpenDiscountStatus();
@@ -203,9 +220,20 @@ export class AddBillComponent implements OnInit, OnDestroy {
     this.finalPrice = this.item.price * this.quantity;
   }
 
+  onAddToCart() {
+    const cartItem: CartItem = new CartItem(
+      this.item,
+      this.quantity,
+      this.discount,
+      this.calculateFinalPrice()
+    );
+    this.appService.addToCart(cartItem);
+  }
+
   ngOnDestroy() {
     this.addClientStatusSub.unsubscribe();
     this.addBillStatusSub.unsubscribe();
     this.openDiscountSub.unsubscribe();
+    this.addToCartStatusSub.unsubscribe();
   }
 }

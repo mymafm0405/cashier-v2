@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Bill } from './bill.model';
+import { CartItem } from './cart-item.model';
 import { Category } from './category.model';
 import { Client } from './client.model';
 import { Company } from './company.model';
@@ -14,6 +15,9 @@ import { User } from './user.model';
   providedIn: 'root',
 })
 export class AppService {
+  cartItems: CartItem[] = [];
+  cartItemsChanged = new Subject<boolean>();
+
   addCategoryStatus = new Subject<boolean>();
   loadCategoryStatus = new Subject<boolean>();
 
@@ -47,6 +51,17 @@ export class AppService {
   companies: Company[] = [];
 
   constructor(private http: HttpClient, private router: Router) {}
+
+  // Cart Items operations
+  addToCart(cartItem: CartItem) {
+    this.cartItems.push(cartItem);
+    this.cartItemsChanged.next(true);
+  }
+
+  getCartItems() {
+    return this.cartItems;
+  }
+  // End cart items
 
   // All about categories from here...
   addCategory(category: Category) {
@@ -87,7 +102,7 @@ export class AppService {
       )
       .subscribe(
         (resCat: Category[]) => {
-          this.categories = resCat;
+          this.categories = resCat.filter((cat) => cat.status === 'active');
           this.loadCategoryStatus.next(true);
         },
         (error) => {
@@ -110,6 +125,23 @@ export class AppService {
   getCategoryById(catId: string) {
     return this.categories.find((cat) => cat.id === catId);
   }
+
+  setCategoryNotActive(categoryId: string) {
+    this.http
+      .patch(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/categories/' +
+          categoryId +
+          '.json',
+        { status: 'inActive' }
+      )
+      .subscribe((res) => {
+        console.log(res);
+        // this.categories = this.categories.filter(
+        //   (category) => category.id !== categoryId
+        // );
+        this.loadCategories();
+      });
+  }
   // End of categories
 
   // All about Items from here
@@ -129,7 +161,7 @@ export class AppService {
       )
       .subscribe(
         (resItems: Item[]) => {
-          this.items = resItems;
+          this.items = resItems.filter((item) => item.status === 'active');
           this.loadItemsStatus.next(true);
         },
         (error) => {
@@ -189,6 +221,20 @@ export class AppService {
 
   getItemById(itemId: string) {
     return this.items.find((item) => item.id === itemId);
+  }
+
+  setItemNotActive(itemId: string) {
+    this.http
+      .patch(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/items/' +
+          itemId +
+          '.json',
+        { status: 'inActive' }
+      )
+      .subscribe((res) => {
+        console.log(res);
+        this.loadItems();
+      });
   }
 
   // End of items.

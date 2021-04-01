@@ -41,4 +41,9 @@ export class ItemComponent implements OnInit {
     this.appService.updateItemPrice(this.item.id, newPrice);
     this.priceForm.reset();
   }
+
+  onDeleteItem() {
+    console.log('deleted');
+    this.appService.setItemNotActive(this.item.id);
+  }
 }

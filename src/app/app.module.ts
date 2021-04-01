@@ -30,6 +30,9 @@ import { SignInFormComponent } from './users/sign-in-form/sign-in-form.component
 import { SignUpComponent } from './users/sign-up/sign-up.component';
 import { AddCompanyComponent } from './company/add-company/add-company.component';
 import { CompaniesComponent } from './company/companies/companies.component';
+import { CartCounterComponent } from './cart/cart-counter/cart-counter.component';
+import { ShowCartItemsComponent } from './cart/show-cart-items/show-cart-items.component';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -41,6 +44,7 @@ const appRoutes: Routes = [
   { path: 'category/:catId/sell/:itemId', component: AddBillComponent },
   { path: 'financials', component: FinancialsComponent },
   { path: 'permissions', component: PermissionsComponent },
+  { path: 'show-cart', component: ShowCartItemsComponent },
   {
     path: 'mybills',
     component: ReportsComponent,
@@ -82,6 +86,9 @@ const appRoutes: Routes = [
     SignUpComponent,
     AddCompanyComponent,
     CompaniesComponent,
+    CartCounterComponent,
+    ShowCartItemsComponent,
+    CartItemComponent,
   ],
   imports: [
     BrowserModule,

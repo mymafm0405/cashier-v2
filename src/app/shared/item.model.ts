@@ -7,6 +7,7 @@ export class Item {
     public catId: string,
     public imgUrl: string,
     public companyId: string,
+    public status: string,
     public id?: string
   ) {}
 }

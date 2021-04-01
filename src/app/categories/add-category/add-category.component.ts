@@ -53,7 +53,8 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
     const category: Category = new Category(
       this.addForm.value.name,
       this.addForm.value.desc,
-      this.addForm.value.companyId
+      this.addForm.value.companyId,
+      'active'
     );
     this.appService.addCategory(category);
     this.addForm.reset();

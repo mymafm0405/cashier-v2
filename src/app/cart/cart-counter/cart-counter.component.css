@@ -1,0 +1,8 @@
+.cart-number {
+  font-weight: bold;
+  font-size: 16px;
+  color: black;
+  border-radius: 4px;
+  background-color: yellow;
+  padding: 3px;
+}
