@@ -8,8 +8,16 @@ import { CartItem } from 'src/app/shared/cart-item.model';
 })
 export class CartItemComponent implements OnInit {
   @Input() cartItem: CartItem;
+  finalPrice: number;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.calculateFinalPrice();
+  }
+
+  calculateFinalPrice() {
+    const totalDiscount = this.cartItem.item.price * this.cartItem.quantity * (this.cartItem.discount / 100);
+    this.finalPrice = (this.cartItem.item.price * this.cartItem.quantity) - totalDiscount;
+  }
 }
