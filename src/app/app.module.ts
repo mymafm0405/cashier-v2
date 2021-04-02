@@ -33,6 +33,7 @@ import { CompaniesComponent } from './company/companies/companies.component';
 import { CartCounterComponent } from './cart/cart-counter/cart-counter.component';
 import { ShowCartItemsComponent } from './cart/show-cart-items/show-cart-items.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { CartFormComponent } from './cart/cart-form/cart-form.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -89,6 +90,7 @@ const appRoutes: Routes = [
     CartCounterComponent,
     ShowCartItemsComponent,
     CartItemComponent,
+    CartFormComponent,
   ],
   imports: [
     BrowserModule,

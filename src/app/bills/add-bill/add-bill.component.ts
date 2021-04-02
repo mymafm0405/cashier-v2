@@ -46,7 +46,7 @@ export class AddBillComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.user = this.appService.getUser();
+    // this.user = this.appService.getUser();
     this.route.params.subscribe((params: Params) => {
       this.category = this.appService.getCategoryById(params.catId);
       this.item = this.appService.getItemById(params.itemId);
@@ -72,51 +72,51 @@ export class AddBillComponent implements OnInit, OnDestroy {
     //
 
     // this.openDiscount = this.appService.getCurrentOpenDiscount();
-    this.appService.getOpenDiscountStatus();
-    console.log(this.openDiscount);
-    this.openDiscountSub = this.appService.openDiscountStatusChanged.subscribe(
-      (status: boolean) => {
-        this.openDiscount = status;
-        console.log(this.openDiscount);
-      }
-    );
+    // this.appService.getOpenDiscountStatus();
+    // console.log(this.openDiscount);
+    // this.openDiscountSub = this.appService.openDiscountStatusChanged.subscribe(
+    //   (status: boolean) => {
+    //     this.openDiscount = status;
+    //     console.log(this.openDiscount);
+    //   }
+    // );
 
-    this.userType = this.appService.getUserType();
+    // this.userType = this.appService.getUserType();
 
-    this.addClientStatusSub = this.appService.addClientStatus.subscribe(
-      (resData: { status: boolean; clientId: string }) => {
-        if (resData.status) {
-          this.newClientId = resData.clientId;
-          this.client = this.appService.getClientById(this.newClientId);
-          this.addNewBill(this.bill, this.newClientId);
-        } else {
-          console.log(
-            'error happened while adding the new client and the new bill'
-          );
-        }
-      }
-    );
+    // this.addClientStatusSub = this.appService.addClientStatus.subscribe(
+    //   (resData: { status: boolean; clientId: string }) => {
+    //     if (resData.status) {
+    //       this.newClientId = resData.clientId;
+    //       this.client = this.appService.getClientById(this.newClientId);
+    //       this.addNewBill(this.bill, this.newClientId);
+    //     } else {
+    //       console.log(
+    //         'error happened while adding the new client and the new bill'
+    //       );
+    //     }
+    //   }
+    // );
 
-    this.addBillStatusSub = this.appService.addBillStatus.subscribe(
-      (status: boolean) => {
-        if (status) {
-          const newQuantityAfterSale = this.item.quantity - this.bill.quantity;
-          this.appService.updateItemQuantity(
-            this.item.id,
-            newQuantityAfterSale
-          );
-          // To update the available amount after making the sale
-          this.item.quantity = this.item.quantity - this.bill.quantity;
+    // this.addBillStatusSub = this.appService.addBillStatus.subscribe(
+    //   (status: boolean) => {
+    //     if (status) {
+    //       const newQuantityAfterSale = this.item.quantity - this.bill.quantity;
+    //       this.appService.updateItemQuantity(
+    //         this.item.id,
+    //         newQuantityAfterSale
+    //       );
+    //       // To update the available amount after making the sale
+    //       this.item.quantity = this.item.quantity - this.bill.quantity;
 
-          console.log('quantity updated after sale');
-        }
-        this.inProgress = false;
-        this.billStatus = status;
-        setTimeout(() => {
-          this.submitted = false;
-        }, 2000);
-      }
-    );
+    //       console.log('quantity updated after sale');
+    //     }
+    //     this.inProgress = false;
+    //     this.billStatus = status;
+    //     setTimeout(() => {
+    //       this.submitted = false;
+    //     }, 2000);
+    //   }
+    // );
   }
 
   calculateFinalPrice() {
@@ -141,84 +141,84 @@ export class AddBillComponent implements OnInit, OnDestroy {
     this.discount = 0;
   }
 
-  calculateCostAndIncome() {
-    const totalCost = this.item.cost * this.billForm.value.quantity;
-    const totalIncome = this.finalPrice - totalCost;
-    return {
-      totalCost,
-      totalIncome,
-    };
-  }
+  // calculateCostAndIncome() {
+  //   const totalCost = this.item.cost * this.billForm.value.quantity;
+  //   const totalIncome = this.finalPrice - totalCost;
+  //   return {
+  //     totalCost,
+  //     totalIncome,
+  //   };
+  // }
 
-  onSubmit() {
-    this.submitted = true;
-    this.inProgress = true;
-    this.client = this.appService.getClientByPhone(this.billForm.value.phone);
-    // Check if it is allowed to add discount or not
-    this.appService.getOpenDiscountStatus();
-    setTimeout(() => {
-      if (!this.openDiscount && this.user.userType !== 'admin') {
-        const allowedDiscount = 0;
-        this.discount = allowedDiscount;
+  // onSubmit() {
+  //   this.submitted = true;
+  //   this.inProgress = true;
+  //   this.client = this.appService.getClientByPhone(this.billForm.value.phone);
+  //   // Check if it is allowed to add discount or not
+  //   this.appService.getOpenDiscountStatus();
+  //   setTimeout(() => {
+  //     if (!this.openDiscount && this.user.userType !== 'admin') {
+  //       const allowedDiscount = 0;
+  //       this.discount = allowedDiscount;
 
-        this.bill = new Bill(
-          this.item.id,
-          this.billForm.value.quantity,
-          this.discount,
-          this.calculateFinalPrice(),
-          this.billForm.value.notes,
-          this.appService.getNextBillSerial(),
-          this.appService.getTodayDate(),
-          this.calculateCostAndIncome().totalCost,
-          this.calculateCostAndIncome().totalIncome,
-          this.item.companyId
-        );
-        if (this.client) {
-          this.addNewBill(this.bill, this.client.id);
-        } else {
-          const newClient: Client = new Client(
-            this.billForm.value.name,
-            this.billForm.value.phone
-          );
-          this.appService.addClient(newClient);
-        }
-      } else {
-        const allowedDiscount = this.billForm.value.discount;
-        this.discount = allowedDiscount;
+  //       this.bill = new Bill(
+  //         this.item.id,
+  //         this.billForm.value.quantity,
+  //         this.discount,
+  //         this.calculateFinalPrice(),
+  //         this.billForm.value.notes,
+  //         this.appService.getNextBillSerial(),
+  //         this.appService.getTodayDate(),
+  //         this.calculateCostAndIncome().totalCost,
+  //         this.calculateCostAndIncome().totalIncome,
+  //         this.item.companyId
+  //       );
+  //       if (this.client) {
+  //         this.addNewBill(this.bill, this.client.id);
+  //       } else {
+  //         const newClient: Client = new Client(
+  //           this.billForm.value.name,
+  //           this.billForm.value.phone
+  //         );
+  //         this.appService.addClient(newClient);
+  //       }
+  //     } else {
+  //       const allowedDiscount = this.billForm.value.discount;
+  //       this.discount = allowedDiscount;
 
-        this.bill = new Bill(
-          this.item.id,
-          this.billForm.value.quantity,
-          allowedDiscount,
-          this.calculateFinalPrice(),
-          this.billForm.value.notes,
-          this.appService.getNextBillSerial(),
-          this.appService.getTodayDate(),
-          this.calculateCostAndIncome().totalCost,
-          this.calculateCostAndIncome().totalIncome,
-          this.item.companyId
-        );
-        if (this.client) {
-          this.addNewBill(this.bill, this.client.id);
-        } else {
-          const newClient: Client = new Client(
-            this.billForm.value.name,
-            this.billForm.value.phone
-          );
-          this.appService.addClient(newClient);
-        }
-      }
-    }, 3000);
-    //
-  }
+  //       this.bill = new Bill(
+  //         this.item.id,
+  //         this.billForm.value.quantity,
+  //         allowedDiscount,
+  //         this.calculateFinalPrice(),
+  //         this.billForm.value.notes,
+  //         this.appService.getNextBillSerial(),
+  //         this.appService.getTodayDate(),
+  //         this.calculateCostAndIncome().totalCost,
+  //         this.calculateCostAndIncome().totalIncome,
+  //         this.item.companyId
+  //       );
+  //       if (this.client) {
+  //         this.addNewBill(this.bill, this.client.id);
+  //       } else {
+  //         const newClient: Client = new Client(
+  //           this.billForm.value.name,
+  //           this.billForm.value.phone
+  //         );
+  //         this.appService.addClient(newClient);
+  //       }
+  //     }
+  //   }, 3000);
+  //   //
+  // }
 
-  addNewBill(bill: Bill, clientId: string) {
-    this.appService.addBill({ ...bill, clientId: clientId });
-    this.billForm.reset();
-    this.quantity = 1;
-    this.discount = 0;
-    this.finalPrice = this.item.price * this.quantity;
-  }
+  // addNewBill(bill: Bill, clientId: string) {
+  //   this.appService.addBill({ ...bill, clientId: clientId });
+  //   this.billForm.reset();
+  //   this.quantity = 1;
+  //   this.discount = 0;
+  //   this.finalPrice = this.item.price * this.quantity;
+  // }
 
   onAddToCart() {
     const cartItem: CartItem = new CartItem(
@@ -231,9 +231,9 @@ export class AddBillComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.addClientStatusSub.unsubscribe();
-    this.addBillStatusSub.unsubscribe();
-    this.openDiscountSub.unsubscribe();
+    // this.addClientStatusSub.unsubscribe();
+    // this.addBillStatusSub.unsubscribe();
+    // this.openDiscountSub.unsubscribe();
     this.addToCartStatusSub.unsubscribe();
   }
 }

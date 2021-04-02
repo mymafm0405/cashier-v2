@@ -14,53 +14,51 @@
       <tr class="add-border">
         <th class="add-border">S.N</th>
         <th class="add-border">Date</th>
-        <th class="add-border">Company ID</th>
-        <th class="add-border">Item</th>
-        <th class="add-border">Price</th>
-        <th class="add-border">Quantity</th>
-        <th class="add-border">Discount %</th>
-        <th class="add-border">Final Price</th>
-        <th class="add-border">Total cost</th>
-        <th class="add-border">Total income</th>
+        <!-- <th class="add-border">Company ID</th> -->
+        <th class="add-border">Item details</th>
+        <!-- <th class="add-border">Price</th> -->
+        <!-- <th class="add-border">Quantity</th> -->
+        <!-- <th class="add-border">Discount %</th> -->
+        <!-- <th class="add-border">Final Price</th> -->
+        <!-- <th class="add-border">Total Bill</th> -->
+        <!-- <th class="add-border">Total income</th> -->
         <th class="add-border">Client name</th>
-        <th class="add-border">Notes</th>
-        <th class="add-border">Action</th>
+        <!-- <th class="add-border">Notes</th> -->
+        <!-- <th class="add-border">Action</th> -->
       </tr>
       <tr class="add-border" *ngFor="let bill of allBills">
         {{
-          getItem(bill.itemId)
-        }}
-        {{
           getClient(bill.clientId)
-        }}
-        {{
-          getCompany(bill.companyId)
         }}
         <td class="add-border">{{ bill.serial }}</td>
         <td class="add-border">{{ bill.date }}</td>
-        <td class="add-border">{{ company ? company.name : "" }}</td>
-        <td class="add-border">{{ currentItem.name }}</td>
-        <td class="add-border">{{ currentItem.price }}</td>
+        <!-- <td class="add-border">{{ company ? company.name : "" }}</td> -->
+        <div *ngFor="let item of bill.items">
+          <td class="add-border">{{ item.item.name }}</td>
+          <td class="add-border">{{ item.item.price }}</td>
+          <td class="add-border">{{ item.quantity }}</td>
+        </div>
+        <td class="add-border">{{ currentClient.name }}</td>
+        <!-- <td class="add-border">{{ currentItem.price }}</td>
         <td class="add-border">{{ bill.quantity }}</td>
         <td class="add-border">{{ bill.discount }}</td>
         <td class="add-border final-price">{{ bill.finalPrice }}</td>
         <td class="add-border total-cost">{{ bill.totalCost }}</td>
         <td class="add-border total-income">{{ bill.totalIncome }}</td>
-        <td class="add-border">{{ currentClient.name }}</td>
         <td class="add-border">{{ bill.notes }}</td>
         <td class="add-border">
           <button class="btn btn-default" [routerLink]="['../bill', bill.id]">
             Print
           </button>
-        </td>
+        </td> -->
       </tr>
-      <tr>
+      <!-- <tr>
         <td class="add-border" colspan="7">Total</td>
         <td class="add-border tot-fin">{{ totalFinal }}</td>
         <td class="add-border tot-cos">{{ totalCost }}</td>
         <td class="add-border tot-inc">{{ totalIncome }}</td>
         <td class="add-border" colspan="3"></td>
-      </tr>
+      </tr> -->
     </table>
   </div>
 </div>

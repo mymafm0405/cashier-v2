@@ -18,7 +18,7 @@
     <h3 class="original">
       Original price / item: <span class="price">{{ item.price }}</span>
     </h3>
-    <form class="bill-form" (ngSubmit)="onSubmit()" #billForm="ngForm">
+    <form class="bill-form" #billForm="ngForm">
       <div class="row">
         <div class="col-md-4"><h4>Quantity:</h4></div>
         <div class="col-md-8">
@@ -65,7 +65,7 @@
           {{ checkIfDiscountLessZero() }}
         </div>
       </div>
-      <div class="row">
+      <!-- <div class="row">
         <div class="col-md-4"><h4>Client name:</h4></div>
         <div class="col-md-8">
           <input
@@ -77,8 +77,8 @@
             required
           />
         </div>
-      </div>
-      <div class="row">
+      </div> -->
+      <!-- <div class="row">
         <div class="col-md-4"><h4>Phone:</h4></div>
         <div class="col-md-8">
           <input
@@ -90,8 +90,8 @@
             required
           />
         </div>
-      </div>
-      <div class="row">
+      </div> -->
+      <!-- <div class="row">
         <div class="col-md-4"><h4>Notes (optional):</h4></div>
         <div class="col-md-8">
           <input
@@ -102,7 +102,7 @@
             ngModel
           />
         </div>
-      </div>
+      </div> -->
       <div class="row">
         <div class="col-md-12">
           <h3 class="final-price">
@@ -113,7 +113,7 @@
           </p>
         </div>
       </div>
-      <button
+      <!-- <button
         class="btn btn-danger confirm-button"
         type="submit"
         [disabled]="
@@ -125,7 +125,7 @@
         "
       >
         Confirm
-      </button>
+      </button> -->
       <button
         class="btn btn-success confirm-button"
         type="button"
@@ -141,7 +141,7 @@
           </div>
         </div>
       </div>
-      <div class="row" *ngIf="submitted">
+      <!-- <div class="row" *ngIf="submitted">
         <div class="col-md-12">
           <div
             class="alert alert-danger"
@@ -156,7 +156,7 @@
             <h4>Please wait...</h4>
           </div>
         </div>
-      </div>
+      </div> -->
     </form>
   </div>
 </div>

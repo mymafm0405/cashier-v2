@@ -28,9 +28,9 @@ export class BillComponent implements OnInit {
     this.route.params.subscribe((params: Params) => {
       this.billId = params.billId;
       this.getCurrentBill(this.billId);
-      this.getCurrentItem(this.bill.itemId);
+      // this.getCurrentItem(this.bill.itemId);
       this.getCurrentClient(this.bill.clientId);
-      this.getCompany(this.bill.companyId);
+      // this.getCompany(this.bill.companyId);
       console.log(this.bill);
     });
   }

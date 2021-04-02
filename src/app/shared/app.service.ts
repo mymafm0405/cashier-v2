@@ -61,6 +61,16 @@ export class AppService {
   getCartItems() {
     return this.cartItems;
   }
+
+  deleteSelectedCartItem(indexNumber: number) {
+    this.cartItems.splice(indexNumber, 1);
+    this.cartItemsChanged.next(true);
+  }
+
+  deleteAllCartItems() {
+    this.cartItems = [];
+    this.cartItemsChanged.next(true);
+  }
   // End cart items
 
   // All about categories from here...

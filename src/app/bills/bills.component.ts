@@ -33,7 +33,7 @@ export class BillsComponent implements OnInit, OnDestroy {
     }
     if (this.allBills) {
       console.log(this.allBills);
-      this.calculateTotals();
+      // this.calculateTotals();
       console.log(this.totalFinal);
       console.log(this.totalCost);
       console.log(this.totalIncome);
@@ -42,36 +42,36 @@ export class BillsComponent implements OnInit, OnDestroy {
       (status: boolean) => {
         if (status) {
           this.allBills = this.appService.getAllBills();
-          this.calculateTotals();
+          // this.calculateTotals();
           console.log('hello from bills');
         }
       }
     );
   }
 
-  getItem(itemId: string) {
-    this.currentItem = this.appService.getItemById(itemId);
-  }
+  // getItem(itemId: string) {
+  //   this.currentItem = this.appService.getItemById(itemId);
+  // }
   getClient(clientId: string) {
     this.currentClient = this.appService.getClientById(clientId);
   }
-  getCompany(companyId: string) {
-    this.company = this.appService.getCompanyById(companyId);
-  }
+  // getCompany(companyId: string) {
+  //   this.company = this.appService.getCompanyById(companyId);
+  // }
 
-  calculateTotals() {
-    for (const bill of this.allBills) {
-      if (bill.finalPrice) {
-        this.totalFinal = this.totalFinal + bill.finalPrice;
-      }
-      if (bill.totalCost) {
-        this.totalCost = this.totalCost + bill.totalCost;
-      }
-      if (bill.totalIncome) {
-        this.totalIncome = this.totalIncome + bill.totalIncome;
-      }
-    }
-  }
+  // calculateTotals() {
+  //   for (const bill of this.allBills) {
+  //     if (bill.finalPrice) {
+  //       this.totalFinal = this.totalFinal + bill.finalPrice;
+  //     }
+  //     if (bill.totalCost) {
+  //       this.totalCost = this.totalCost + bill.totalCost;
+  //     }
+  //     if (bill.totalIncome) {
+  //       this.totalIncome = this.totalIncome + bill.totalIncome;
+  //     }
+  //   }
+  // }
 
   ngOnDestroy() {
     this.loadBillStatusSub.unsubscribe();

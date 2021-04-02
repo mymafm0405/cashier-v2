@@ -17,14 +17,20 @@
     </div>
 
     <app-cart-item
-    *ngFor="let cartItem of cartItems"
+    *ngFor="let cartItem of cartItems; let i = index"
     [cartItem]="cartItem"
+    [indexNumber]="i"
     ></app-cart-item>
 
     <div class="row">
       <div class="col-md-8">Total Bill</div>
       <div class="col-md-2">{{ totalBill }}</div>
-      <div class="col-md-2"><button class="btn btn-default">Delete All</button></div>
+      <div class="col-md-2"><button class="btn btn-default" (click)="onDeleteAll()">Delete All</button></div>
     </div>
+  </div>
+</div>
+<div class="row" *ngIf="cartItems.length > 0">
+  <div class="col-md-12">
+    <app-cart-form [cartItems]="cartItems" [totalBill]="totalBill"></app-cart-form>
   </div>
 </div>
