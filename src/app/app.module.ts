@@ -34,6 +34,7 @@ import { CartCounterComponent } from './cart/cart-counter/cart-counter.component
 import { ShowCartItemsComponent } from './cart/show-cart-items/show-cart-items.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CartFormComponent } from './cart/cart-form/cart-form.component';
+import { BillRowComponent } from './bills/bill-row/bill-row.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -91,6 +92,7 @@ const appRoutes: Routes = [
     ShowCartItemsComponent,
     CartItemComponent,
     CartFormComponent,
+    BillRowComponent,
   ],
   imports: [
     BrowserModule,

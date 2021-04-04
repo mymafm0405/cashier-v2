@@ -1,0 +1,33 @@
+<div class="row bill">
+  <div class="col-md-12">
+    <div class="row header make-center">
+      <div class="col-md-3">{{ bill.serial }}</div>
+      <div class="col-md-3">{{ bill.date }}</div>
+      <div class="col-md-3">{{ client.name }}</div>
+      <div class="col-md-3 no-padding">
+        <button class="btn btn-default full-btn">Print</button>
+      </div>
+    </div>
+    <div class="row make-center">
+      <div class="col-md-2">Company</div>
+      <div class="col-md-2">Item</div>
+      <div class="col-md-2">Price</div>
+      <div class="col-md-2">Quantity</div>
+      <div class="col-md-2">Discount</div>
+      <div class="col-md-2">Total</div>
+    </div>
+    <div class="row items make-center" *ngFor="let item of items">
+      {{ getCompany(item.item.companyId) }}
+      <div class="col-md-2">{{ company.name }}</div>
+      <div class="col-md-2">{{ item.item.name }}</div>
+      <div class="col-md-2">{{ item.item.price }}</div>
+      <div class="col-md-2">{{ item.quantity }}</div>
+      <div class="col-md-2">{{ item.discount }}</div>
+      <div class="col-md-2">{{ item.finalPrice }}</div>
+    </div>
+    <div class="row last-row">
+      <div class="col-md-10 total-title">Total Bill</div>
+      <div class="col-md-2 total make-center">{{ bill.totalBill }}</div>
+    </div>
+  </div>
+</div>

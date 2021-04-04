@@ -9,10 +9,9 @@ import { Component, Input, OnInit, ViewChild, OnDestroy } from '@angular/core';
 @Component({
   selector: 'app-cart-form',
   templateUrl: './cart-form.component.html',
-  styleUrls: ['./cart-form.component.css']
+  styleUrls: ['./cart-form.component.css'],
 })
 export class CartFormComponent implements OnInit, OnDestroy {
-
   @Input() cartItems: CartItem[];
   @Input() totalBill: number;
   client: Client;
@@ -25,10 +24,9 @@ export class CartFormComponent implements OnInit, OnDestroy {
 
   @ViewChild('confirmForm', { static: false }) confirmForm: NgForm;
 
-  constructor(private appService: AppService) { }
+  constructor(private appService: AppService) {}
 
   ngOnInit(): void {
-
     // If the client is new then we monitor the adding client status, after that we add the bill if adding success
     this.addClientStatusSub = this.appService.addClientStatus.subscribe(
       (resData: { status: boolean; clientId: string }) => {
@@ -47,13 +45,14 @@ export class CartFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-
     // Get the userType to make sure if it is an admin or a user
     this.userType = this.appService.getUserType();
     //
 
     // Check if there is a same client before
-    this.client = this.appService.getClientByPhone(this.confirmForm.value.phone);
+    this.client = this.appService.getClientByPhone(
+      this.confirmForm.value.phone
+    );
     //
 
     // Make our bill
@@ -69,13 +68,18 @@ export class CartFormComponent implements OnInit, OnDestroy {
       );
       this.appService.addClient(newClient);
     }
-
   }
 
   makeTheBill() {
-    this.bill = new Bill(this.cartItems, this.confirmForm.value.notes,
+    this.bill = new Bill(
+      this.cartItems,
+      this.confirmForm.value.notes,
       this.appService.getNextBillSerial(),
-      this.appService.getTodayDate(), this.totalBill);
+      this.appService.getTodayDate(),
+      this.totalBill
+    );
+
+    console.log(this.totalBill);
   }
 
   addNewBill(bill: Bill, clientId: string) {
@@ -86,5 +90,4 @@ export class CartFormComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.addClientStatusSub.unsubscribe();
   }
-
 }
