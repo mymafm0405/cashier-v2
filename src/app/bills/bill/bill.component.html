@@ -1,3 +1,34 @@
-<div class="row">
-  <div class="col-md-12"></div>
+<div class="row bill-style">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-3 title">Serial:</div>
+      <div class="col-md-3 value">{{ bill.serial }}</div>
+      <div class="col-md-3 title">Date</div>
+      <div class="col-md-3 value">{{ bill.date }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-3 title">Client name:</div>
+      <div class="col-md-3 value">{{ currentClient.name }}</div>
+      <div class="col-md-3 title">Phone:</div>
+      <div class="col-md-3 value">{{ currentClient.phone }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 title">Item name</div>
+      <div class="col-md-2 title">Quantity</div>
+      <div class="col-md-2 title">Price</div>
+      <div class="col-md-2 title">Discount</div>
+      <div class="col-md-2 title">Total</div>
+    </div>
+    <div class="row" *ngFor="let item of bill.items">
+      <div class="col-md-2 value">{{ item.item.name }}</div>
+      <div class="col-md-2 value">{{ item.quantity }}</div>
+      <div class="col-md-2 value">{{ item.item.price }}</div>
+      <div class="col-md-2 value">{{ item.discount }}</div>
+      <div class="col-md-2 value">{{ item.finalPrice }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 title">Total:</div>
+      <div class="col-md-8 value">{{ bill.totalBill }}</div>
+    </div>
+  </div>
 </div>

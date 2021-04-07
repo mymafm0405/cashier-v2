@@ -5,7 +5,12 @@
       <div class="col-md-3">{{ bill.date }}</div>
       <div class="col-md-3">{{ client.name }}</div>
       <div class="col-md-3 no-padding">
-        <button class="btn btn-default full-btn">Print</button>
+        <button
+          class="btn btn-default full-btn"
+          [routerLink]="['../bill', bill.id]"
+        >
+          Print
+        </button>
       </div>
     </div>
     <div class="row make-center">

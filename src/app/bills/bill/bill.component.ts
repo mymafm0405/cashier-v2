@@ -14,7 +14,7 @@ import { Item } from 'src/app/shared/item.model';
 export class BillComponent implements OnInit {
   bill: Bill;
   billId: string;
-  currentItem: Item;
+  // currentItem: Item;
   currentClient: Client;
   company: Company;
 
@@ -42,9 +42,9 @@ export class BillComponent implements OnInit {
     }
   }
 
-  getCurrentItem(itemId: string) {
-    this.currentItem = this.appService.getItemById(itemId);
-  }
+  // getCurrentItem(itemId: string) {
+  //   this.currentItem = this.appService.getItemById(itemId);
+  // }
   getCurrentClient(clientId: string) {
     this.currentClient = this.appService.getClientById(clientId);
   }
@@ -52,12 +52,12 @@ export class BillComponent implements OnInit {
     this.company = this.appService.getCompanyById(companyId);
   }
 
-  onPrint() {
-    const printContent = document.getElementById('content');
-    const WindowPrt = window.open();
-    WindowPrt.document.write(printContent.innerHTML);
-    WindowPrt.focus();
-    WindowPrt.document.close();
-    WindowPrt.print();
-  }
+  // onPrint() {
+  //   const printContent = document.getElementById('content');
+  //   const WindowPrt = window.open();
+  //   WindowPrt.document.write(printContent.innerHTML);
+  //   WindowPrt.focus();
+  //   WindowPrt.document.close();
+  //   WindowPrt.print();
+  // }
 }
