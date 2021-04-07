@@ -7,7 +7,7 @@
 </div>
 <div class="row" *ngIf="cartItems.length > 0">
   <div class="col-md-12">
-    <div class="row">
+    <div class="row cart-header">
       <div class="col-md-2">Item Name</div>
       <div class="col-md-2">Quantity</div>
       <div class="col-md-2">Price</div>
@@ -17,20 +17,27 @@
     </div>
 
     <app-cart-item
-    *ngFor="let cartItem of cartItems; let i = index"
-    [cartItem]="cartItem"
-    [indexNumber]="i"
+      *ngFor="let cartItem of cartItems; let i = index"
+      [cartItem]="cartItem"
+      [indexNumber]="i"
     ></app-cart-item>
 
-    <div class="row">
-      <div class="col-md-8">Total Bill</div>
-      <div class="col-md-2">{{ totalBill }}</div>
-      <div class="col-md-2"><button class="btn btn-default" (click)="onDeleteAll()">Delete All</button></div>
+    <div class="row total-style">
+      <div class="col-md-8 total-title">Total Bill</div>
+      <div class="col-md-2 total-value">{{ totalBill }}</div>
+      <div class="col-md-2">
+        <button class="btn btn-default btn-height" (click)="onDeleteAll()">
+          Delete All
+        </button>
+      </div>
     </div>
   </div>
 </div>
 <div class="row" *ngIf="cartItems.length > 0">
   <div class="col-md-12">
-    <app-cart-form [cartItems]="cartItems" [totalBill]="totalBill"></app-cart-form>
+    <app-cart-form
+      [cartItems]="cartItems"
+      [totalBill]="totalBill"
+    ></app-cart-form>
   </div>
 </div>

@@ -35,6 +35,7 @@ export class AddBillComponent implements OnInit, OnDestroy {
   openDiscount: boolean;
   openDiscountSub: Subscription;
   user: User;
+  tempItems: Item[] = [];
 
   addToCartStatusSub: Subscription;
   addedToCart = false;
@@ -50,6 +51,14 @@ export class AddBillComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params: Params) => {
       this.category = this.appService.getCategoryById(params.catId);
       this.item = this.appService.getItemById(params.itemId);
+
+      // This part still not working correctly because the quantity still updated from the database
+      this.tempItems = this.appService.compareToLocalTempItems();
+      if (this.tempItems.length > 0) {
+        this.item = this.tempItems.find((t) => t.id === params.itemId);
+        console.log(this.item);
+      }
+
       if (!this.category && !this.item) {
         this.router.navigate(['']);
         return;
@@ -228,6 +237,9 @@ export class AddBillComponent implements OnInit, OnDestroy {
       this.calculateFinalPrice()
     );
     this.appService.addToCart(cartItem);
+    const newQuantity = this.item.quantity - this.quantity;
+    this.item.quantity = newQuantity;
+    this.appService.updateItemQuantityLocaly(this.item.id, newQuantity);
   }
 
   ngOnDestroy() {

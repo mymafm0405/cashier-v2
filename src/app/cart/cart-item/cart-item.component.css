@@ -1,0 +1,10 @@
+.row {
+  background-color: #ccc;
+  text-align: center;
+  padding: 5px 0;
+  margin: 5px 0;
+  font-size: 16px;
+}
+.col-md-2 {
+  border-right: 1px dashed white;
+}

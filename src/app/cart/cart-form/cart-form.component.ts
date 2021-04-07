@@ -85,6 +85,16 @@ export class CartFormComponent implements OnInit, OnDestroy {
   addNewBill(bill: Bill, clientId: string) {
     this.appService.addBill({ ...bill, clientId: clientId });
     this.confirmForm.reset();
+    this.reduceQuantity();
+  }
+
+  reduceQuantity() {
+    console.log(this.cartItems);
+    for (const item of this.cartItems) {
+      console.log(item);
+      this.appService.updateItemQuantity(item.item.id, item.item.quantity);
+    }
+    this.appService.deleteAllCartItems();
   }
 
   ngOnDestroy() {

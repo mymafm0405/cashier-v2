@@ -50,6 +50,8 @@ export class AppService {
   clients: Client[] = [];
   companies: Company[] = [];
 
+  localTempItems: { id: string; quantity: number }[] = [];
+
   constructor(private http: HttpClient, private router: Router) {}
 
   // Cart Items operations
@@ -203,6 +205,7 @@ export class AppService {
       )
       .subscribe(() => {
         this.loadItems();
+        console.log('itemQuantity updated', itemId);
         // this.items.find(item => item.id === itemId).quantity = newQuantity;
       });
   }
@@ -221,6 +224,22 @@ export class AppService {
       });
   }
 
+  compareToLocalTempItems() {
+    if (this.localTempItems.length > 0) {
+      console.log(this.localTempItems);
+      for (const tempItem of this.localTempItems) {
+        this.items.find((item) => item.id === tempItem.id).quantity ===
+          tempItem.quantity;
+      }
+      console.log(this.items);
+      return this.items;
+    } else {
+      return [];
+      console.log('no temp items');
+    }
+    console.log(this.items);
+  }
+
   getItems() {
     return this.items;
   }
@@ -231,6 +250,16 @@ export class AppService {
 
   getItemById(itemId: string) {
     return this.items.find((item) => item.id === itemId);
+  }
+
+  updateItemQuantityLocaly(itemId: string, newQuantity: number) {
+    console.log(newQuantity);
+    const foundItem = this.localTempItems.find((t) => t.id === itemId);
+    if (foundItem) {
+      this.localTempItems.find((t) => t.id === itemId).quantity = newQuantity;
+    } else {
+      this.localTempItems.push({ id: itemId, quantity: newQuantity });
+    }
   }
 
   setItemNotActive(itemId: string) {
@@ -422,6 +451,10 @@ export class AppService {
           this.addBillStatus.next(true);
           console.log(res.name);
           console.log('bill added');
+          this.loadBills();
+          setTimeout(() => {
+            this.router.navigate(['mybills/bill', res.name]);
+          }, 1200);
         },
         (error) => {
           this.addBillStatus.next(false);

@@ -4,5 +4,9 @@
   <div class="col-md-2">{{ cartItem.item.price }}</div>
   <div class="col-md-2">{{ cartItem.discount }} %</div>
   <div class="col-md-2">{{ finalPrice }}</div>
-  <div class="col-md-2"><button class="btn btn-danger" (click)="onDeleteItem()"><span class="glyphicon glyphicon-remove"></span></button></div>
+  <div class="col-md-2">
+    <button class="btn btn-danger btn-height" (click)="onDeleteItem()">
+      <span class="glyphicon glyphicon-remove"></span>
+    </button>
+  </div>
 </div>
