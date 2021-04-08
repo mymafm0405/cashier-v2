@@ -1,3 +1,32 @@
+.main-colors {
+  background-color: #414143;
+  background-color: #58595b;
+  background-color: #e6e7e9;
+  background-color: #7dc442;
+  background-color: #e6e7e9;
+  color: #303032;
+}
+
+/* Here is the new styles */
+.row {
+  border-bottom: 1px solid #333333;
+}
+.new-header {
+  background-color: #414143;
+  height: 100px;
+}
+
+.new-sub-menu {
+  background-color: #58595b;
+  height: 200px;
+}
+
+.new-content {
+  background-color: #e6e7e9;
+  height: 500px;
+}
+
+/* Here is the old style */
 .container {
   padding: 0;
 }
@@ -39,9 +68,9 @@
   border-bottom: 1px dashed #333;
   padding-bottom: 10px;
 }
-.row {
+/* .row {
   margin: 20px 0px;
-}
+} */
 .user-type {
   font-size: 16px;
   font-style: italic;

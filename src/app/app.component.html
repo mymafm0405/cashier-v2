@@ -1,3 +1,25 @@
+<!-- New Style from here -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row new-header">
+        <div class="col-md-2">
+          <h4>Company</h4>
+        </div>
+      </div>
+
+      <div class="row new-sub-menu">
+        <div class="col-md-12"></div>
+      </div>
+
+      <div class="row new-content">
+        <div class="col-md-12"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Old Style from here -->
 <div class="container-fluid make-border">
   <div class="row">
     <div class="col-md-12 make-center">
@@ -17,12 +39,6 @@
   <div class="row make-center">
     <div class="col-md-12" *ngIf="!userLoggedIn">
       <app-sign-in-form></app-sign-in-form>
-      <!-- <h1>Here will be the LOGIN FORM</h1>
-      <h4>Login as an ADMIN is Totaly different than as USER</h4>
-      <p style="font-style: italic; color: #09f">
-        But we will consider that we logged in as an ADMIN for development
-        purposes!
-      </p> -->
     </div>
     <div class="col-md-12" *ngIf="userLoggedIn">
       <h3>
