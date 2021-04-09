@@ -37,7 +37,8 @@ import { CartFormComponent } from './cart/cart-form/cart-form.component';
 import { BillRowComponent } from './bills/bill-row/bill-row.component';
 
 const appRoutes: Routes = [
-  { path: '', component: WelcomeComponent },
+  { path: '', component: WelcomeComponent, pathMatch: 'full' },
+  { path: 'categories', component: AddCompanyComponent },
   { path: 'add-company', component: AddCompanyComponent },
   { path: 'add-category', component: AddCategoryComponent },
   { path: 'add-item', component: AddItemComponent },

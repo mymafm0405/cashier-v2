@@ -14,6 +14,16 @@
 .new-header {
   background-color: #414143;
   height: 100px;
+  color: white;
+}
+.header-item {
+  height: 100%;
+}
+.header-item:hover {
+  background-color: #58595b;
+}
+.header-item-active {
+  background-color: #58595b;
 }
 
 .new-sub-menu {
