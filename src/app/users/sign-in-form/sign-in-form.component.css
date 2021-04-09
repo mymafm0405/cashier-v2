@@ -1,0 +1,10 @@
+.error {
+  color: yellow;
+}
+.small-padding {
+  padding: 0;
+}
+.sign-form {
+  margin-top: 25px;
+  height: 100%;
+}

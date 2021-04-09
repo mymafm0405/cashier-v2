@@ -35,10 +35,17 @@ import { ShowCartItemsComponent } from './cart/show-cart-items/show-cart-items.c
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CartFormComponent } from './cart/cart-form/cart-form.component';
 import { BillRowComponent } from './bills/bill-row/bill-row.component';
+import { MenuComponent } from './header/menu/menu.component';
+import { MenuItemComponent } from './header/menu-item/menu-item.component';
+import { SubMenuComponent } from './header/sub-menu/sub-menu.component';
 
 const appRoutes: Routes = [
-  { path: '', component: WelcomeComponent, pathMatch: 'full' },
-  { path: 'categories', component: AddCompanyComponent },
+  { path: '', component: WelcomeComponent },
+  { path: 'company', component: SubMenuComponent },
+  { path: 'categories/:menu', component: SubMenuComponent },
+  { path: 'items/:menu', component: SubMenuComponent },
+  { path: 'reports/:menu', component: SubMenuComponent },
+  { path: 'settings/:menu', component: SubMenuComponent },
   { path: 'add-company', component: AddCompanyComponent },
   { path: 'add-category', component: AddCategoryComponent },
   { path: 'add-item', component: AddItemComponent },
@@ -94,6 +101,9 @@ const appRoutes: Routes = [
     CartItemComponent,
     CartFormComponent,
     BillRowComponent,
+    MenuComponent,
+    MenuItemComponent,
+    SubMenuComponent,
   ],
   imports: [
     BrowserModule,

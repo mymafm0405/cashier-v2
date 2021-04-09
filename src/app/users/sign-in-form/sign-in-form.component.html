@@ -1,11 +1,7 @@
-<div class="row">
-  <div class="col-md-12">
+  <div class="col-md-3 sign-form">
     <form (ngSubmit)="onSubmit()" #signInForm="ngForm">
       <div class="row">
-        <div class="col-md-2">
-          <h4>Username:</h4>
-        </div>
-        <div class="col-md-10">
+        <div class="col-md-5 small-padding">
           <input
             class="form-control"
             type="text"
@@ -15,12 +11,7 @@
             required
           />
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-2">
-          <h4>Password:</h4>
-        </div>
-        <div class="col-md-10">
+        <div class="col-md-5 small-padding">
           <input
             class="form-control"
             type="password"
@@ -30,17 +21,20 @@
             required
           />
         </div>
+        <div class="col-md-2 small-padding">
+          <button
+            type="submit"
+            class="btn btn-default"
+            [disabled]="signInForm.invalid"
+          >
+            Sign-in
+          </button>
+        </div>
       </div>
-      <button
-        type="submit"
-        class="btn btn-success"
-        [disabled]="signInForm.invalid"
-      >
-        Sign-in
-      </button>
+      <div class="row" *ngIf="notAllowed">
+        <div class="col-md-12">
+            <p class="error">Username and Password are not correct!</p>
+        </div>
+      </div>
     </form>
-    <div class="alert alert-danger" *ngIf="notAllowed">
-      <h4>Username and Password are not correct!</h4>
-    </div>
   </div>
-</div>

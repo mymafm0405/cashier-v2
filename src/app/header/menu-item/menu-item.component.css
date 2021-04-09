@@ -1,0 +1,14 @@
+.menu-item {
+  height: 100%;
+  text-align: center;
+  cursor: pointer;
+}
+.menu-item:hover {
+  background-color: #58595b;
+}
+.menu-item-active {
+  background-color: #58595b;
+}
+span {
+  color: white;
+}

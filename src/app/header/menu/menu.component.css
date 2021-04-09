@@ -1,0 +1,17 @@
+.row {
+  border-bottom: 1px solid #333333;
+}
+.new-header {
+  background-color: #414143;
+  height: 100px;
+  color: white;
+}
+.link {
+  cursor: pointer;
+}
+.company {
+  color: #ff49b2;
+}
+img {
+  margin: 0 30px;
+}
