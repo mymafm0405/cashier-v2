@@ -1,1 +1,8 @@
-<p>sub-menu works!</p>
+<div class="row sub">
+  <app-menu-item
+    *ngFor="let menuItem of menuItems"
+    [name]="menuItem.name"
+    [path]="menuItem.path"
+    [icon]="menuItem.icon"
+  ></app-menu-item>
+</div>

@@ -1,9 +1,14 @@
 <div class="row new-header">
   <div class="col-md-1 link" routerLink="">
-    <img src="../../../assets/images/logo.png" width="60" height="60">
-    <h4 class="company">Printing House</h4>
+    <img src="../../../assets/images/logo.png" width="50" height="50" />
+    <h4 class="company">PrintingHouse</h4>
   </div>
-  <app-menu-item *ngFor="let menuItem of menuItems" [name]="menuItem.name" [path]="menuItem.path" [icon]="menuItem.icon"></app-menu-item>
+  <app-menu-item
+    *ngFor="let menuItem of menuItems"
+    [name]="menuItem.name"
+    [path]="menuItem.path"
+    [icon]="menuItem.icon"
+  ></app-menu-item>
   <div class="col-md-2"></div>
   <app-cart-counter></app-cart-counter>
   <app-sign-in-form></app-sign-in-form>

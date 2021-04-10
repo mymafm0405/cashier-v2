@@ -2,13 +2,17 @@
   height: 100%;
   text-align: center;
   cursor: pointer;
+  border-right: 1px solid #333;
 }
 .menu-item:hover {
-  background-color: #58595b;
+  background-color: #6a6c6e;
 }
 .menu-item-active {
-  background-color: #58595b;
+  background-color: #6a6c6e;
 }
 span {
   color: white;
+}
+h4 {
+  font-size: 16px;
 }

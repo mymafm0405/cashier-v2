@@ -1,6 +1,6 @@
 .main-colors {
   background-color: #414143;
-  background-color: #58595b;
+  background-color: #6a6c6e;
   background-color: #e6e7e9;
   background-color: #7dc442;
   background-color: #e6e7e9;
@@ -10,11 +10,6 @@
 /* Here is the new styles */
 .row {
   border-bottom: 1px solid #333333;
-}
-
-.new-sub-menu {
-  background-color: #58595b;
-  height: 200px;
 }
 
 .new-content {
