@@ -330,6 +330,12 @@ export class AppService {
     }
   }
 
+  signOutUser() {
+    this.user = undefined;
+    this.userType = undefined;
+    this.userSignInStatusChanges.next(false);
+  }
+
   // Here to add user to the system
   checkUserExist(username: string) {
     if (

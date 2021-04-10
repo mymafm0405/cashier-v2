@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { MenuItem } from 'src/app/shared/menu-item.model';
 
 @Component({
@@ -10,7 +10,7 @@ import { MenuItem } from 'src/app/shared/menu-item.model';
 export class SubMenuComponent implements OnInit {
   menuItems: MenuItem[] = [];
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     console.log(
@@ -38,6 +38,7 @@ export class SubMenuComponent implements OnInit {
   setSubMenuItems() {
     this.menuItems = [
       new MenuItem('Item', 'add-item', 'glyphicon glyphicon-plus'),
+      new MenuItem('Store', 'store', 'glyphicon glyphicon-tasks'),
     ];
   }
 
@@ -50,6 +51,7 @@ export class SubMenuComponent implements OnInit {
       ),
       new MenuItem('By Date', 'by-date', 'glyphicon glyphicon-calendar'),
       new MenuItem('Find', 'by-serial', 'glyphicon glyphicon-search'),
+      new MenuItem('Clients', 'clients', 'glyphicon glyphicon-phone-alt'),
     ];
   }
 

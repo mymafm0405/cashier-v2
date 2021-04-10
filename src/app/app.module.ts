@@ -38,6 +38,7 @@ import { BillRowComponent } from './bills/bill-row/bill-row.component';
 import { MenuComponent } from './header/menu/menu.component';
 import { MenuItemComponent } from './header/menu-item/menu-item.component';
 import { SubMenuComponent } from './header/sub-menu/sub-menu.component';
+import { UserInfoComponent } from './users/user-info/user-info.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -104,6 +105,7 @@ const appRoutes: Routes = [
     MenuComponent,
     MenuItemComponent,
     SubMenuComponent,
+    UserInfoComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,7 @@
 import { MenuItem } from './../../shared/menu-item.model';
 import { Component, OnInit } from '@angular/core';
+import { AppService } from 'src/app/shared/app.service';
+import { User } from 'src/app/shared/user.model';
 
 @Component({
   selector: 'app-menu',
@@ -14,7 +16,17 @@ export class MenuComponent implements OnInit {
     new MenuItem('Settings', 'settings', 'glyphicon glyphicon-wrench'),
   ];
 
-  constructor() {}
+  currentUser: User;
 
-  ngOnInit(): void {}
+  constructor(private appService: AppService) {}
+
+  ngOnInit(): void {
+    this.appService.userSignInStatusChanges.subscribe((status: boolean) => {
+      if (status) {
+        this.currentUser = this.appService.getUser();
+      } else if (!status) {
+        this.currentUser = undefined;
+      }
+    });
+  }
 }

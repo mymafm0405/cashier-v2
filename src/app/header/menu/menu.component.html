@@ -11,5 +11,6 @@
   ></app-menu-item>
   <div class="col-md-2"></div>
   <app-cart-counter></app-cart-counter>
-  <app-sign-in-form></app-sign-in-form>
+  <app-sign-in-form *ngIf="currentUser === undefined"></app-sign-in-form>
+  <app-user-info *ngIf="currentUser" [user]="currentUser"></app-user-info>
 </div>

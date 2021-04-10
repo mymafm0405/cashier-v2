@@ -1,0 +1,14 @@
+.user {
+  color: #f90;
+  font-size: 15px;
+  padding-top: 25px;
+}
+a {
+  color: #09f;
+  cursor: pointer;
+  font-size: 14px;
+}
+span {
+  color: white;
+  font-size: 14px;
+}

@@ -1,0 +1,8 @@
+<div class="col-md-3 user">
+  <h4>
+    {{ user.name }}
+    <span>( {{ user.userType === "admin" ? "Admin" : "User" }} )</span> |
+    <a (click)="changePassword()">Change Password</a> |
+    <a (click)="onSignOut()">Sign Out</a>
+  </h4>
+</div>
