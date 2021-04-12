@@ -11,6 +11,7 @@ import { SubMenuComponent } from './header/sub-menu/sub-menu.component';
 import { MainComponent } from './content/main/main.component';
 import { AddCategoryComponent } from './categories/add-category/add-category.component';
 import { AddCompanyComponent } from './companies/add-company/add-company.component';
+import { AddItemComponent } from './items/add-item/add-item.component';
 
 const appRoutes: Routes = [
   {
@@ -18,7 +19,11 @@ const appRoutes: Routes = [
     component: MainComponent,
     children: [{ path: 'add-category', component: AddCategoryComponent }],
   },
-  { path: 'items', component: MainComponent },
+  {
+    path: 'items',
+    component: MainComponent,
+    children: [{ path: 'add-items', component: AddItemComponent }],
+  },
   { path: 'reports', component: MainComponent },
   {
     path: 'settings',
@@ -36,6 +41,7 @@ const appRoutes: Routes = [
     MainComponent,
     AddCategoryComponent,
     AddCompanyComponent,
+    AddItemComponent,
   ],
   imports: [
     BrowserModule,

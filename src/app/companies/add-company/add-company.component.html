@@ -1,1 +1,51 @@
-<p>add-company works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <h4 class="title">
+      Add new company:
+      <span class="info">Name, Phone and address are required!</span>
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form (ngSubmit)="onSubmit()" #compForm="ngForm">
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        placeholder="Company name"
+        ngModel
+        required
+      />
+      <input
+        type="number"
+        name="phone"
+        class="form-control"
+        placeholder="Phone number"
+        ngModel
+        required
+      />
+      <input
+        type="text"
+        name="address"
+        class="form-control"
+        placeholder="Company address"
+        ngModel
+        required
+      />
+      <button
+        class="btn btn-danger"
+        type="submit"
+        [disabled]="compForm.invalid"
+      >
+        Save Company
+      </button>
+    </form>
+  </div>
+</div>
+<div class="row" *ngIf="addingStatus !== undefined">
+  <div class="col-md-12">
+    <h4 class="success" *ngIf="addingStatus">Company added successfully</h4>
+    <h4 class="error" *ngIf="!addingStatus">An error happened, try again!</h4>
+  </div>
+</div>

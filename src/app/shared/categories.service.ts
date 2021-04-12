@@ -21,6 +21,10 @@ export class CatsService {
     return this.categories.find((cat) => cat.id === catId);
   }
 
+  getCatsByCompId(compId: string) {
+    return this.categories.filter((cat) => cat.companyId === compId);
+  }
+
   addCategory(newCat: Category) {
     this.http
       .post(

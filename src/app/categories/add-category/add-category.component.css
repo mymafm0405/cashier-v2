@@ -1,6 +1,11 @@
 .title {
   color: #585858;
 }
+.info {
+  font-style: italic;
+  font-size: 14px;
+  color: #09f;
+}
 .success {
   font-style: italic;
   color: green;

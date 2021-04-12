@@ -15,6 +15,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   @ViewChild('catForm', { static: false }) catForm: NgForm;
   companies: Company[] = [];
 
+  compsChangedSub: Subscription;
   catsAddingSub: Subscription;
   addingStatus: boolean;
 
@@ -26,9 +27,24 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.companies = this.compsService.getCompanies();
 
+    this.compsChangedSub = this.compsService.companiesChanged.subscribe(
+      (status: boolean) => {
+        if (status) {
+          this.companies = this.compsService.getCompanies();
+        }
+      }
+    );
+
     this.catsAddingSub = this.catsService.categoryAddingStatus.subscribe(
       (status: boolean) => {
+        setTimeout(() => {
+          this.addingStatus = undefined;
+        }, 2500);
+
         this.addingStatus = status;
+        if (status) {
+          this.catForm.reset();
+        }
       }
     );
   }
@@ -41,5 +57,7 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
     this.catsService.addCategory(newCat);
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    this.catsAddingSub.unsubscribe();
+  }
 }

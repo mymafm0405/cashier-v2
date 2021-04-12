@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-md-12">
+    <h4 class="title">
+      Note: <span class="info">First you've to select company & category.</span>
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form (ngSubmit)="onSubmit()" #itemForm="ngForm">
+      <select
+        name="compId"
+        (change)="onChangeCompany()"
+        class="form-control"
+        ngModel
+        required
+      >
+        <option value="" selected>Select Company</option>
+        <option value="{{ company.id }}" *ngFor="let company of companies">
+          {{ company.name }}
+        </option>
+      </select>
+      <select name="catId" class="form-control" ngModel required>
+        <option value="" selected>Select Category</option>
+        <option value="{{ cat.id }}" *ngFor="let cat of categories">
+          {{ cat.name }}
+        </option>
+      </select>
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        placeholder="Item name"
+        ngModel
+        required
+      />
+      <input
+        type="number"
+        name="quantity"
+        class="form-control"
+        placeholder="Quantity"
+        ngModel
+        required
+      />
+      <input
+        type="number"
+        name="cost"
+        class="form-control"
+        placeholder="Item Cost"
+        ngModel
+        required
+      />
+      <input
+        type="number"
+        name="price"
+        class="form-control"
+        placeholder="Item Price"
+        ngModel
+        required
+      />
+      <button
+        class="btn btn-danger"
+        type="submit"
+        [disabled]="itemForm.invalid"
+      >
+        Save Item
+      </button>
+    </form>
+  </div>
+</div>
+<div class="row" *ngIf="addingStatus !== undefined">
+  <div class="col-md-12">
+    <h4 class="success" *ngIf="addingStatus">Items added successfully</h4>
+    <h4 class="error" *ngIf="!addingStatus">An error happened, try again!</h4>
+  </div>
+</div>

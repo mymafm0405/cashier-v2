@@ -37,7 +37,7 @@ export class SubMenuComponent implements OnInit {
 
   setSubMenuItems() {
     this.menuItems = [
-      new MenuItem('Item', 'add-item', 'glyphicon glyphicon-plus'),
+      new MenuItem('Items', 'add-items', 'glyphicon glyphicon-plus'),
       new MenuItem('Store', 'store', 'glyphicon glyphicon-tasks'),
     ];
   }
