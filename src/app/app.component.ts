@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 import { CatsService } from './shared/categories.service';
 import { CompaniesService } from './shared/companies.service';
+import { ItemsService } from './shared/items.service';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +13,13 @@ export class AppComponent implements OnInit {
 
   constructor(
     private compsService: CompaniesService,
-    private catsService: CatsService
+    private catsService: CatsService,
+    private itemsService: ItemsService
   ) {}
 
   ngOnInit() {
     this.compsService.loadCompanies();
     this.catsService.loadCategories();
+    this.itemsService.loadItems();
   }
 }
