@@ -1,6 +1,5 @@
 import { MenuItem } from './../../shared/menu-item.model';
 import { Component, OnInit } from '@angular/core';
-import { AppService } from 'src/app/shared/app.service';
 import { User } from 'src/app/shared/user.model';
 
 @Component({
@@ -18,15 +17,7 @@ export class MenuComponent implements OnInit {
 
   currentUser: User;
 
-  constructor(private appService: AppService) {}
+  constructor() {}
 
-  ngOnInit(): void {
-    this.appService.userSignInStatusChanges.subscribe((status: boolean) => {
-      if (status) {
-        this.currentUser = this.appService.getUser();
-      } else if (!status) {
-        this.currentUser = undefined;
-      }
-    });
-  }
+  ngOnInit(): void {}
 }
