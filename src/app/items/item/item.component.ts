@@ -22,6 +22,8 @@ export class ItemComponent implements OnInit {
   constructor(private appService: AppService) {}
 
   ngOnInit(): void {
+    console.log(this.item);
+    console.log(this.category);
     this.userType = this.appService.getUserType();
   }
 

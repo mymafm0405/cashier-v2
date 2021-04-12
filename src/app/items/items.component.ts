@@ -20,7 +20,9 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
+      console.log(params);
       this.catId = params.id;
+      console.log(this.catId);
       this.category = this.appService.getCategoryById(this.catId);
       this.loadCatStatusSub = this.appService.loadCategoryStatus.subscribe(
         (status: boolean) => {

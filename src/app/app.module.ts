@@ -39,14 +39,26 @@ import { MenuComponent } from './header/menu/menu.component';
 import { MenuItemComponent } from './header/menu-item/menu-item.component';
 import { SubMenuComponent } from './header/sub-menu/sub-menu.component';
 import { UserInfoComponent } from './users/user-info/user-info.component';
+import { MainComponent } from './content/main/main.component';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
-  { path: 'company', component: SubMenuComponent },
-  { path: 'categories', component: SubMenuComponent },
-  { path: 'items', component: SubMenuComponent },
-  { path: 'reports', component: SubMenuComponent },
-  { path: 'settings', component: SubMenuComponent },
+  {
+    path: 'categories',
+    component: MainComponent,
+    children: [
+      { path: 'add-category', component: AddCategoryComponent },
+      { path: 'new-sell', component: CategoriesComponent },
+      { path: 'category/:id', component: ItemComponent },
+    ],
+  },
+  { path: 'items', component: MainComponent },
+  { path: 'reports', component: MainComponent },
+  {
+    path: 'settings',
+    component: MainComponent,
+    children: [{ path: 'add-company', component: AddCompanyComponent }],
+  },
   { path: 'add-company', component: AddCompanyComponent },
   { path: 'add-category', component: AddCategoryComponent },
   { path: 'add-item', component: AddItemComponent },
@@ -106,6 +118,7 @@ const appRoutes: Routes = [
     MenuItemComponent,
     SubMenuComponent,
     UserInfoComponent,
+    MainComponent,
   ],
   imports: [
     BrowserModule,
