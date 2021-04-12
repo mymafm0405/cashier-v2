@@ -1,0 +1,18 @@
+.title {
+  color: #585858;
+}
+.success {
+  font-style: italic;
+  color: green;
+}
+.error {
+  font-style: italic;
+  color: red;
+}
+.warning {
+  font-style: italic;
+  color: orange;
+}
+.form-control {
+  margin: 10px 0;
+}

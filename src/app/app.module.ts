@@ -10,6 +10,7 @@ import { MenuItemComponent } from './header/menu-item/menu-item.component';
 import { SubMenuComponent } from './header/sub-menu/sub-menu.component';
 import { MainComponent } from './content/main/main.component';
 import { AddCategoryComponent } from './categories/add-category/add-category.component';
+import { AddCompanyComponent } from './companies/add-company/add-company.component';
 
 const appRoutes: Routes = [
   {
@@ -22,6 +23,7 @@ const appRoutes: Routes = [
   {
     path: 'settings',
     component: MainComponent,
+    children: [{ path: 'add-company', component: AddCompanyComponent }],
   },
 ];
 
@@ -33,6 +35,7 @@ const appRoutes: Routes = [
     SubMenuComponent,
     MainComponent,
     AddCategoryComponent,
+    AddCompanyComponent,
   ],
   imports: [
     BrowserModule,

@@ -29,8 +29,9 @@ export class CatsService {
       )
       .subscribe(
         (res: { name: string }) => {
-          this.categories.push(newCat);
+          this.categories.push({ ...newCat, id: res.name });
           this.categoryAddingStatus.next(true);
+          this.categoriesChanged.next(true);
         },
         (error) => {
           console.log(error);

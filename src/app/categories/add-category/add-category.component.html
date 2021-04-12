@@ -1,1 +1,55 @@
-<p>add-category works!</p>
+<div class="row" *ngIf="companies.length === 0">
+  <div class="col-md-12">
+    <h4 class="warning">
+      Warning: No companies found, you have to add at least one company!!
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h4 class="title">
+      Add new category: Company, name and description are required!
+    </h4>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form (ngSubmit)="onSubmit()" #catForm="ngForm">
+      <select name="compId" class="form-control" ngModel required>
+        <option value="" selected>Select company</option>
+        <option value="company.id" *ngFor="let company of companies">
+          {{ company.name }}
+        </option>
+      </select>
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        placeholder="Category name"
+        ngModel
+        required
+      />
+      <input
+        type="text"
+        name="desc"
+        class="form-control"
+        placeholder="Description"
+        ngModel
+        required
+      />
+      <button
+        class="btn btn-default"
+        type="submit"
+        [disabled]="catForm.invalid"
+      >
+        Save
+      </button>
+    </form>
+  </div>
+</div>
+<div class="row" *ngIf="addingStatus !== undefined">
+  <div class="col-md-12">
+    <h4 class="success" *ngIf="addingStatus">Category added successfully</h4>
+    <h4 class="error" *ngIf="!addingStatus">An error happened, try again!</h4>
+  </div>
+</div>
