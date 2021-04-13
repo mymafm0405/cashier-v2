@@ -13,19 +13,17 @@ export class SubMenuComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    console.log(
-      this.route.url.subscribe((res) => {
-        if (res[0].path === 'categories') {
-          this.setSubMenuCats();
-        } else if (res[0].path === 'items') {
-          this.setSubMenuItems();
-        } else if (res[0].path === 'reports') {
-          this.setSubMenuReports();
-        } else if (res[0].path === 'settings') {
-          this.setSubMenuSettings();
-        }
-      })
-    );
+    this.route.url.subscribe((res) => {
+      if (res[0].path === 'categories') {
+        this.setSubMenuCats();
+      } else if (res[0].path === 'items') {
+        this.setSubMenuItems();
+      } else if (res[0].path === 'reports') {
+        this.setSubMenuReports();
+      } else if (res[0].path === 'settings') {
+        this.setSubMenuSettings();
+      }
+    });
   }
 
   setSubMenuCats() {

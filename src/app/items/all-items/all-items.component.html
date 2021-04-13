@@ -1,0 +1,8 @@
+<div class="row all-items" *ngIf="items.length > 0">
+  <app-item *ngFor="let item of items" [item]="item"></app-item>
+</div>
+<div class="row" *ngIf="items.length === 0">
+  <div class="col-md-12">
+    <h4 class="error">No items in this category!</h4>
+  </div>
+</div>

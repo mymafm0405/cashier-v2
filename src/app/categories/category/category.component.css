@@ -1,0 +1,15 @@
+.cat-row {
+  background-color: #414143;
+  text-align: center;
+  color: white;
+  border-radius: 7px;
+  margin: 2px 0;
+  cursor: pointer;
+}
+.cat-row:hover {
+  background-color: #6a6c6e;
+}
+.cat-active {
+  background-color: #ff9633;
+  color: #333;
+}
