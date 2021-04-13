@@ -1,0 +1,15 @@
+input {
+  margin: 10px 0;
+}
+.error {
+  color: red;
+  margin: 10px 0;
+}
+.total-after-discount {
+  background-color: #ffa4a4;
+  text-align: center;
+}
+.title {
+  padding: 10px;
+  border: 1px solid #CCC;
+}

@@ -1,0 +1,20 @@
+<div class="row total-after-discount" *ngIf="discount > 0 && discount <= 100">
+  <div class="col-md-9 title">
+    Total After Discount ( {{ discount }} % )
+  </div>
+  <div class="col-md-3 title">
+    {{ currentTotal * (100 - discount) / 100 }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <form (ngSubmit)="onSubmit()" #cartForm="ngForm">
+      <input type="text" name="name" class="form-control" placeholder="Client name" ngModel required/>
+      <input type="number" name="phone" class="form-control" placeholder="Phone number" ngModel required/>
+      <input type="number" name="discount" class="form-control" placeholder="Discount" [(ngModel)]="discount" required/>
+      <p class="error" *ngIf="discount < 0 || discount > 100">Discount should be a value between 0 % to 100 %</p>
+      <button class="btn btn-success" type="submit" [disabled]="cartForm.invalid || discount < 0 || discount > 100 || cartItems.length === 0">Confirm</button>
+      <p class="error" *ngIf="cartItems.length === 0">No items in the shopping cart!</p>
+    </form>
+  </div>
+</div>

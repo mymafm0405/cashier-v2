@@ -1,0 +1,8 @@
+.item-row {
+  background-color: #d6d6d6;
+  text-align: center;
+}
+.column {
+  border: 1px solid #CCC;
+  padding: 10px;
+}

@@ -17,8 +17,15 @@ import { AllCategoriesComponent } from './categories/all-categories/all-categori
 import { AllItemsComponent } from './items/all-items/all-items.component';
 import { ItemComponent } from './items/item/item.component';
 import { CartCounterComponent } from './cart/cart-counter/cart-counter.component';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { CartAllItemsComponent } from './cart/cart-all-items/cart-all-items.component';
+import { ShoppingCartComponent } from './cart/shopping-cart/shopping-cart.component';
+import { CartFormComponent } from './cart/cart-form/cart-form.component';
 
 const appRoutes: Routes = [
+  {
+    path: 'shopping', component: ShoppingCartComponent
+  },
   {
     path: 'categories',
     component: MainComponent,
@@ -59,6 +66,10 @@ const appRoutes: Routes = [
     AllItemsComponent,
     ItemComponent,
     CartCounterComponent,
+    CartItemComponent,
+    CartAllItemsComponent,
+    ShoppingCartComponent,
+    CartFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,4 +80,4 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
