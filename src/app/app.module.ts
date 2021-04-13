@@ -16,6 +16,7 @@ import { CategoryComponent } from './categories/category/category.component';
 import { AllCategoriesComponent } from './categories/all-categories/all-categories.component';
 import { AllItemsComponent } from './items/all-items/all-items.component';
 import { ItemComponent } from './items/item/item.component';
+import { CartCounterComponent } from './cart/cart-counter/cart-counter.component';
 
 const appRoutes: Routes = [
   {
@@ -57,6 +58,7 @@ const appRoutes: Routes = [
     AllCategoriesComponent,
     AllItemsComponent,
     ItemComponent,
+    CartCounterComponent,
   ],
   imports: [
     BrowserModule,

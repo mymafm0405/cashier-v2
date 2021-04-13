@@ -1,0 +1,10 @@
+.cart-number {
+  background-color: yellow;
+  color: #333;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 7px;
+}
+.btn {
+  font-weight: bold;
+}
