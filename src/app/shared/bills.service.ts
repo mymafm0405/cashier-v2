@@ -55,6 +55,17 @@ export class BillsService {
     return this.billId;
   }
 
+  getBillBySerial(serial: number) {
+    return this.allBills.filter(bill => bill.serial === serial);
+  }
+
+  getBillsDueDate(startDate: string, endDate: string) {
+    const fromDateTimestamp = new Date(startDate).getTime();
+    const toDateTimestamp = new Date(endDate).getTime();
+
+    return this.allBills.filter(bill => new Date(bill.date).getTime() >= fromDateTimestamp && new Date(bill.date).getTime() <= toDateTimestamp);
+  }
+
   getTodayDate() {
     const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');

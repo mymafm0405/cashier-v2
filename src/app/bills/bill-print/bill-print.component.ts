@@ -35,6 +35,7 @@ export class BillPrintComponent implements OnInit, OnDestroy {
           this.route.params.subscribe((params: Params) => {
             this.bill = this.billsService.getBillById(params.billId);
             this.getClient();
+            console.log(this.client);
             console.log(this.bill);
           });
         }
@@ -43,6 +44,8 @@ export class BillPrintComponent implements OnInit, OnDestroy {
   }
 
   getClient() {
+    console.log(this.bill);
+    console.log(this.bill.clientId);
     this.client = this.clientsService.getClientById(this.bill.clientId);
   }
 

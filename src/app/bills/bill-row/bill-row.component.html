@@ -1,0 +1,18 @@
+<div class="row" *ngFor="let bill of allBills">
+  {{ getTotalIncome(bill) }}
+  <div class="col-md-1">{{ bill.serial }}</div>
+  <div class="col-md-1">{{ bill.date }}</div>
+  <div class="col-md-6">
+    <div class="row" *ngFor="let item of bill.cart">
+      <div class="col-md-3">{{ item.item.name }}</div>
+      <div class="col-md-2">{{ item.item.price }}</div>
+      <div class="col-md-2">{{ item.quantity }}</div>
+      <div class="col-md-2">{{ item.item.cost * item.quantity }}</div>
+      <div class="col-md-3">{{ item.item.price * item.quantity }}</div>
+    </div>
+  </div>
+  <div class="col-md-1">{{ bill.finalTotal }}</div>
+  <div class="col-md-1">{{ totalCostForAllItems }}</div>
+  <div class="col-md-1">{{ totalIncome }}</div>
+  <div class="col-md-1"><a [routerLink]="['../../print-bill', bill.id]">Print</a></div>
+</div>

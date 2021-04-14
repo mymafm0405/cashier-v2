@@ -22,6 +22,11 @@ import { CartAllItemsComponent } from './cart/cart-all-items/cart-all-items.comp
 import { ShoppingCartComponent } from './cart/shopping-cart/shopping-cart.component';
 import { CartFormComponent } from './cart/cart-form/cart-form.component';
 import { BillPrintComponent } from './bills/bill-print/bill-print.component';
+import { BillRowComponent } from './bills/bill-row/bill-row.component';
+import { AllBillsComponent } from './bills/all-bills/all-bills.component';
+import { BillsByDateComponent } from './bills/bills-by-date/bills-by-date.component';
+import { FindBillComponent } from './bills/find-bill/find-bill.component';
+import { BillsHeaderComponent } from './bills/bills-header/bills-header.component';
 
 const appRoutes: Routes = [
   {
@@ -49,7 +54,9 @@ const appRoutes: Routes = [
     component: MainComponent,
     children: [{ path: 'add-items', component: AddItemComponent }],
   },
-  { path: 'reports', component: MainComponent },
+  { path: 'reports', component: MainComponent, children: [
+    {path: 'all-bills', component: AllBillsComponent}
+  ] },
   {
     path: 'settings',
     component: MainComponent,
@@ -77,6 +84,11 @@ const appRoutes: Routes = [
     ShoppingCartComponent,
     CartFormComponent,
     BillPrintComponent,
+    BillRowComponent,
+    AllBillsComponent,
+    BillsByDateComponent,
+    FindBillComponent,
+    BillsHeaderComponent,
   ],
   imports: [
     BrowserModule,
