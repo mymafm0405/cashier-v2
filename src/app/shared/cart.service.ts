@@ -47,6 +47,7 @@ export class CartService {
 
   deleteCartItems() {
     this.cartItems = [];
+    this.totalQuantity = 0;
     this.cartItemsChanged.next(true);
   }
 }

@@ -8,6 +8,7 @@ import { Bill } from 'src/app/shared/bill.model';
 import { ClientsService } from 'src/app/shared/clients.service';
 import { Client } from 'src/app/shared/client.model';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-form',
@@ -29,7 +30,8 @@ export class CartFormComponent implements OnInit, OnDestroy {
   constructor(
     private cartService: CartService,
     private billsService: BillsService,
-    private clientsService: ClientsService
+    private clientsService: ClientsService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +45,7 @@ export class CartFormComponent implements OnInit, OnDestroy {
         this.addingStatus = status;
         setTimeout(() => {
           this.addingStatus = undefined;
+          this.router.navigate(['print-bill', this.billsService.getBillId()]);
         }, 2500);
 
         if (status) {

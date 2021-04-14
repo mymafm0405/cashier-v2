@@ -17,6 +17,10 @@ export class ClientsService {
     return this.allClients;
   }
 
+  getClientById(clientId: string) {
+    return this.allClients.find((client) => client.id === clientId);
+  }
+
   checkClientByPhone(newClient: Client): string {
     const foundClient = this.allClients.find(
       (client) => client.phone === newClient.phone

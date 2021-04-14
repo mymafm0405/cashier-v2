@@ -1,0 +1,79 @@
+h4,
+h3,
+h2,
+h1 {
+  margin: 10px;
+  padding: 0;
+}
+.header {
+  text-align: center;
+  background-color: #333;
+  color: white;
+}
+.title {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.total {
+  background-color: #808080;
+  text-align: center;
+  font-weight: bold;
+  color: #ffb774;
+}
+.bill {
+  padding: 25px 0;
+  background-color: #e6e7e9;
+}
+.content {
+  background-color: white;
+  border: 1px dashed #666;
+  padding: 30px;
+}
+.tagline {
+  font-style: italic;
+  font-size: 14px;
+  color: #666;
+  font-weight: bold;
+}
+img {
+  margin: 0 20px;
+}
+.invoice {
+  text-align: right;
+  padding: 30px 10px;
+}
+text-right {
+  text-align: right;
+}
+.make-red {
+  color: red;
+}
+.make-grey {
+  color: #666;
+}
+.client {
+  color: #666;
+}
+.name {
+  font-weight: bold;
+  font-size: 18px;
+}
+.address {
+  font-size: 14px;
+}
+.phone {
+  font-size: 14px;
+}
+.shopping {
+  font-style: italic;
+  color: #333;
+}
+.company {
+  color: #808080;
+}
+.signature {
+  font-style: italic;
+  background-color: #ccc;
+  color: #333;
+  padding: 5px;
+}

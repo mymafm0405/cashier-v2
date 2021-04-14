@@ -1,0 +1,60 @@
+<div class="row bill">
+  <div class="col-md-8 col-md-offset-2 content">
+    <div class="row">
+      <div class="col-md-8">
+        <img src="../../../assets/images/logo.png" width="100" height="100" />
+        <h2>Printing House</h2>
+        <h4 class="tagline">The Best Quality</h4>
+      </div>
+      <div class="col-md-4 invoice">
+        <h1>INVOICE</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 client">
+        <h3 class="name">{{ client.name }}</h3>
+        <h4 class="address">{{ client.address }}</h4>
+        <h4 class="phone">{{ client.phone }}</h4>
+      </div>
+      <div class="col-md-4 col-md-offset-4 text-right">
+        <h3>
+          Invoice # <span class="make-red">{{ bill.serial }}</span>
+        </h3>
+        <h4>
+          Date: <span class="make-grey">{{ bill.date }}</span>
+        </h4>
+      </div>
+    </div>
+    <div class="row header">
+      <div class="col-md-3 title">Item Description</div>
+      <div class="col-md-3 title">Quantity</div>
+      <div class="col-md-3 title">Price</div>
+      <div class="col-md-3 title">Total</div>
+    </div>
+    <app-cart-item
+      *ngFor="let item of bill.cart"
+      [cartItem]="item"
+    ></app-cart-item>
+    <div class="row total">
+      <div class="col-md-9 title">
+        Total After Discount ( {{ bill.discount }} % )
+      </div>
+      <div class="col-md-3 title">{{ bill.finalTotal }}</div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h4 class="shopping">Thank you for shopping with us!</h4>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8">
+        <p class="company">
+          Printing House: Doha, Qatar - Phone ( +974 66548110 )
+        </p>
+      </div>
+      <div class="col-md-4">
+        <p class="signature">Signature: ----------------------</p>
+      </div>
+    </div>
+  </div>
+</div>

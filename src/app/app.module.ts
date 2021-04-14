@@ -21,10 +21,16 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { CartAllItemsComponent } from './cart/cart-all-items/cart-all-items.component';
 import { ShoppingCartComponent } from './cart/shopping-cart/shopping-cart.component';
 import { CartFormComponent } from './cart/cart-form/cart-form.component';
+import { BillPrintComponent } from './bills/bill-print/bill-print.component';
 
 const appRoutes: Routes = [
   {
-    path: 'shopping', component: ShoppingCartComponent
+    path: 'shopping',
+    component: ShoppingCartComponent,
+  },
+  {
+    path: 'print-bill/:billId',
+    component: BillPrintComponent,
   },
   {
     path: 'categories',
@@ -70,6 +76,7 @@ const appRoutes: Routes = [
     CartAllItemsComponent,
     ShoppingCartComponent,
     CartFormComponent,
+    BillPrintComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,4 +87,4 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

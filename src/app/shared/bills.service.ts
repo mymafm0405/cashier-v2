@@ -12,6 +12,7 @@ export class BillsService {
 
   billsChanged = new Subject<boolean>();
   billAddingStatus = new Subject<boolean>();
+  billId: string;
 
   constructor(
     private http: HttpClient,
@@ -33,6 +34,7 @@ export class BillsService {
           );
           this.billAddingStatus.next(true);
           this.billsChanged.next(true);
+          this.billId = res.name;
         },
         (error) => {
           console.log(error);
@@ -43,6 +45,14 @@ export class BillsService {
 
   getBills() {
     return this.allBills;
+  }
+
+  getBillById(billId: string) {
+    return this.allBills.find((bill) => bill.id === billId);
+  }
+
+  getBillId() {
+    return this.billId;
   }
 
   getTodayDate() {
