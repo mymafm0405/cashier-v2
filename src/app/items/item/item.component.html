@@ -3,11 +3,16 @@
     <span>{{ item.price }}</span> L.E
   </h4>
   <h4 class="name">{{ item.name }}</h4>
-  <button class="btn btn-success" (click)="onCartClick()">
+  <button
+    class="btn btn-success"
+    (click)="onCartClick()"
+    [disabled]="item.quantity === 0"
+  >
     <span class="glyphicon glyphicon-plus"></span>
     <span class="glyphicon glyphicon-shopping-cart"></span>
   </button>
   <p>
     Remaining: <span>{{ item.quantity }}</span>
   </p>
+  <p *ngIf="item.quantity === 0" class="error">No more items to sell!</p>
 </div>

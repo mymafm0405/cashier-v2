@@ -33,4 +33,20 @@ export class CartService {
   getTotalCartQuantity() {
     return this.totalQuantity;
   }
+
+  getItemsIdsWithNewQuantity() {
+    const itemsWithNewQuantity: { itemId: string; newQuantity: number }[] = [];
+    for (let cartItem of this.cartItems) {
+      itemsWithNewQuantity.push({
+        itemId: cartItem.item.id,
+        newQuantity: cartItem.item.quantity,
+      });
+    }
+    return itemsWithNewQuantity;
+  }
+
+  deleteCartItems() {
+    this.cartItems = [];
+    this.cartItemsChanged.next(true);
+  }
 }

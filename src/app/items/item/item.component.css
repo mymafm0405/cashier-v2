@@ -32,3 +32,6 @@ p span {
   font-weight: bold;
   font-style: normal;
 }
+.error {
+  color: red;
+}

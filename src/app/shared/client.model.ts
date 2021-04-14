@@ -1,3 +1,8 @@
 export class Client {
-  constructor(public name: string, public phone: string, public id?: string) {}
+  constructor(
+    public name: string,
+    public phone: number,
+    public address: string,
+    public id?: string
+  ) {}
 }

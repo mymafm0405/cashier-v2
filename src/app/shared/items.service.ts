@@ -40,6 +40,21 @@ export class ItemsService {
     return this.items.filter((item) => item.catId === catId);
   }
 
+  updateItemQuantity(itemsToUpdate: { itemId: string; newQuantity: number }[]) {
+    for (let item of itemsToUpdate) {
+      this.http
+        .patch(
+          'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/items/' +
+            item.itemId +
+            '.json',
+          { quantity: item.newQuantity }
+        )
+        .subscribe(() => {
+          console.log(item.itemId + ' QUANTITY HAS BEEN UPDATED');
+        });
+    }
+  }
+
   loadItems() {
     this.http
       .get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/items.json')
