@@ -7,6 +7,7 @@ import { Subject } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class ClientsService {
   allClients: Client[] = [];
+  clientId: string;
 
   clientAddingStatus = new Subject<boolean>();
   clientsChanged = new Subject<boolean>();
@@ -43,7 +44,7 @@ export class ClientsService {
           this.allClients.push({ ...newClient, id: res.name });
           this.clientsChanged.next(true);
           this.clientAddingStatus.next(true);
-          return res.name;
+          this.clientId = res.name;
         },
         (error) => {
           console.log(error);
