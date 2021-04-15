@@ -11,6 +11,7 @@ export class ClientsService {
 
   clientAddingStatus = new Subject<boolean>();
   clientsChanged = new Subject<boolean>();
+  // sendNewClientId = new Subject<string>();
 
   constructor(private http: HttpClient) {}
 
@@ -22,34 +23,28 @@ export class ClientsService {
     return this.allClients.find((client) => client.id === clientId);
   }
 
-  checkClientByPhone(newClient: Client): string {
+  checkClientByPhoneAndReturnId(newClient: Client) {
     const foundClient = this.allClients.find(
       (client) => client.phone === newClient.phone
     );
     if (!foundClient) {
-      this.addClient(newClient);
+      return '';
     } else if (foundClient) {
       return foundClient.id;
     }
   }
 
+  addClientLocaly(newClient: Client) {
+    this.allClients.push(newClient);
+    this.clientAddingStatus.next(true);
+    this.clientsChanged.next(true);
+  }
+
   addClient(newClient: Client) {
-    this.http
-      .post(
-        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/clients.json',
-        newClient
-      )
-      .subscribe(
-        (res: { name: string }) => {
-          this.allClients.push({ ...newClient, id: res.name });
-          this.clientsChanged.next(true);
-          this.clientAddingStatus.next(true);
-          this.clientId = res.name;
-        },
-        (error) => {
-          console.log(error);
-        }
-      );
+    return this.http.post(
+      'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/clients.json',
+      newClient
+    );
   }
 
   loadClients() {

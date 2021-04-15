@@ -2,7 +2,6 @@ import { CartItem } from './../../shared/cart-item.model';
 import { CartService } from 'src/app/shared/cart.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
-import { ItemsService } from 'src/app/shared/items.service';
 import { BillsService } from 'src/app/shared/bills.service';
 import { Bill } from 'src/app/shared/bill.model';
 import { ClientsService } from 'src/app/shared/clients.service';
@@ -27,6 +26,9 @@ export class CartFormComponent implements OnInit, OnDestroy {
 
   billAddingSub: Subscription;
 
+  // sendClientIdSub: Subscription;
+  // clientId: string;
+
   constructor(
     private cartService: CartService,
     private billsService: BillsService,
@@ -39,6 +41,12 @@ export class CartFormComponent implements OnInit, OnDestroy {
     this.getCurrentTotal();
     this.getTheNextSerial();
     this.todayDate = this.billsService.getTodayDate();
+
+    // this.sendClientIdSub = this.clientsService.sendNewClientId.subscribe(
+    //   (id: string) => {
+    //     this.clientId = id;
+    //   }
+    // )
 
     this.billAddingSub = this.billsService.billAddingStatus.subscribe(
       (status: boolean) => {
@@ -62,15 +70,32 @@ export class CartFormComponent implements OnInit, OnDestroy {
     const address = this.cartForm.value.address;
     const client: Client = new Client(name, phone, address);
 
+    if (this.clientsService.checkClientByPhoneAndReturnId(client) === '') {
+      this.clientsService.addClient(client).subscribe(
+        (res: { name: string }) => {
+          this.createTheBill(res.name);
+          this.clientsService.addClientLocaly({ ...client, id: res.name });
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    } else {
+      this.createTheBill(
+        this.clientsService.checkClientByPhoneAndReturnId(client)
+      );
+    }
+  }
+
+  createTheBill(clientId: string) {
     const newBill: Bill = new Bill(
       this.nextSerial,
       this.todayDate,
       this.cartItems,
       this.getFinalTotalAfterDiscount(),
       this.discount,
-      this.clientsService.checkClientByPhone(client)
+      clientId
     );
-
     this.billsService.addBill(newBill);
   }
 

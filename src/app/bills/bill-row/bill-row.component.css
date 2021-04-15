@@ -1,0 +1,50 @@
+.column {
+  text-align: center;
+  border-right: 1px solid #ebebeb;
+  padding: 10px;
+}
+.row-white {
+  background-color: #e4e4e4;
+  border-bottom: solid 1px #a5a5a5;
+  padding: 5px 0;
+}
+.row-dark {
+  background-color: #d3d3d3;
+  border-bottom: solid 1px #a5a5a5;
+  padding: 5px 0;
+}
+.income {
+  background-color: #aeffae;
+  font-weight: bold;
+  border: 1px #333 dotted;
+}
+.cost {
+  background-color: #ffaeae;
+  font-weight: bold;
+  border: 1px #333 dotted;
+}
+.final {
+  background-color: #baaeff;
+  font-weight: bold;
+  border: 1px #333 dotted;
+}
+.print {
+  background-color: #666;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+}
+.item-white {
+  background-color: #c9c9c9;
+  border-bottom: 1px dashed #ccc;
+}
+.item-dark {
+  background-color: #bdbdbd;
+  border-bottom: 1px dashed #ccc;
+}
+.serial {
+  color: red;
+}
+.date {
+  font-weight: bold;
+}
