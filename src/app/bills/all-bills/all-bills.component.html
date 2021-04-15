@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-10 col-md-offset-1 all-bills">
     <app-bills-header></app-bills-header>
-    <app-bill-row [allBills]="allBills"></app-bill-row>
+    <app-bill-row [allBills]="allBills" *ngIf="allBills.length > 0"></app-bill-row>
+    <h4 class="error" *ngIf="allBills.length === 0">No bills found!</h4>
   </div>
 </div>

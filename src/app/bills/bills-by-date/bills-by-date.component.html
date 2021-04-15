@@ -1,1 +1,16 @@
-<p>bills-by-date works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <form (ngSubmit)="onSubmit()" #dateForm="ngForm">
+      <input type="date" class="form-control" name="fromDate" placeholder="From Date" ngModel required/>
+      <input type="date" class="form-control" name="toDate" placeholder="To Date" ngModel required/>
+      <button class="btn btn-default" type="submit" [disabled]="dateForm.invalid">Find</button>
+    </form>
+  </div>
+</div>
+<div class="row" *ngIf="allBills !== undefined">
+  <div class="col-md-10 col-md-offset-1 all-bills">
+    <app-bills-header></app-bills-header>
+    <app-bill-row [allBills]="allBills" *ngIf="allBills.length > 0"></app-bill-row>
+    <h4 class="error" *ngIf="allBills.length === 0">No bills found!</h4>
+  </div>
+</div>

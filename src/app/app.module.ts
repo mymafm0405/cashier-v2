@@ -55,7 +55,9 @@ const appRoutes: Routes = [
     children: [{ path: 'add-items', component: AddItemComponent }],
   },
   { path: 'reports', component: MainComponent, children: [
-    {path: 'all-bills', component: AllBillsComponent}
+    {path: 'all-bills', component: AllBillsComponent},
+    {path: 'by-date', component: BillsByDateComponent},
+    {path: 'find-bill', component: FindBillComponent}
   ] },
   {
     path: 'settings',

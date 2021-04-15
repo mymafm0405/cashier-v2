@@ -48,7 +48,7 @@ export class SubMenuComponent implements OnInit {
         'glyphicon glyphicon-modal-window'
       ),
       new MenuItem('By Date', 'by-date', 'glyphicon glyphicon-calendar'),
-      new MenuItem('Find', 'by-serial', 'glyphicon glyphicon-search'),
+      new MenuItem('Find', 'find-bill', 'glyphicon glyphicon-search'),
       new MenuItem('Clients', 'clients', 'glyphicon glyphicon-phone-alt'),
     ];
   }

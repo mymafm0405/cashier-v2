@@ -2,3 +2,8 @@
   height: 500px;
   overflow: scroll;
 }
+.error {
+  color: red;
+  text-align: center;
+  margin: 25px 0;
+}
