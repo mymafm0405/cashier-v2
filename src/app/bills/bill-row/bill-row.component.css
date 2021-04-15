@@ -16,17 +16,14 @@
 .income {
   background-color: #aeffae;
   font-weight: bold;
-  border: 1px #333 dotted;
 }
 .cost {
   background-color: #ffaeae;
   font-weight: bold;
-  border: 1px #333 dotted;
 }
 .final {
   background-color: #baaeff;
   font-weight: bold;
-  border: 1px #333 dotted;
 }
 .print {
   background-color: #666;
