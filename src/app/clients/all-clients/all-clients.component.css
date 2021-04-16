@@ -1,0 +1,16 @@
+.title {
+  text-align: center;
+  font-style: italic;
+  margin-top: 30;
+  margin-bottom: 0;
+  color: #666;
+}
+.all-clients {
+  height: 300px;
+  overflow: scroll;
+  text-align: center;
+}
+.error {
+  color: red;
+  font-style: italic;
+}

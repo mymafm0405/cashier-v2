@@ -27,6 +27,10 @@ import { AllBillsComponent } from './bills/all-bills/all-bills.component';
 import { BillsByDateComponent } from './bills/bills-by-date/bills-by-date.component';
 import { FindBillComponent } from './bills/find-bill/find-bill.component';
 import { BillsHeaderComponent } from './bills/bills-header/bills-header.component';
+import { AllClientsComponent } from './clients/all-clients/all-clients.component';
+import { ClientRowComponent } from './clients/client-row/client-row.component';
+import { ClientFormComponent } from './clients/client-form/client-form.component';
+import { ClientOrdersComponent } from './clients/client-orders/client-orders.component';
 
 const appRoutes: Routes = [
   {
@@ -57,7 +61,8 @@ const appRoutes: Routes = [
   { path: 'reports', component: MainComponent, children: [
     {path: 'all-bills', component: AllBillsComponent},
     {path: 'by-date', component: BillsByDateComponent},
-    {path: 'find-bill', component: FindBillComponent}
+    {path: 'find-bill', component: FindBillComponent},
+    {path: 'clients', component: AllClientsComponent}
   ] },
   {
     path: 'settings',
@@ -91,6 +96,10 @@ const appRoutes: Routes = [
     BillsByDateComponent,
     FindBillComponent,
     BillsHeaderComponent,
+    AllClientsComponent,
+    ClientRowComponent,
+    ClientFormComponent,
+    ClientOrdersComponent,
   ],
   imports: [
     BrowserModule,

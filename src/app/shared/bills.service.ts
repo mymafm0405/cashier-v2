@@ -77,6 +77,10 @@ export class BillsService {
     return currentDate;
   }
 
+  getBillsByClientId(clientId: string) {
+    return this.allBills.filter(bill => bill.clientId === clientId);
+  }
+
   loadBills() {
     this.http
       .get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/bills.json')

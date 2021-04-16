@@ -1,9 +1,11 @@
-<div class="row">
-  <div class="col-md-12">
+<div class="row form-row">
+  <div class="col-md-6 col-md-offset-3 form">
     <form (ngSubmit)="onSubmit()" #dateForm="ngForm">
+      <h4>From:</h4>
       <input type="date" class="form-control" name="fromDate" placeholder="From Date" ngModel required/>
+      <h4>To:</h4>
       <input type="date" class="form-control" name="toDate" placeholder="To Date" ngModel required/>
-      <button class="btn btn-default" type="submit" [disabled]="dateForm.invalid">Find</button>
+      <button class="btn btn-default" type="submit" [disabled]="dateForm.invalid">Find Bills</button>
     </form>
   </div>
 </div>

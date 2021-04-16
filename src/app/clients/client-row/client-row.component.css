@@ -1,0 +1,14 @@
+.client-row {
+  border-bottom: 1px dotted #868686;
+}
+a {
+  cursor: pointer;
+  background-color: #adadad;
+  border-radius: 7px;
+  padding: 5px;
+  color: white;
+  font-size: 16px;
+}
+a:hover {
+  color: #333;
+}

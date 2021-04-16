@@ -1,0 +1,22 @@
+.error {
+  color: red;
+}
+.header-order {
+  background-color: #666;
+  color: white;
+  text-align: center;
+}
+.header-column {
+  padding: 5px;
+}
+.bill-row {
+  border-bottom: 1px dotted #666;
+  margin: 10px 0;
+}
+.all-bills {
+  margin-top: 15px;
+  margin-bottom: 30px;
+  max-height: 300px;
+  min-height: 50px;
+  overflow: scroll;
+}

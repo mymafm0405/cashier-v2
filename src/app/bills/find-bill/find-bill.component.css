@@ -3,3 +3,16 @@
   text-align: center;
   margin: 25px 0;
 }
+input {
+  margin: 10px 0;
+}
+button {
+  margin: 10px 0;
+}
+.form {
+  background-color: #CCC;
+  border-radius: 7px;
+}
+.form-row {
+  padding: 20px 0;
+}

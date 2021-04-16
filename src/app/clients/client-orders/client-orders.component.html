@@ -1,0 +1,25 @@
+<div class="all-bills" *ngIf="allClientsBills.length > 0">
+  <div class="row header-order">
+    <div class="col-md-3 header-column">S.N</div>
+    <div class="col-md-3 header-column">Date</div>
+    <div class="col-md-3 header-column">Total Bill</div>
+    <div class="col-md-3 header-column">Action</div>
+  </div>
+  <div class="row bill-row" *ngFor="let bill of allClientsBills">
+    <div class="col-md-3">
+      <p>{{ bill.serial }}</p>
+    </div>
+    <div class="col-md-3">
+      <p>{{ bill.date }}</p>
+    </div>
+    <div class="col-md-3">
+      <p>{{ bill.finalTotal }}</p>
+    </div>
+    <div class="col-md-3">
+      <p><a [routerLink]="['../../print-bill', bill.id]">Review Bill</a></p>
+    </div>
+  </div>
+</div>
+<div class="all-bills" *ngIf="allClientsBills.length !== undefined && allClientsBills.length == 0">
+  <h4 class="error">No orders found for this client!</h4>
+</div>

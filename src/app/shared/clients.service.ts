@@ -11,6 +11,7 @@ export class ClientsService {
 
   clientAddingStatus = new Subject<boolean>();
   clientsChanged = new Subject<boolean>();
+  foundClientsChanged = new Subject<Client[]>();
   // sendNewClientId = new Subject<string>();
 
   constructor(private http: HttpClient) {}
@@ -38,6 +39,10 @@ export class ClientsService {
     this.allClients.push(newClient);
     this.clientAddingStatus.next(true);
     this.clientsChanged.next(true);
+  }
+
+  findClient(search: string) {
+    this.foundClientsChanged.next(this.allClients.filter(client => client.name.toLowerCase() == search.toLowerCase() || client.phone == +search));
   }
 
   addClient(newClient: Client) {
