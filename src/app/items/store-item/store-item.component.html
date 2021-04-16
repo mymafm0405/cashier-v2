@@ -1,0 +1,20 @@
+<div class="row" *ngIf="item !== undefined && category !== undefined">
+  <div class="col-md-2">
+    {{ category.name }}
+  </div>
+  <div class="col-md-2">
+    {{ item.name }}
+  </div>
+  <div class="col-md-2">
+    {{ item.cost }}
+  </div>
+  <div class="col-md-2">
+    {{ item.price }}
+  </div>
+  <div class="col-md-2">
+    {{ item.quantity }}
+  </div>
+  <div class="col-md-2">
+    <app-store-form></app-store-form>
+  </div>
+</div>

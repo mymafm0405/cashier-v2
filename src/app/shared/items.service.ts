@@ -33,11 +33,14 @@ export class ItemsService {
   }
 
   getItems() {
-    return this.items;
+    return this.items.filter((item) => item.status === 'active');
   }
 
   getItemsByCatId(catId: string) {
-    return this.items.filter((item) => item.catId === catId);
+    return this.items.filter((item) => item.catId === catId && item.status === 'active');
+  }
+  getItemsByCompId(compId: string) {
+    return this.items.filter((item) => item.companyId === compId && item.status === 'active');
   }
 
   updateItemQuantity(itemsToUpdate: { itemId: string; newQuantity: number }[]) {

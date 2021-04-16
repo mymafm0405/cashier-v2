@@ -31,6 +31,10 @@ import { AllClientsComponent } from './clients/all-clients/all-clients.component
 import { ClientRowComponent } from './clients/client-row/client-row.component';
 import { ClientFormComponent } from './clients/client-form/client-form.component';
 import { ClientOrdersComponent } from './clients/client-orders/client-orders.component';
+import { StoreComponent } from './items/store/store.component';
+import { StoreItemComponent } from './items/store-item/store-item.component';
+import { StoreFormComponent } from './items/store-form/store-form.component';
+import { CompanyStoreComponent } from './items/company-store/company-store.component';
 
 const appRoutes: Routes = [
   {
@@ -56,14 +60,17 @@ const appRoutes: Routes = [
   {
     path: 'items',
     component: MainComponent,
-    children: [{ path: 'add-items', component: AddItemComponent }],
+    children: [{ path: 'add-items', component: AddItemComponent },
+    { path: 'store', component: StoreComponent }],
   },
-  { path: 'reports', component: MainComponent, children: [
-    {path: 'all-bills', component: AllBillsComponent},
-    {path: 'by-date', component: BillsByDateComponent},
-    {path: 'find-bill', component: FindBillComponent},
-    {path: 'clients', component: AllClientsComponent}
-  ] },
+  {
+    path: 'reports', component: MainComponent, children: [
+      { path: 'all-bills', component: AllBillsComponent },
+      { path: 'by-date', component: BillsByDateComponent },
+      { path: 'find-bill', component: FindBillComponent },
+      { path: 'clients', component: AllClientsComponent }
+    ]
+  },
   {
     path: 'settings',
     component: MainComponent,
@@ -100,6 +107,10 @@ const appRoutes: Routes = [
     ClientRowComponent,
     ClientFormComponent,
     ClientOrdersComponent,
+    StoreComponent,
+    StoreItemComponent,
+    StoreFormComponent,
+    CompanyStoreComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,4 +121,4 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
