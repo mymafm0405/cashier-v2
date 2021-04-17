@@ -11,3 +11,6 @@ button {
 .btn-primary {
   background-color: #8181f1;
 }
+.error {
+  color: red;
+}

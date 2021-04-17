@@ -19,21 +19,33 @@
   class="form-inline"
   *ngIf="showForm"
 >
-  <select name="target" class="form-control" ngModel required>
+  <select
+    name="target"
+    (change)="onSelectChange()"
+    class="form-control"
+    ngModel
+    required
+  >
     <option value="">Select an option</option>
     <option value="name">Edit name</option>
+    <option value="cost">New cost</option>
     <option value="price">New price</option>
     <option value="quantity">Add quantity</option>
   </select>
   <input
-    type="text"
+    [type]="inputType"
     name="value"
     class="form-control"
     placeholder="Your value"
-    ngModel
+    [(ngModel)]="valueInput"
     required
   />
-  <button class="btn btn-danger" type="submit" [disabled]="storeForm.invalid">
+  <button
+    class="btn btn-danger"
+    type="submit"
+    [disabled]="storeForm.invalid || valueInput <= 0"
+  >
     Update
   </button>
+  <p class="error" *ngIf="valueInput <= 0 || error">Value is invalid!</p>
 </form>

@@ -10,6 +10,9 @@ import { ItemsService } from 'src/app/shared/items.service';
 })
 export class StoreFormComponent implements OnInit {
   @ViewChild('storeForm', { static: false }) storeForm: NgForm;
+  valueInput: number;
+  error = false;
+  inputType = 'text';
 
   @Input() item: Item;
 
@@ -25,6 +28,18 @@ export class StoreFormComponent implements OnInit {
 
   onDelete() {
     this.itemsService.setItemInActive(this.item.id);
+  }
+
+  onSelectChange() {
+    if (
+      this.storeForm.value.target === 'quantity' ||
+      this.storeForm.value.target === 'price' ||
+      this.storeForm.value.target === 'cost'
+    ) {
+      this.inputType = 'number';
+    } else {
+      this.inputType = 'text';
+    }
   }
 
   onSubmit() {

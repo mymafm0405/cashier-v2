@@ -35,6 +35,13 @@ import { StoreComponent } from './items/store/store.component';
 import { StoreItemComponent } from './items/store-item/store-item.component';
 import { StoreFormComponent } from './items/store-form/store-form.component';
 import { CompanyStoreComponent } from './items/company-store/company-store.component';
+import { UserFormComponent } from './users/user-form/user-form.component';
+import { UsersListComponent } from './users/users-list/users-list.component';
+import { AddUserComponent } from './users/add-user/add-user.component';
+import { UserRowComponent } from './users/user-row/user-row.component';
+import { UsersComponent } from './users/users/users.component';
+import { PermissionRowComponent } from './permissions/permission-row/permission-row.component';
+import { PermissionsComponent } from './permissions/permissions/permissions.component';
 
 const appRoutes: Routes = [
   {
@@ -60,21 +67,29 @@ const appRoutes: Routes = [
   {
     path: 'items',
     component: MainComponent,
-    children: [{ path: 'add-items', component: AddItemComponent },
-    { path: 'store', component: StoreComponent }],
+    children: [
+      { path: 'add-items', component: AddItemComponent },
+      { path: 'store', component: StoreComponent },
+    ],
   },
   {
-    path: 'reports', component: MainComponent, children: [
+    path: 'reports',
+    component: MainComponent,
+    children: [
       { path: 'all-bills', component: AllBillsComponent },
       { path: 'by-date', component: BillsByDateComponent },
       { path: 'find-bill', component: FindBillComponent },
-      { path: 'clients', component: AllClientsComponent }
-    ]
+      { path: 'clients', component: AllClientsComponent },
+    ],
   },
   {
     path: 'settings',
     component: MainComponent,
-    children: [{ path: 'add-company', component: AddCompanyComponent }],
+    children: [
+      { path: 'add-company', component: AddCompanyComponent },
+      { path: 'users', component: UsersComponent },
+      { path: 'permissions', component: PermissionsComponent },
+    ],
   },
 ];
 
@@ -111,6 +126,13 @@ const appRoutes: Routes = [
     StoreItemComponent,
     StoreFormComponent,
     CompanyStoreComponent,
+    UserFormComponent,
+    UsersListComponent,
+    AddUserComponent,
+    UserRowComponent,
+    UsersComponent,
+    PermissionRowComponent,
+    PermissionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -121,4 +143,4 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
