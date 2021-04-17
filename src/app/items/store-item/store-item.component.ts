@@ -7,29 +7,27 @@ import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 @Component({
   selector: 'app-store-item',
   templateUrl: './store-item.component.html',
-  styleUrls: ['./store-item.component.css']
+  styleUrls: ['./store-item.component.css'],
 })
 export class StoreItemComponent implements OnInit, OnDestroy {
-
   @Input() item: Item;
   category: Category;
   catsChangedSub: Subscription;
 
-  constructor(private catsService: CatsService) { }
+  constructor(private catsService: CatsService) {}
 
   ngOnInit(): void {
     this.category = this.catsService.getCategoryById(this.item.catId);
-    this.catsService.categoriesChanged.subscribe(
+    this.catsChangedSub = this.catsService.categoriesChanged.subscribe(
       (status: boolean) => {
         if (status) {
           this.category = this.catsService.getCategoryById(this.item.catId);
         }
       }
-    )
+    );
   }
 
   ngOnDestroy() {
     this.catsChangedSub.unsubscribe();
   }
-
 }

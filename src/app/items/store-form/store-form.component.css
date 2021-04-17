@@ -1,0 +1,13 @@
+.form-control {
+  width: 150px;
+}
+button {
+  padding: 3px;
+  margin-right: 5px;
+}
+.btn-danger {
+  background-color: #ff6d6d;
+}
+.btn-primary {
+  background-color: #8181f1;
+}

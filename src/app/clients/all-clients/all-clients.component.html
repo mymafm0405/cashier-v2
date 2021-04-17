@@ -1,12 +1,18 @@
 <div class="row">
   <div class="col-md-12">
-    <h2 class="title">Looking for a client? find him by: NAME or PHONE</h2>
+    <h4 class="title">Looking for a client? find him by: NAME or PHONE</h4>
   </div>
 </div>
 <app-client-form></app-client-form>
-<div class="row all-clients">
-  <div class="col-md-6 col-md-offset-3">
-    <app-client-row [client]="client" *ngFor="let client of allClients"></app-client-row>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 all-clients">
+    <app-client-row
+      [client]="client"
+      [clientIndex]="i"
+      *ngFor="let client of allClients; let i = index"
+    ></app-client-row>
   </div>
-  <h4 class="error" *ngIf="allClients !== undefined && allClients.length === 0">No clients found!</h4>
+  <h4 class="error" *ngIf="allClients !== undefined && allClients.length === 0">
+    No clients found!
+  </h4>
 </div>

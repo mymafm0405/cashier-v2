@@ -37,10 +37,14 @@ export class ItemsService {
   }
 
   getItemsByCatId(catId: string) {
-    return this.items.filter((item) => item.catId === catId && item.status === 'active');
+    return this.items.filter(
+      (item) => item.catId === catId && item.status === 'active'
+    );
   }
   getItemsByCompId(compId: string) {
-    return this.items.filter((item) => item.companyId === compId && item.status === 'active');
+    return this.items.filter(
+      (item) => item.companyId === compId && item.status === 'active'
+    );
   }
 
   updateItemQuantity(itemsToUpdate: { itemId: string; newQuantity: number }[]) {
@@ -56,6 +60,46 @@ export class ItemsService {
           console.log(item.itemId + ' QUANTITY HAS BEEN UPDATED');
         });
     }
+  }
+
+  updateRequest(itemId: string, target: string, value: string) {
+    this.http
+      .patch(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/items/' +
+          itemId +
+          '.json',
+        {
+          [target]: value,
+        }
+      )
+      .subscribe(
+        () => {
+          this.loadItems();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
+  setItemInActive(itemId: string) {
+    this.http
+      .patch(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/items/' +
+          itemId +
+          '.json',
+        {
+          status: 'inactive',
+        }
+      )
+      .subscribe(
+        () => {
+          this.loadItems();
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 
   loadItems() {

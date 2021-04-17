@@ -1,0 +1,15 @@
+.header {
+  background-color: #6a6c6e;
+  padding: 5px;
+  color: white;
+  text-align: center;
+}
+.column {
+  border-right: 1px dotted white;
+}
+.item-row-dark {
+  background-color: #dadada;
+}
+.item-row-light {
+  background-color: #f0f0f0;
+}

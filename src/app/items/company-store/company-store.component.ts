@@ -7,7 +7,7 @@ import { Component, Input, OnInit, OnDestroy } from '@angular/core';
 @Component({
   selector: 'app-company-store',
   templateUrl: './company-store.component.html',
-  styleUrls: ['./company-store.component.css']
+  styleUrls: ['./company-store.component.css'],
 })
 export class CompanyStoreComponent implements OnInit, OnDestroy {
   @Input() company: Company;
@@ -15,21 +15,20 @@ export class CompanyStoreComponent implements OnInit, OnDestroy {
 
   itemsChanedSub: Subscription;
 
-  constructor(private itemsService: ItemsService) { }
+  constructor(private itemsService: ItemsService) {}
 
   ngOnInit(): void {
     this.allItems = this.itemsService.getItemsByCompId(this.company.id);
-    this.itemsService.itemsChanged.subscribe(
+    this.itemsChanedSub = this.itemsService.itemsChanged.subscribe(
       (status: boolean) => {
         if (status) {
           this.allItems = this.itemsService.getItemsByCompId(this.company.id);
         }
       }
-    )
+    );
   }
 
   ngOnDestroy() {
     this.itemsChanedSub.unsubscribe();
   }
-
 }

@@ -1,0 +1,7 @@
+.item-row {
+  text-align: center;
+  padding: 5px;
+}
+.column {
+  border-right: dotted 1px white;
+}

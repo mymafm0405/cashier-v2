@@ -1,20 +1,20 @@
-<div class="row" *ngIf="item !== undefined && category !== undefined">
-  <div class="col-md-2">
+<div class="row item-row" *ngIf="item !== undefined && category !== undefined">
+  <div class="col-md-2 column">
     {{ category.name }}
   </div>
-  <div class="col-md-2">
+  <div class="col-md-2 column">
     {{ item.name }}
   </div>
-  <div class="col-md-2">
+  <div class="col-md-1 column">
     {{ item.cost }}
   </div>
-  <div class="col-md-2">
+  <div class="col-md-1 column">
     {{ item.price }}
   </div>
-  <div class="col-md-2">
+  <div class="col-md-1 column">
     {{ item.quantity }}
   </div>
-  <div class="col-md-2">
-    <app-store-form></app-store-form>
+  <div class="col-md-5 column">
+    <app-store-form [item]="item"></app-store-form>
   </div>
 </div>

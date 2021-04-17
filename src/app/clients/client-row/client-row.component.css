@@ -1,14 +1,20 @@
-.client-row {
-  border-bottom: 1px dotted #868686;
-}
 a {
   cursor: pointer;
-  background-color: #adadad;
+  background-color: #cccccc;
   border-radius: 7px;
   padding: 5px;
-  color: white;
+  color: #0082d8;
   font-size: 16px;
 }
 a:hover {
   color: #333;
+}
+.make-bold {
+  color: #5f5f5f;
+}
+.client-row-dark {
+  background-color: #dadada;
+}
+.client-row-light {
+  background-color: #f0f0f0;
 }

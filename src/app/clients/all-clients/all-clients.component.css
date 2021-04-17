@@ -1,14 +1,12 @@
 .title {
   text-align: center;
   font-style: italic;
-  margin-top: 30;
-  margin-bottom: 0;
   color: #666;
+  margin-top: 20px;
 }
 .all-clients {
-  height: 300px;
-  overflow: scroll;
   text-align: center;
+  padding: 20px 0;
 }
 .error {
   color: red;

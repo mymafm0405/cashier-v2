@@ -1,1 +1,39 @@
-<p>store-form works!</p>
+<button
+  [ngClass]="!showForm ? 'btn btn-primary' : 'btn btn-default'"
+  type="button"
+  (click)="onEditClick()"
+>
+  {{ showForm ? "Hide Form" : "Edit Item" }}
+</button>
+<button
+  class="btn btn-danger"
+  type="button"
+  *ngIf="!showForm"
+  (click)="onDelete()"
+>
+  <span class="glyphicon glyphicon-remove"></span>
+</button>
+<form
+  (ngSubmit)="onSubmit()"
+  #storeForm="ngForm"
+  class="form-inline"
+  *ngIf="showForm"
+>
+  <select name="target" class="form-control" ngModel required>
+    <option value="">Select an option</option>
+    <option value="name">Edit name</option>
+    <option value="price">New price</option>
+    <option value="quantity">Add quantity</option>
+  </select>
+  <input
+    type="text"
+    name="value"
+    class="form-control"
+    placeholder="Your value"
+    ngModel
+    required
+  />
+  <button class="btn btn-danger" type="submit" [disabled]="storeForm.invalid">
+    Update
+  </button>
+</form>

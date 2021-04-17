@@ -1,4 +1,8 @@
-<div class="row client-row">
+<div
+  [ngClass]="
+    clientIndex % 2 === 0 ? 'row client-row-dark' : 'row client-row-light'
+  "
+>
   <div class="col-md-3">
     <h4>{{ client.name }}</h4>
   </div>
@@ -9,7 +13,15 @@
     <h4>{{ client.address }}</h4>
   </div>
   <div class="col-md-3">
-    <h4><a (click)="onViewOrders()">{{ viewOrders ? 'Hide' : 'Show'}} Orders History</a></h4>
+    <h4>
+      <a (click)="onViewOrders()"
+        ><span class="make-bold">{{ viewOrders ? "Hide" : "Show" }}</span>
+        Orders History</a
+      >
+    </h4>
   </div>
 </div>
-<app-client-orders *ngIf="viewOrders" [clientId]="client.id"></app-client-orders>
+<app-client-orders
+  *ngIf="viewOrders"
+  [clientId]="client.id"
+></app-client-orders>
