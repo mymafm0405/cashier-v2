@@ -1,1 +1,66 @@
-<p>add-user works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <form (ngSubmit)="onSubmit()" #userForm="ngForm">
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        placeholder="Username"
+        ngModel
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        placeholder="Password"
+        ngModel
+        required
+      />
+      <input
+        type="text"
+        name="name"
+        class="form-control"
+        placeholder="Name"
+        ngModel
+        required
+      />
+      <select
+        name="userType"
+        (change)="onUserTypeChange()"
+        class="form-control"
+        ngModel
+        required
+      >
+        <option value="">Select User Type</option>
+        <option value="admin">Admin</option>
+        <option value="user">User</option>
+      </select>
+      <select
+        *ngIf="showCompanyList"
+        name="compId"
+        class="form-control"
+        ngModel
+        required
+      >
+        <option value="">Select Company</option>
+        <option *ngFor="let company of companies" [value]="company.id">
+          {{ company.name }}
+        </option>
+      </select>
+      <button
+        class="btn btn-danger"
+        type="submit"
+        [disabled]="userForm.invalid"
+      >
+        Add user
+      </button>
+      <h4 *ngIf="addingStatus !== undefined && addingStatus" class="success">
+        User added successfully!
+      </h4>
+      <h4 *ngIf="addingStatus !== undefined && !addingStatus" class="error">
+        Error happened, try again!
+      </h4>
+    </form>
+  </div>
+</div>
