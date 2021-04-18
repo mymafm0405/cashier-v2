@@ -1,1 +1,8 @@
-<p>permission-row works!</p>
+<div class="row">
+  <div class="col-md-12">
+    <h3>Allow the discount option for user
+    <img src="../../../assets/images/on.png" (click)="onImgClick()" *ngIf="discountStatus" width="70" height="30">
+    <img src="../../../assets/images/off.png" (click)="onImgClick()" *ngIf="!discountStatus" width="70" height="30">
+    </h3>
+  </div>
+</div>

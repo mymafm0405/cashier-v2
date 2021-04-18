@@ -44,8 +44,10 @@ import { PermissionRowComponent } from './permissions/permission-row/permission-
 import { PermissionsComponent } from './permissions/permissions/permissions.component';
 import { SignInFormComponent } from './users/sign-in-form/sign-in-form.component';
 import { UserDataComponent } from './users/user-data/user-data.component';
+import { WelcomeComponent } from './welcome/welcome/welcome.component';
 
 const appRoutes: Routes = [
+  {path: '', component: WelcomeComponent},
   {
     path: 'shopping',
     component: ShoppingCartComponent,
@@ -137,6 +139,7 @@ const appRoutes: Routes = [
     PermissionsComponent,
     SignInFormComponent,
     UserDataComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,

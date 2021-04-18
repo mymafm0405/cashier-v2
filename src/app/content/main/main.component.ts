@@ -29,8 +29,6 @@ export class MainComponent implements OnInit, OnDestroy {
 
     this.route.url.subscribe((res) => {
       this.path = res[0].path;
-      console.log(res);
-      console.log(this.path);
     });
 
     // console.log(this.route.snapshot.firstChild.url[0].path);
@@ -47,7 +45,6 @@ export class MainComponent implements OnInit, OnDestroy {
         this.route.snapshot.firstChild &&
         this.route.snapshot.firstChild.url
       ) {
-        console.log(this.route.snapshot.firstChild);
         if (this.route.snapshot.firstChild.url[0].path === 'new-sell') {
           return true;
         } else {

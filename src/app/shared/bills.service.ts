@@ -13,6 +13,8 @@ export class BillsService {
   billsChanged = new Subject<boolean>();
   billAddingStatus = new Subject<boolean>();
   billId: string;
+  discountChanged = new Subject<boolean>();
+  discountStatus: boolean;
 
   constructor(
     private http: HttpClient,
@@ -73,7 +75,6 @@ export class BillsService {
     const yyyy = today.getFullYear();
 
     const currentDate = yyyy + '-' + mm + '-' + dd;
-    console.log(new Date(currentDate).getTime());
     return currentDate;
   }
 
@@ -99,5 +100,34 @@ export class BillsService {
         this.allBills = resBills;
         this.billsChanged.next(true);
       });
+  }
+
+
+  getDiscountStatus() {
+    this.http.get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/discount.json')
+    .subscribe(
+      (res: {discount: boolean}) => {
+        console.log(res);
+        this.discountStatus = res.discount;
+        this.discountChanged.next(this.discountStatus);
+        console.log(this.discountStatus);
+        console.log('we got the discount status!');
+      }
+    )
+  }
+
+  changeDiscountStatus(newStatus: boolean) {
+    this.http.patch('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/discount.json', {
+      discount: newStatus
+    })
+    .subscribe(
+      () => {
+        console.log('discount updated!');
+        console.log(newStatus);
+        this.discountChanged.next(newStatus);
+      }, error => {
+        console.log(error);
+      }
+    )
   }
 }

@@ -23,6 +23,8 @@ export class CartFormComponent implements OnInit, OnDestroy {
   nextSerial: number;
   todayDate: string;
   addingStatus: boolean;
+  discountNotAllowed = false;
+  discountChangedSub: Subscription;
 
   billAddingSub: Subscription;
 
@@ -43,6 +45,12 @@ export class CartFormComponent implements OnInit, OnDestroy {
     this.getCurrentTotal();
     this.getTheNextSerial();
     this.todayDate = this.billsService.getTodayDate();
+    this.billsService.getDiscountStatus();
+    this.discountChangedSub = this.billsService.discountChanged.subscribe(
+      (status: boolean) => {
+        this.discountNotAllowed = !status;
+      }
+    )
 
     // this.sendClientIdSub = this.clientsService.sendNewClientId.subscribe(
     //   (id: string) => {
@@ -120,5 +128,6 @@ export class CartFormComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.billAddingSub.unsubscribe();
+    this.discountChangedSub.unsubscribe();
   }
 }

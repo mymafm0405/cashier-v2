@@ -1,5 +1,6 @@
 .new-content {
   background-color: #e6e7e9;
+  min-height: 300px;
 }
 .not-allowed {
   color: red;
