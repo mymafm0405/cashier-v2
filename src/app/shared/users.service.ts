@@ -14,7 +14,7 @@ export class UsersService {
   currentUserChanged = new Subject<boolean>();
 
   // this will be assigned after signed in
-  currentUser: User = new User('admin', '1', 'Mahmoud', 'admin', '', 'userId');
+  currentUser: User;
 
   constructor(private http: HttpClient) {}
 

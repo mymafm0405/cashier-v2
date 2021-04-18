@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { CompaniesService } from 'src/app/shared/companies.service';
 import { User } from 'src/app/shared/user.model';
 import { UsersService } from 'src/app/shared/users.service';
 
@@ -12,7 +13,10 @@ export class UserDataComponent implements OnInit, OnDestroy {
   currentUser: User;
   currentUserChangedSub: Subscription;
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private companiesService: CompaniesService
+  ) {}
 
   ngOnInit(): void {
     this.currentUser = this.usersService.getCurrentUser();
@@ -26,6 +30,11 @@ export class UserDataComponent implements OnInit, OnDestroy {
 
   onSignOut() {
     this.usersService.signOutUser();
+  }
+
+  getUserCompanyName() {
+    return this.companiesService.getCompanyById(this.currentUser.companyId)
+      .name;
   }
 
   ngOnDestroy() {

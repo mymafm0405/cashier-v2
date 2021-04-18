@@ -1,11 +1,17 @@
 a {
   cursor: pointer;
   color: #ff5151;
+  font-size: 14px;
 }
 .user-type {
   color: #f90;
   font-style: italic;
+  font-size: 16px;
 }
 .data {
   margin-top: 35px;
+}
+.company {
+  color: #0083da;
+  font-size: 14px;
 }

@@ -1,3 +1,8 @@
 .new-content {
   background-color: #e6e7e9;
 }
+.not-allowed {
+  color: red;
+  text-align: center;
+  margin: 40px 0;
+}

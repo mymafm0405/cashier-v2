@@ -3,5 +3,8 @@
   <span class="user-type">
     {{ currentUser.userType === "admin" ? "Admin" : "User" }} </span
   >) ||
+  <span class="company">{{
+    currentUser.userType === "admin" ? "" : getUserCompanyName() + " || "
+  }}</span>
   <a (click)="onSignOut()">Sign-Out</a>
 </h4>

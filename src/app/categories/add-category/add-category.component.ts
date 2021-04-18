@@ -58,6 +58,8 @@ export class AddCategoryComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.catsAddingSub.unsubscribe();
+    if (this.catsAddingSub) {
+      this.catsAddingSub.unsubscribe();
+    }
   }
 }

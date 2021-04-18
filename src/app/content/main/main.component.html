@@ -1,6 +1,9 @@
 <app-sub-menu></app-sub-menu>
 <div class="row new-content">
   <div class="col-md-12">
-    <router-outlet></router-outlet>
+    <router-outlet *ngIf="checkPermission()"></router-outlet>
+    <h3 class="not-allowed" *ngIf="!checkPermission()">
+      Sorry, Only admins can access this page!
+    </h3>
   </div>
 </div>
