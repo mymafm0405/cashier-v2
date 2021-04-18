@@ -26,6 +26,8 @@ export class CartFormComponent implements OnInit, OnDestroy {
 
   billAddingSub: Subscription;
 
+  confirmClicked = false;
+
   // sendClientIdSub: Subscription;
   // clientId: string;
 
@@ -51,6 +53,7 @@ export class CartFormComponent implements OnInit, OnDestroy {
     this.billAddingSub = this.billsService.billAddingStatus.subscribe(
       (status: boolean) => {
         this.addingStatus = status;
+        this.confirmClicked = false;
         setTimeout(() => {
           this.addingStatus = undefined;
           this.router.navigate(['print-bill', this.billsService.getBillId()]);
@@ -65,6 +68,8 @@ export class CartFormComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
+    this.confirmClicked = true;
+
     const name = this.cartForm.value.name;
     const phone = this.cartForm.value.phone;
     const address = this.cartForm.value.address;

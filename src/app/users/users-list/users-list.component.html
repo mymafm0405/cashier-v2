@@ -1,1 +1,33 @@
-<p>users-list works!</p>
+<div class="row list-header">
+  <div class="col-md-12">
+    <h2>Users List</h2>
+    <button
+      class="btn btn-success"
+      type="button"
+      (click)="onAddFormArrowClick()"
+    >
+      <span
+        [ngClass]="
+          showList
+            ? 'glyphicon glyphicon-chevron-up'
+            : 'glyphicon glyphicon-chevron-down'
+        "
+      ></span>
+    </button>
+  </div>
+</div>
+<div class="row" *ngIf="showList">
+  <div class="col-md-12">
+    <div class="row users-header">
+      <div class="col-md-3">Name</div>
+      <div class="col-md-3">Username</div>
+      <div class="col-md-3">Allowed Companies</div>
+      <div class="col-md-3">Actions</div>
+    </div>
+    <app-user-row
+      [user]="user"
+      [userIndex]="i"
+      *ngFor="let user of users; let i = index"
+    ></app-user-row>
+  </div>
+</div>

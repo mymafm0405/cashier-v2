@@ -11,6 +11,8 @@ export class UsersService {
   usersChanged = new Subject<boolean>();
   userAddingStatus = new Subject<boolean>();
 
+  currentUserChanged = new Subject<boolean>();
+
   // this will be assigned after signed in
   currentUser: User = new User('admin', '1', 'Mahmoud', 'admin', '', 'userId');
 
@@ -24,23 +26,59 @@ export class UsersService {
     return this.users.filter((user) => user.status === 'active');
   }
 
-  addUser(newUser: User) {
+  signInUser(userLogin: { username: string; password: string }) {
+    this.currentUser = this.getActiveUsers().find(
+      (user) =>
+        user.username === userLogin.username &&
+        user.password === userLogin.password
+    );
+    this.currentUserChanged.next(true);
+  }
+
+  signOutUser() {
+    this.currentUser = undefined;
+    this.currentUserChanged.next(true);
+  }
+
+  setUserInActive(userId: string) {
     this.http
-      .post(
-        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/users.json',
-        newUser
-      )
-      .subscribe(
-        (res: { name: string }) => {
-          this.users.push({ ...newUser, id: res.name });
-          this.usersChanged.next(true);
-          this.userAddingStatus.next(true);
-        },
-        (error) => {
-          console.log(error);
-          this.userAddingStatus.next(false);
+      .patch(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/users/' +
+          userId +
+          '.json',
+        {
+          status: 'inactive',
         }
-      );
+      )
+      .subscribe(() => {
+        this.loadUsers();
+      });
+  }
+
+  addUser(newUser: User) {
+    const foundUsername = this.getActiveUsers().find(
+      (user) => user.username.toLowerCase() === newUser.username.toLowerCase()
+    );
+    if (foundUsername) {
+      this.userAddingStatus.next(false);
+    } else {
+      this.http
+        .post(
+          'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/users.json',
+          newUser
+        )
+        .subscribe(
+          (res: { name: string }) => {
+            this.users.push({ ...newUser, id: res.name });
+            this.usersChanged.next(true);
+            this.userAddingStatus.next(true);
+          },
+          (error) => {
+            console.log(error);
+            this.userAddingStatus.next(false);
+          }
+        );
+    }
   }
 
   loadUsers() {
@@ -64,6 +102,7 @@ export class UsersService {
         },
         (error) => {
           console.log(error);
+          this.usersChanged.next(false);
         }
       );
   }

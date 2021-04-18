@@ -3,7 +3,8 @@
   <div class="row">
     <div class="col-md-12">
       <app-menu></app-menu>
-      <router-outlet></router-outlet>
+      <router-outlet *ngIf="currentUser"></router-outlet>
+      <app-sign-in-form *ngIf="!currentUser"></app-sign-in-form>
     </div>
   </div>
 </div>

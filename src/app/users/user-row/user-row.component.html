@@ -1,1 +1,23 @@
-<p>user-row works!</p>
+<div
+  [ngClass]="userIndex % 2 === 0 ? 'row user-row-dark' : 'row user-row-light'"
+>
+  <div class="col-md-3">
+    {{ user.name }} - (
+    <span
+      [ngClass]="
+        user.userType === 'admin' ? 'user-type-admin' : 'user-type-user'
+      "
+      >{{ user.userType === "admin" ? "Admin" : "User" }}</span
+    >
+    )
+  </div>
+  <div class="col-md-3">
+    {{ user.username }}
+  </div>
+  <div class="col-md-3">
+    {{ user.userType === "admin" ? "All" : company.name }}
+  </div>
+  <div class="col-md-3">
+    <app-user-form [user]="user"></app-user-form>
+  </div>
+</div>

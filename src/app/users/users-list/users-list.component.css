@@ -1,0 +1,13 @@
+.list-header {
+  text-align: center;
+}
+button {
+  margin: 10px 0;
+}
+.users-header {
+  padding: 5px;
+  background-color: #797979;
+  color: white;
+  text-align: center;
+  border-radius: 10px;
+}

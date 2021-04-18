@@ -4,3 +4,14 @@
 .error {
   color: red;
 }
+.note {
+  color: #047ccc;
+}
+input,
+select,
+button {
+  margin: 10px 0;
+}
+.add-header {
+  text-align: center;
+}

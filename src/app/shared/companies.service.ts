@@ -36,6 +36,10 @@ export class CompaniesService {
     return this.companies;
   }
 
+  getCompanyById(companyId: string) {
+    return this.companies.find((company) => company.id === companyId);
+  }
+
   loadCompanies() {
     this.http
       .get(

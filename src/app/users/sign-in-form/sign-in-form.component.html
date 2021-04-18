@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2 class="welcome">Welcome to Cashier System</h2>
+    <h4 class="note">Please user your username & password</h4>
+    <form (ngSubmit)="onSubmit()" #signForm="ngForm">
+      <input
+        type="text"
+        name="username"
+        class="form-control"
+        placeholder="Username"
+        ngModel
+        required
+      />
+      <input
+        type="password"
+        name="password"
+        class="form-control"
+        placeholder="Password"
+        ngModel
+        required
+      />
+      <button
+        class="btn btn-success"
+        type="submit"
+        [disabled]="signForm.invalid"
+      >
+        Sign-in
+      </button>
+      <p class="error" *ngIf="signInFailed">
+        Username & Password are not correct!
+      </p>
+    </form>
+  </div>
+</div>

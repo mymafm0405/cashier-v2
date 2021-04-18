@@ -21,6 +21,8 @@ export class AddUserComponent implements OnInit, OnDestroy {
 
   companiesChangedSub: Subscription;
 
+  showAddForm = false;
+
   constructor(
     private companiesService: CompaniesService,
     private usersService: UsersService
@@ -49,6 +51,10 @@ export class AddUserComponent implements OnInit, OnDestroy {
     );
   }
 
+  onAddFormArrowClick() {
+    this.showAddForm = !this.showAddForm;
+  }
+
   onUserTypeChange() {
     if (this.userForm.value.userType === 'user') {
       this.showCompanyList = true;
@@ -58,7 +64,7 @@ export class AddUserComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    const username = this.userForm.value.username;
+    const username = this.userForm.value.username.toLowerCase();
     const password = this.userForm.value.password;
     const name = this.userForm.value.name;
     const userType = this.userForm.value.userType;

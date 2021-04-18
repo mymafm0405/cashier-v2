@@ -9,7 +9,16 @@
     [path]="menuItem.path"
     [icon]="menuItem.icon"
   ></app-menu-item>
-  <div class="col-md-2 col-md-offset-5 cart">
+  <div class="col-md-3 col-md-offset-2" *ngIf="currentUser !== undefined">
+    <app-user-data></app-user-data>
+  </div>
+  <div
+    [ngClass]="
+      currentUser === undefined
+        ? 'col-md-2 col-md-offset-5 cart'
+        : 'col-md-2 cart'
+    "
+  >
     <app-cart-counter routerLink="shopping"></app-cart-counter>
   </div>
 </div>

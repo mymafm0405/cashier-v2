@@ -50,10 +50,11 @@
           cartForm.invalid ||
           discount < 0 ||
           discount > 100 ||
-          cartItems.length === 0
+          cartItems.length === 0 ||
+          confirmClicked
         "
       >
-        Confirm
+        {{ confirmClicked ? "Wait..." : "Confirm" }}
       </button>
       <p class="error" *ngIf="cartItems.length === 0">
         No items in the shopping cart!

@@ -42,6 +42,8 @@ import { UserRowComponent } from './users/user-row/user-row.component';
 import { UsersComponent } from './users/users/users.component';
 import { PermissionRowComponent } from './permissions/permission-row/permission-row.component';
 import { PermissionsComponent } from './permissions/permissions/permissions.component';
+import { SignInFormComponent } from './users/sign-in-form/sign-in-form.component';
+import { UserDataComponent } from './users/user-data/user-data.component';
 
 const appRoutes: Routes = [
   {
@@ -133,6 +135,8 @@ const appRoutes: Routes = [
     UsersComponent,
     PermissionRowComponent,
     PermissionsComponent,
+    SignInFormComponent,
+    UserDataComponent,
   ],
   imports: [
     BrowserModule,

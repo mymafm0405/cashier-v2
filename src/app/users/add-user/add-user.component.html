@@ -1,5 +1,26 @@
-<div class="row">
+<div class="row add-header">
   <div class="col-md-12">
+    <h2>Add new user</h2>
+    <button
+      class="btn btn-primary"
+      type="button"
+      (click)="onAddFormArrowClick()"
+    >
+      <span
+        [ngClass]="
+          showAddForm
+            ? 'glyphicon glyphicon-chevron-up'
+            : 'glyphicon glyphicon-chevron-down'
+        "
+      ></span>
+    </button>
+  </div>
+</div>
+<div class="row" *ngIf="showAddForm">
+  <div class="col-md-12">
+    <p class="note">
+      Note: Admin will have access for all companies & all features.
+    </p>
     <form (ngSubmit)="onSubmit()" #userForm="ngForm">
       <input
         type="text"
@@ -59,7 +80,7 @@
         User added successfully!
       </h4>
       <h4 *ngIf="addingStatus !== undefined && !addingStatus" class="error">
-        Error happened, try again!
+        Error happened, try again! ( same username might exist )!
       </h4>
     </form>
   </div>

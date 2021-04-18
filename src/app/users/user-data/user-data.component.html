@@ -1,0 +1,7 @@
+<h4 class="data">
+  {{ currentUser.name }} (
+  <span class="user-type">
+    {{ currentUser.userType === "admin" ? "Admin" : "User" }} </span
+  >) ||
+  <a (click)="onSignOut()">Sign-Out</a>
+</h4>
