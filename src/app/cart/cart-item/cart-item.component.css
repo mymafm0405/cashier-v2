@@ -6,3 +6,17 @@
   border: 1px solid #ccc !important;
   padding: 10px;
 }
+.arrow {
+  cursor: pointer;
+}
+.quantity {
+  font-weight: bold;
+  background-color: green;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  margin: 0 3px;
+}
+.error {
+  color: red;
+}

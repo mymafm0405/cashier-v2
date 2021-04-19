@@ -50,4 +50,15 @@ export class CartService {
     this.totalQuantity = 0;
     this.cartItemsChanged.next(true);
   }
+
+  deleteCartItemById(itemId: string) {
+    this.cartItems = this.cartItems.filter(item => item.item.id !== itemId);
+    this.cartItemsChanged.next(true);
+  }
+
+  changeQuantity(itemId: string, newQuantity: number, changeCartCount: number) {
+    this.totalQuantity = this.totalQuantity + changeCartCount;
+    this.cartItems.find(item => item.item.id === itemId).quantity = newQuantity;
+    this.cartItemsChanged.next(true);
+  }
 }

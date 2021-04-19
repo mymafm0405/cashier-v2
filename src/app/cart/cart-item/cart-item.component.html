@@ -1,6 +1,11 @@
 <div class="row item-row" *ngIf="cartItem">
   <div class="col-md-3 col-xs-3 column">{{ cartItem.item.name }}</div>
-  <div class="col-md-3 col-xs-3 column">{{ cartItem.quantity }}</div>
+  <div class="col-md-3 col-xs-3 column"><button (click)="onLeftClick()" type="button"><span
+        class="glyphicon glyphicon-chevron-left arrow"></span></button>
+    <span class="quantity"> {{ cartItem.quantity }} </span> <button (click)="onRightClick()"
+      [disabled]="cartItem.item.quantity <= 0"><span class="glyphicon glyphicon-chevron-right arrow"></span></button>
+    <p class="error" *ngIf="cartItem.item.quantity <= 0">No more items to sell</p>
+    </div>
   <div class="col-md-3 col-xs-3 column">{{ cartItem.item.price }}</div>
   <div class="col-md-3 col-xs-3 column">
     {{ cartItem.quantity * cartItem.item.price }}
