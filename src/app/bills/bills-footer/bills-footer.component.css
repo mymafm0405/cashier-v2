@@ -1,0 +1,26 @@
+.bill-row {
+  background-color: #6a6c6e;
+  color: white;
+  margin-top: 25px;
+}
+.column {
+  text-align: center;
+  padding: 10px 0;
+  border-right: 1px #e7e7e7 solid;
+  color: #333;
+}
+.income {
+  background-color: #aeffae;
+  font-weight: bold;
+}
+.cost {
+  background-color: #ffaeae;
+  font-weight: bold;
+}
+.final {
+  background-color: #baaeff;
+  font-weight: bold;
+}
+.total {
+  color: white;
+}

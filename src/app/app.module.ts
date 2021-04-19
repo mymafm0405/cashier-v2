@@ -45,6 +45,8 @@ import { PermissionsComponent } from './permissions/permissions/permissions.comp
 import { SignInFormComponent } from './users/sign-in-form/sign-in-form.component';
 import { UserDataComponent } from './users/user-data/user-data.component';
 import { WelcomeComponent } from './welcome/welcome/welcome.component';
+import { BillsFooterComponent } from './bills/bills-footer/bills-footer.component';
+import { ChangePasswordFormComponent } from './users/change-password-form/change-password-form.component';
 
 const appRoutes: Routes = [
   {path: '', component: WelcomeComponent},
@@ -140,6 +142,8 @@ const appRoutes: Routes = [
     SignInFormComponent,
     UserDataComponent,
     WelcomeComponent,
+    BillsFooterComponent,
+    ChangePasswordFormComponent,
   ],
   imports: [
     BrowserModule,

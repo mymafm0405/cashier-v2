@@ -12,6 +12,8 @@ import { UsersService } from 'src/app/shared/users.service';
 export class UserDataComponent implements OnInit, OnDestroy {
   currentUser: User;
   currentUserChangedSub: Subscription;
+  usersChangedSub: Subscription;
+  showChangeForm = false;
 
   constructor(
     private usersService: UsersService,
@@ -26,6 +28,16 @@ export class UserDataComponent implements OnInit, OnDestroy {
         this.currentUser = this.usersService.getCurrentUser();
       }
     );
+
+    this.usersChangedSub = this.usersService.usersChanged.subscribe(
+      (status: boolean) => {
+        if (status) {
+          setTimeout(() => {
+            this.showChangeForm = false;
+          }, 2000);
+        }
+      }
+    );
   }
 
   onSignOut() {
@@ -37,7 +49,16 @@ export class UserDataComponent implements OnInit, OnDestroy {
       .name;
   }
 
+  onChangePassword() {
+    this.showChangeForm = !this.showChangeForm;
+  }
+
+  onHide() {
+    this.showChangeForm = false;
+  }
+
   ngOnDestroy() {
     this.currentUserChangedSub.unsubscribe();
+    this.usersChangedSub.unsubscribe();
   }
 }

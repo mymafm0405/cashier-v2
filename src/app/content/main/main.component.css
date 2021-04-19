@@ -7,3 +7,16 @@
   text-align: center;
   margin: 40px 0;
 }
+.note {
+  font-size: 18px;
+  color: #007acc;
+  margin-top: 25px;
+  font-style: italic;
+}
+.select {
+  margin-top: 80px;
+  text-align: center;
+  font-style: italic;
+  color: #007acc;
+  font-size: 21px;
+}

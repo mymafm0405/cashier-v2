@@ -1,3 +1,6 @@
+.row {
+  padding: 50px 0;
+}
 .all-bills {
   height: 500px;
   overflow: scroll;
@@ -7,4 +10,3 @@
   text-align: center;
   margin: 25px 0;
 }
-

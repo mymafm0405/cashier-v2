@@ -13,6 +13,7 @@ export class MainComponent implements OnInit, OnDestroy {
   currentUser: User;
   cuurentUserChangedSub: Subscription;
   path: string;
+  showSelectSentence = true;
 
   constructor(
     private usersService: UsersService,
@@ -36,22 +37,37 @@ export class MainComponent implements OnInit, OnDestroy {
 
   checkPermission() {
     if (this.currentUser.userType === 'admin') {
+      // This part of the code only check which url you're visit right now.
+      if (
+        this.route.snapshot.firstChild &&
+        this.route.snapshot.firstChild.url
+      ) {
+        if (this.route.snapshot.firstChild.url[0].path !== '') {
+          this.showSelectSentence = false;
+        }
+      }
+      //
       return true;
     } else if (
       this.currentUser.userType === 'user' &&
       this.path === 'categories'
     ) {
+      // This part of the code only check which url you're visit right now.
       if (
         this.route.snapshot.firstChild &&
         this.route.snapshot.firstChild.url
       ) {
         if (this.route.snapshot.firstChild.url[0].path === 'new-sell') {
+          this.showSelectSentence = false;
           return true;
         } else {
+          this.showSelectSentence = false;
           return false;
         }
+        //
       }
     } else {
+      this.showSelectSentence = false;
       return false;
     }
   }

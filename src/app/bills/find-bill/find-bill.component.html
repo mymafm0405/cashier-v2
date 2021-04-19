@@ -2,15 +2,31 @@
   <div class="col-md-6 col-md-offset-3 form">
     <form (ngSubmit)="onSubmit()" #findForm="ngForm">
       <h4>Serial number:</h4>
-      <input type="number" class="form-control" name="serial" placeholder="Serial number" ngModel required/>
-      <button class="btn btn-default" type="submit" [disabled]="findForm.invalid">Find</button>
+      <input
+        type="number"
+        class="form-control"
+        name="serial"
+        placeholder="Serial number"
+        ngModel
+        required
+      />
+      <button
+        class="btn btn-default"
+        type="submit"
+        [disabled]="findForm.invalid"
+      >
+        Find
+      </button>
     </form>
   </div>
 </div>
-<div class="row" *ngIf="allBills !== undefined">
+<div class="row bills-result" *ngIf="allBills !== undefined">
   <div class="col-md-10 col-md-offset-1 all-bills">
     <app-bills-header></app-bills-header>
-    <app-bill-row [allBills]="allBills" *ngIf="allBills.length > 0"></app-bill-row>
+    <app-bill-row
+      [allBills]="allBills"
+      *ngIf="allBills.length > 0"
+    ></app-bill-row>
     <h4 class="error" *ngIf="allBills.length === 0">No bills found!</h4>
   </div>
 </div>

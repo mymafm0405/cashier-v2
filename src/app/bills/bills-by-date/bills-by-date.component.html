@@ -2,17 +2,41 @@
   <div class="col-md-6 col-md-offset-3 form">
     <form (ngSubmit)="onSubmit()" #dateForm="ngForm">
       <h4>From:</h4>
-      <input type="date" class="form-control" name="fromDate" placeholder="From Date" ngModel required/>
+      <input
+        type="date"
+        class="form-control"
+        name="fromDate"
+        placeholder="From Date"
+        ngModel
+        required
+      />
       <h4>To:</h4>
-      <input type="date" class="form-control" name="toDate" placeholder="To Date" ngModel required/>
-      <button class="btn btn-default" type="submit" [disabled]="dateForm.invalid">Find Bills</button>
+      <input
+        type="date"
+        class="form-control"
+        name="toDate"
+        placeholder="To Date"
+        ngModel
+        required
+      />
+      <button
+        class="btn btn-default"
+        type="submit"
+        [disabled]="dateForm.invalid"
+      >
+        Find Bills
+      </button>
     </form>
   </div>
 </div>
-<div class="row" *ngIf="allBills !== undefined">
+<div class="row bills-result" *ngIf="allBills !== undefined">
   <div class="col-md-10 col-md-offset-1 all-bills">
     <app-bills-header></app-bills-header>
-    <app-bill-row [allBills]="allBills" *ngIf="allBills.length > 0"></app-bill-row>
+    <app-bill-row
+      [allBills]="allBills"
+      *ngIf="allBills.length > 0"
+    ></app-bill-row>
+    <app-bills-footer [totals]="totals"></app-bills-footer>
     <h4 class="error" *ngIf="allBills.length === 0">No bills found!</h4>
   </div>
 </div>

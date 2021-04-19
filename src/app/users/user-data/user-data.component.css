@@ -3,15 +3,21 @@ a {
   color: #ff5151;
   font-size: 14px;
 }
+h4 {
+  text-align: center;
+}
 .user-type {
   color: #f90;
   font-style: italic;
   font-size: 16px;
 }
 .data {
-  margin-top: 35px;
+  margin-top: 25px;
 }
 .company {
   color: #0083da;
   font-size: 14px;
+}
+.change {
+  color: #ffd900;
 }

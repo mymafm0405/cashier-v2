@@ -10,6 +10,10 @@ import { Subscription } from 'rxjs';
 })
 export class AllBillsComponent implements OnInit, OnDestroy {
   allBills: Bill[];
+  totalFinal = 0;
+  totalCost = 0;
+  totalIncome = 0;
+  totals: { totalFinal: number; totalCost: number; totalIncome: number };
 
   billsChangedSub: Subscription;
 
@@ -17,6 +21,7 @@ export class AllBillsComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.allBills = this.billsService.getBills();
+    this.calculateTotals();
     this.billsChangedSub = this.billsService.billsChanged.subscribe(
       (status: boolean) => {
         if (status) {
@@ -24,6 +29,22 @@ export class AllBillsComponent implements OnInit, OnDestroy {
         }
       }
     );
+  }
+
+  calculateTotals() {
+    for (let bill of this.allBills) {
+      this.totalFinal = this.totalFinal + bill.finalTotal;
+      for (let item of bill.cart) {
+        this.totalCost = this.totalCost + item.quantity * item.item.cost;
+      }
+      this.totalIncome = this.totalFinal - this.totalCost;
+    }
+    // After we finish the calculation we send the results to totals to send it back to bills footer componenet
+    this.totals = {
+      totalFinal: this.totalFinal,
+      totalCost: this.totalCost,
+      totalIncome: this.totalIncome,
+    };
   }
 
   ngOnDestroy() {

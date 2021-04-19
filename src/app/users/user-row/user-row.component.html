@@ -2,7 +2,8 @@
   [ngClass]="userIndex % 2 === 0 ? 'row user-row-dark' : 'row user-row-light'"
 >
   <div class="col-md-3">
-    {{ user.name }} - (
+    {{ user.name }} <br />
+    (
     <span
       [ngClass]="
         user.userType === 'admin' ? 'user-type-admin' : 'user-type-user'

@@ -1,10 +1,14 @@
-<button class="btn btn-default" [disabled]="buttonClicked">
+<button
+  class="btn btn-default"
+  [disabled]="buttonClicked || checkIfAdminIsBasemOrMahmoud()"
+  (click)="onResetPass()"
+>
   {{ buttonClicked ? "Wait..." : "Reset PASS" }}
 </button>
 <button
   class="btn btn-danger"
   (click)="onDeleteClick()"
-  [disabled]="buttonClicked"
+  [disabled]="buttonClicked || checkIfAdminIsBasemOrMahmoud()"
 >
   {{ buttonClicked ? "Wait..." : "X" }}
 </button>

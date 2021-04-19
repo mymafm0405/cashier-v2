@@ -18,16 +18,31 @@ export class UserFormComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.usersChangedSub = this.usersService.usersChanged.subscribe(
       (status: boolean) => {
-        if (!status) {
-          this.buttonClicked = false;
-        }
+        this.buttonClicked = false;
       }
     );
+  }
+
+  checkIfAdminIsBasemOrMahmoud() {
+    if (this.user.userType === 'admin') {
+      if (
+        this.user.name.toLowerCase() === 'Mahmoud'.toLowerCase() ||
+        this.user.name.toLowerCase() === 'Basem'.toLowerCase()
+      ) {
+        return true;
+      }
+    }
   }
 
   onDeleteClick() {
     this.buttonClicked = true;
     this.usersService.setUserInActive(this.user.id);
+  }
+
+  onResetPass() {
+    const newPass = '123';
+    this.buttonClicked = true;
+    this.usersService.updatePassword(this.user.id, newPass);
   }
 
   ngOnDestroy() {

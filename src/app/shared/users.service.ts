@@ -40,6 +40,21 @@ export class UsersService {
     this.currentUserChanged.next(true);
   }
 
+  updatePassword(userId: string, newPass: string) {
+    this.http
+      .patch(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/users/' +
+          userId +
+          '.json',
+        {
+          password: newPass,
+        }
+      )
+      .subscribe(() => {
+        this.loadUsers();
+      });
+  }
+
   setUserInActive(userId: string) {
     this.http
       .patch(

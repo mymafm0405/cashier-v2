@@ -45,18 +45,20 @@ export class CartFormComponent implements OnInit, OnDestroy {
     this.getCurrentTotal();
     this.getTheNextSerial();
     this.todayDate = this.billsService.getTodayDate();
-    this.billsService.getDiscountStatus();
+
+    // About getting discount status and changing in it
+    this.billsService
+      .getDiscountStatus()
+      .subscribe((res: { discount: boolean }) => {
+        this.discountNotAllowed = !res.discount;
+      });
+
     this.discountChangedSub = this.billsService.discountChanged.subscribe(
       (status: boolean) => {
         this.discountNotAllowed = !status;
       }
-    )
-
-    // this.sendClientIdSub = this.clientsService.sendNewClientId.subscribe(
-    //   (id: string) => {
-    //     this.clientId = id;
-    //   }
-    // )
+    );
+    //
 
     this.billAddingSub = this.billsService.billAddingStatus.subscribe(
       (status: boolean) => {
@@ -78,26 +80,39 @@ export class CartFormComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.confirmClicked = true;
 
-    const name = this.cartForm.value.name;
-    const phone = this.cartForm.value.phone;
-    const address = this.cartForm.value.address;
-    const client: Client = new Client(name, phone, address);
-
-    if (this.clientsService.checkClientByPhoneAndReturnId(client) === '') {
-      this.clientsService.addClient(client).subscribe(
-        (res: { name: string }) => {
-          this.createTheBill(res.name);
-          this.clientsService.addClientLocaly({ ...client, id: res.name });
-        },
-        (error) => {
-          console.log(error);
+    this.billsService.getDiscountStatus().subscribe(
+      (res: { discount: boolean }) => {
+        // Here to make sure that the discount allowed or not before submit the bill
+        // If it is not allowed so it will be ZERO. Then continue
+        if (!res.discount) {
+          this.discount = 0;
         }
-      );
-    } else {
-      this.createTheBill(
-        this.clientsService.checkClientByPhoneAndReturnId(client)
-      );
-    }
+        //
+        const name = this.cartForm.value.name;
+        const phone = this.cartForm.value.phone;
+        const address = this.cartForm.value.address;
+        const client: Client = new Client(name, phone, address);
+
+        if (this.clientsService.checkClientByPhoneAndReturnId(client) === '') {
+          this.clientsService.addClient(client).subscribe(
+            (res: { name: string }) => {
+              this.createTheBill(res.name);
+              this.clientsService.addClientLocaly({ ...client, id: res.name });
+            },
+            (error) => {
+              console.log(error);
+            }
+          );
+        } else {
+          this.createTheBill(
+            this.clientsService.checkClientByPhoneAndReturnId(client)
+          );
+        }
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 
   createTheBill(clientId: string) {

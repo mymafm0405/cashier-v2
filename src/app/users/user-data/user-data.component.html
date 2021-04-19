@@ -7,4 +7,13 @@
     currentUser.userType === "admin" ? "" : getUserCompanyName() + " || "
   }}</span>
   <a (click)="onSignOut()">Sign-Out</a>
+  <a class="change" *ngIf="showChangeForm" (click)="onHide()"> || Hide</a>
+</h4>
+<h4 *ngIf="!showChangeForm">
+  <a class="change" (click)="onChangePassword()">Change Password</a>
+</h4>
+<h4 *ngIf="showChangeForm">
+  <app-change-password-form
+    [currentUser]="currentUser"
+  ></app-change-password-form>
 </h4>

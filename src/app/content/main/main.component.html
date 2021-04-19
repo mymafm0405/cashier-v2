@@ -2,8 +2,12 @@
 <div class="row new-content">
   <div class="col-md-12">
     <router-outlet *ngIf="checkPermission()"></router-outlet>
-    <h3 class="not-allowed" *ngIf="!checkPermission()">
-      Sorry, Only admins can access this page!
+    <h3 class="not-allowed" *ngIf="!checkPermission() && !showSelectSentence">
+      Sorry, Only admins can access this page!<br /><br />
+      <span class="note">Users can sell items only!</span>
     </h3>
+    <h4 class="select" *ngIf="showSelectSentence">
+      Please select what to do from the menu above.
+    </h4>
   </div>
 </div>

@@ -14,9 +14,12 @@ button {
   margin: 10px 0;
 }
 .form {
-  background-color: #CCC;
+  background-color: #ccc;
   border-radius: 7px;
 }
 .form-row {
   padding: 20px 0;
+}
+.bills-result {
+  padding: 50px 0;
 }

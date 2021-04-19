@@ -58,14 +58,18 @@ export class BillsService {
   }
 
   getBillBySerial(serial: number) {
-    return this.allBills.filter(bill => bill.serial === serial);
+    return this.allBills.filter((bill) => bill.serial === serial);
   }
 
   getBillsDueDate(startDate: string, endDate: string) {
     const fromDateTimestamp = new Date(startDate).getTime();
     const toDateTimestamp = new Date(endDate).getTime();
 
-    return this.allBills.filter(bill => new Date(bill.date).getTime() >= fromDateTimestamp && new Date(bill.date).getTime() <= toDateTimestamp);
+    return this.allBills.filter(
+      (bill) =>
+        new Date(bill.date).getTime() >= fromDateTimestamp &&
+        new Date(bill.date).getTime() <= toDateTimestamp
+    );
   }
 
   getTodayDate() {
@@ -79,7 +83,7 @@ export class BillsService {
   }
 
   getBillsByClientId(clientId: string) {
-    return this.allBills.filter(bill => bill.clientId === clientId);
+    return this.allBills.filter((bill) => bill.clientId === clientId);
   }
 
   loadBills() {
@@ -102,32 +106,27 @@ export class BillsService {
       });
   }
 
-
   getDiscountStatus() {
-    this.http.get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/discount.json')
-    .subscribe(
-      (res: {discount: boolean}) => {
-        console.log(res);
-        this.discountStatus = res.discount;
-        this.discountChanged.next(this.discountStatus);
-        console.log(this.discountStatus);
-        console.log('we got the discount status!');
-      }
-    )
+    return this.http.get(
+      'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/discount.json'
+    );
   }
 
   changeDiscountStatus(newStatus: boolean) {
-    this.http.patch('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/discount.json', {
-      discount: newStatus
-    })
-    .subscribe(
-      () => {
-        console.log('discount updated!');
-        console.log(newStatus);
-        this.discountChanged.next(newStatus);
-      }, error => {
-        console.log(error);
-      }
-    )
+    this.http
+      .patch(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/discount.json',
+        {
+          discount: newStatus,
+        }
+      )
+      .subscribe(
+        () => {
+          this.discountChanged.next(newStatus);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
 }
