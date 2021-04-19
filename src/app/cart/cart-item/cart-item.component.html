@@ -1,6 +1,8 @@
 <div class="row item-row" *ngIf="cartItem">
-  <div class="col-md-3 column">{{ cartItem.item.name }}</div>
-  <div class="col-md-3 column">{{ cartItem.quantity }}</div>
-  <div class="col-md-3 column">{{ cartItem.item.price }}</div>
-  <div class="col-md-3 column">{{ cartItem.quantity * cartItem.item.price }}</div>
+  <div class="col-md-3 col-xs-3 column">{{ cartItem.item.name }}</div>
+  <div class="col-md-3 col-xs-3 column">{{ cartItem.quantity }}</div>
+  <div class="col-md-3 col-xs-3 column">{{ cartItem.item.price }}</div>
+  <div class="col-md-3 col-xs-3 column">
+    {{ cartItem.quantity * cartItem.item.price }}
+  </div>
 </div>

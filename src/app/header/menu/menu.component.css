@@ -1,3 +1,9 @@
+@media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+}
 .row {
   border-bottom: 1px solid #333333;
 }

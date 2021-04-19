@@ -14,3 +14,6 @@
     <app-store-item [item]="item"></app-store-item>
   </div>
 </div>
+<h4 class="error" *ngIf="allItems.length === 0">
+  No store items for this company!
+</h4>

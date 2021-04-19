@@ -1,3 +1,9 @@
+@media print {
+  .no-print,
+  .no-print * {
+    display: none !important;
+  }
+}
 h4,
 h3,
 h2,
@@ -7,18 +13,19 @@ h1 {
 }
 .header {
   text-align: center;
-  background-color: #333;
-  color: white;
+  background-color: #333 !important;
+  color: #fff !important;
 }
 .title {
   padding: 10px;
   border: 1px solid #ccc;
+  color: #fff !important;
 }
 .total {
-  background-color: #808080;
+  background-color: #808080 !important;
   text-align: center;
   font-weight: bold;
-  color: #ffb774;
+  color: #ffb774 !important;
 }
 .bill {
   padding: 25px 0;
@@ -32,11 +39,8 @@ h1 {
 .tagline {
   font-style: italic;
   font-size: 14px;
-  color: #666;
+  color: #666 !important;
   font-weight: bold;
-}
-img {
-  margin: 0 20px;
 }
 .invoice {
   text-align: right;
@@ -46,13 +50,13 @@ text-right {
   text-align: right;
 }
 .make-red {
-  color: red;
+  color: red !important;
 }
 .make-grey {
-  color: #666;
+  color: #666 !important;
 }
 .client {
-  color: #666;
+  color: #666 !important;
 }
 .name {
   font-weight: bold;
@@ -66,14 +70,19 @@ text-right {
 }
 .shopping {
   font-style: italic;
-  color: #333;
+  color: #333 !important;
 }
 .company {
-  color: #808080;
+  color: #808080 !important;
 }
 .signature {
   font-style: italic;
-  background-color: #ccc;
-  color: #333;
+  background-color: #ccc !important;
+  color: #333 !important;
   padding: 5px;
+}
+.print-button-row {
+  text-align: center;
+  background-color: #e6e7e9;
+  padding: 25px 0;
 }

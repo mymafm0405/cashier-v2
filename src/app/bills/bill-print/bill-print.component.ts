@@ -49,6 +49,10 @@ export class BillPrintComponent implements OnInit, OnDestroy {
     this.client = this.clientsService.getClientById(this.bill.clientId);
   }
 
+  onPrint() {
+    print();
+  }
+
   ngOnDestroy() {
     this.billsChangedSub.unsubscribe();
   }

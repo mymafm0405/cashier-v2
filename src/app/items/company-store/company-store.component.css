@@ -13,3 +13,7 @@
 .item-row-light {
   background-color: #f0f0f0;
 }
+.error {
+  color: red;
+  text-align: center;
+}
