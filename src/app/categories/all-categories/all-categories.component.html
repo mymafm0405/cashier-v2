@@ -1,11 +1,14 @@
 <div class="row all-cats" *ngIf="allowedCats">
-  <div class="col-md-3 cats-side">
+  <div class="col-md-3 cats-side" *ngIf="allowedCats.length > 0">
     <app-category
       [category]="cat"
       *ngFor="let cat of allowedCats"
     ></app-category>
   </div>
-  <div class="col-md-9">
+  <div class="col-md-9" *ngIf="allowedCats.length > 0">
     <router-outlet></router-outlet>
+  </div>
+  <div class="col-md-12 all-cats" *ngIf="allowedCats.length === 0">
+    <h3 class="error">No categories in your company!</h3>
   </div>
 </div>

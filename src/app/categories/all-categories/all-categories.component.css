@@ -4,3 +4,6 @@
 .cats-side {
   border-right: 1px dashed #333;
 }
+.error {
+  color: red;
+}

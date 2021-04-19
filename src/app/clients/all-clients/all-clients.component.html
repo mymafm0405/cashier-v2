@@ -5,14 +5,16 @@
 </div>
 <app-client-form></app-client-form>
 <div class="row">
-  <div class="col-md-8 col-md-offset-2 all-clients">
+  <div class="col-md-8 col-md-offset-2 all-clients" *ngIf="allClients.length > 0">
     <app-client-row
       [client]="client"
       [clientIndex]="i"
       *ngFor="let client of allClients; let i = index"
     ></app-client-row>
   </div>
-  <h4 class="error" *ngIf="allClients !== undefined && allClients.length === 0">
-    No clients found!
-  </h4>
+  <div class="col-md-12" *ngIf="allClients !== undefined && allClients.length === 0">
+    <h4 class="error">
+      No clients found!
+    </h4>
+  </div>
 </div>
