@@ -36,12 +36,6 @@ h1 {
   border: 1px dashed #666;
   padding: 30px;
 }
-.tagline {
-  font-style: italic;
-  font-size: 14px;
-  color: #666 !important;
-  font-weight: bold;
-}
 .invoice {
   text-align: right;
   padding: 30px 10px;
@@ -84,5 +78,5 @@ text-right {
 .print-button-row {
   text-align: center;
   background-color: #e6e7e9;
-  padding: 25px 0;
+  padding-top: 25px;
 }
