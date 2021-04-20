@@ -4,16 +4,16 @@
   </div>
 </div>
 <div class="row bill">
-  <div class="col-md-8 col-xs-12 col-md-offset-2 content">
+  <div class="col-md-8 col-md-offset-2 content">
     <div class="row">
-      <div class="col-md-8 col-xs-8">
+      <div class="col-md-8 col-xs-7">
         <img
           src="../../../assets/images/original-logo.png"
           width="150"
           height="150"
         />
       </div>
-      <div class="col-md-4 col-xs-4 invoice">
+      <div class="col-md-4 col-xs-5 invoice">
         <h1>INVOICE</h1>
       </div>
     </div>
@@ -44,7 +44,8 @@
     ></app-cart-item>
     <div class="row total">
       <div class="col-md-9 col-xs-9 title">
-        Total After Discount ( {{ bill.discount }} % )
+        Total After Discount
+        <span *ngIf="bill.discount > 0">( {{ bill.discount }} % )</span>
       </div>
       <div class="col-md-3 col-xs-3 title">{{ bill.finalTotal }}</div>
     </div>
