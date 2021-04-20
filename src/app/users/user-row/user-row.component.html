@@ -1,7 +1,7 @@
 <div
   [ngClass]="userIndex % 2 === 0 ? 'row user-row-dark' : 'row user-row-light'"
 >
-  <div class="col-md-3">
+  <div class="col-md-3 col-xs-3">
     {{ user.name }} <br />
     (
     <span
@@ -12,13 +12,13 @@
     >
     )
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 col-xs-3">
     {{ user.username }}
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 col-xs-3">
     {{ user.userType === "admin" ? "All" : company.name }}
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 col-xs-3">
     <app-user-form [user]="user"></app-user-form>
   </div>
 </div>
