@@ -3,24 +3,28 @@
   *ngFor="let bill of allBills; let i = index"
 >
   {{ getTotalIncome(bill) }}
-  <div class="col-md-1 column serial">{{ bill.serial }}</div>
-  <div class="col-md-2 column date">{{ bill.date }}</div>
-  <div class="col-md-5">
+  <div class="col-md-1 col-xs-1 column serial">{{ bill.serial }}</div>
+  <div class="col-md-2 col-xs-2 column date">{{ bill.date }}</div>
+  <div class="col-md-5 col-xs-5">
     <div
       [ngClass]="i % 2 === 0 ? 'row item-white' : 'row item-dark'"
       *ngFor="let item of bill.cart; let i = index"
     >
-      <div class="col-md-3 column">{{ item.item.name }}</div>
-      <div class="col-md-2 column">{{ item.item.price }}</div>
-      <div class="col-md-2 column">{{ item.quantity }}</div>
-      <div class="col-md-2 column">{{ item.item.cost * item.quantity }}</div>
-      <div class="col-md-3 column">{{ item.item.price * item.quantity }}</div>
+      <div class="col-md-3 col-xs-3 column">{{ item.item.name }}</div>
+      <div class="col-md-2 col-xs-2 column">{{ item.item.price }}</div>
+      <div class="col-md-2 col-xs-2 column">{{ item.quantity }}</div>
+      <div class="col-md-2 col-xs-2 column">
+        {{ item.item.cost * item.quantity }}
+      </div>
+      <div class="col-md-3 col-xs-3 column">
+        {{ item.item.price * item.quantity }}
+      </div>
     </div>
   </div>
-  <div class="col-md-1 column final">{{ bill.finalTotal }}</div>
-  <div class="col-md-1 column cost">{{ totalCostForAllItems }}</div>
-  <div class="col-md-1 column income">{{ totalIncome }}</div>
-  <div class="col-md-1 column">
+  <div class="col-md-1 col-xs-1 column final">{{ bill.finalTotal }}</div>
+  <div class="col-md-1 col-xs-1 column cost">{{ totalCostForAllItems }}</div>
+  <div class="col-md-1 col-xs-1 column income">{{ totalIncome }}</div>
+  <div class="col-md-1 col-xs-1 column">
     <a [routerLink]="['../../print-bill', bill.id]" class="print">Print</a>
   </div>
 </div>

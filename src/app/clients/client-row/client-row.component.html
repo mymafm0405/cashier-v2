@@ -3,16 +3,16 @@
     clientIndex % 2 === 0 ? 'row client-row-dark' : 'row client-row-light'
   "
 >
-  <div class="col-md-3">
+  <div class="col-md-3 col-xs-3">
     <h4>{{ client.name }}</h4>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 col-xs-3">
     <h4>{{ client.phone }}</h4>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 col-xs-3">
     <h4>{{ client.address }}</h4>
   </div>
-  <div class="col-md-3">
+  <div class="col-md-3 col-xs-3">
     <h4>
       <a (click)="onViewOrders()"
         ><span class="make-bold">{{ viewOrders ? "Hide" : "Show" }}</span>

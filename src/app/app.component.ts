@@ -7,6 +7,8 @@ import { CompaniesService } from './shared/companies.service';
 import { ItemsService } from './shared/items.service';
 import { User } from './shared/user.model';
 import { UsersService } from './shared/users.service';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 @Component({
   selector: 'app-root',
@@ -28,6 +30,20 @@ export class AppComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    // Firebase Object for this app
+    const firebaseConfig = {
+      apiKey: 'AIzaSyBLY6oRp_-IBpd0_0vsAtALQWbaQCYfiu4',
+      authDomain: 'cashier-v1-b2d37.firebaseapp.com',
+      databaseURL: 'https://cashier-v1-b2d37-default-rtdb.firebaseio.com',
+      projectId: 'cashier-v1-b2d37',
+      storageBucket: 'cashier-v1-b2d37.appspot.com',
+      messagingSenderId: '918577448533',
+      appId: '1:918577448533:web:e7db8253e4c4740dd7f6dc',
+      measurementId: 'G-0KWMHS0GT1',
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
     this.compsService.loadCompanies();
     this.catsService.loadCategories();
     this.itemsService.loadItems();

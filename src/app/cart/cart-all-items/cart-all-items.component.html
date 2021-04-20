@@ -1,15 +1,13 @@
 <div class="row header">
-  <div class="col-md-3 title">Item Description</div>
-  <div class="col-md-3 title">Quantity</div>
-  <div class="col-md-3 title">Price</div>
-  <div class="col-md-3 title">Total</div>
+  <div class="col-md-3 col-xs-3 title">Item Description</div>
+  <div class="col-md-3 col-xs-3 title">Quantity</div>
+  <div class="col-md-3 col-xs-3 title">Price</div>
+  <div class="col-md-3 col-xs-3 title">Total</div>
 </div>
 <app-cart-item *ngFor="let item of cartItems" [cartItem]="item"></app-cart-item>
 <div class="row total">
-  <div class="col-md-9 title">
-    Total
-  </div>
-  <div class="col-md-3 title">
+  <div class="col-md-9 col-xs-9 title">Total</div>
+  <div class="col-md-3 col-xs-3 title">
     {{ currentTotal }}
   </div>
 </div>

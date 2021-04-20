@@ -1,5 +1,5 @@
 <div class="row new-header no-print">
-  <div class="col-md-1 link" routerLink="">
+  <div class="col-md-1 col-xs-3 link" routerLink="">
     <img src="../../../assets/images/logo.png" width="50" height="50" />
     <h4 class="company">PrintingHouse</h4>
   </div>
@@ -9,14 +9,17 @@
     [path]="menuItem.path"
     [icon]="menuItem.icon"
   ></app-menu-item>
-  <div class="col-md-4 col-md-offset-1" *ngIf="currentUser !== undefined">
+  <div
+    class="col-md-4 col-xs-5 col-md-offset-1"
+    *ngIf="currentUser !== undefined"
+  >
     <app-user-data></app-user-data>
   </div>
   <div
     [ngClass]="
       currentUser === undefined
-        ? 'col-md-2 col-md-offset-5 cart'
-        : 'col-md-2 cart'
+        ? 'col-md-2 col-xs-3 col-xs-offset-5 col-md-offset-5 cart'
+        : 'col-md-2 col-xs-3 cart'
     "
   >
     <app-cart-counter routerLink="shopping"></app-cart-counter>
