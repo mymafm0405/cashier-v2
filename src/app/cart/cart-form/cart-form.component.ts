@@ -27,8 +27,11 @@ export class CartFormComponent implements OnInit, OnDestroy {
   discountChangedSub: Subscription;
 
   billAddingSub: Subscription;
+  cartItemsChanged: Subscription;
 
   confirmClicked = false;
+
+  totalAfterDiscount = 0;
 
   // sendClientIdSub: Subscription;
   // clientId: string;
@@ -45,6 +48,17 @@ export class CartFormComponent implements OnInit, OnDestroy {
     this.getCurrentTotal();
     this.getTheNextSerial();
     this.todayDate = this.billsService.getTodayDate();
+
+    this.cartItemsChanged = this.cartService.cartItemsChanged.subscribe(
+      (status: boolean) => {
+        if (status) {
+          this.cartItems = this.cartService.getCartItems();
+          this.currentTotal = 0;
+          this.getCurrentTotal();
+          this.onDiscountChange();
+        }
+      }
+    );
 
     // About getting discount status and changing in it
     this.billsService
@@ -133,12 +147,20 @@ export class CartFormComponent implements OnInit, OnDestroy {
 
   getCurrentTotal() {
     for (let item of this.cartItems) {
-      this.currentTotal = this.currentTotal + item.item.price * item.quantity;
+      this.currentTotal = Math.round(
+        this.currentTotal + item.item.price * item.quantity
+      );
     }
   }
 
   getFinalTotalAfterDiscount() {
-    return (this.currentTotal * (100 - this.discount)) / 100;
+    return Math.round((this.currentTotal * (100 - this.discount)) / 100);
+  }
+
+  onDiscountChange() {
+    this.totalAfterDiscount = Math.round(
+      (this.currentTotal * (100 - this.discount)) / 100
+    );
   }
 
   ngOnDestroy() {

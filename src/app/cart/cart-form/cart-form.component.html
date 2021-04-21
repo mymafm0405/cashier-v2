@@ -1,7 +1,7 @@
 <div class="row total-after-discount" *ngIf="discount > 0 && discount <= 100">
   <div class="col-md-9 title">Total After Discount ( {{ discount }} % )</div>
   <div class="col-md-3 title">
-    {{ (currentTotal * (100 - discount)) / 100 }}
+    {{ totalAfterDiscount }}
   </div>
 </div>
 <div class="row">
@@ -38,6 +38,7 @@
         class="form-control"
         placeholder="Discount"
         [(ngModel)]="discount"
+        (change)="onDiscountChange()"
         required
         [disabled]="discountNotAllowed"
       />

@@ -25,6 +25,7 @@ export class BillPrintComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.bill = this.billsService.getBillById(params.billId);
+      this.bill.finalTotal = Math.round(this.bill.finalTotal);
       this.getClient();
       console.log(this.bill);
     });

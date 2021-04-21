@@ -3,6 +3,7 @@
   *ngFor="let bill of allBills; let i = index"
 >
   {{ getTotalIncome(bill) }}
+  {{ roundTotal(bill) }}
   <div class="col-md-1 col-xs-1 column serial">{{ bill.serial }}</div>
   <div class="col-md-2 col-xs-2 column date">{{ bill.date }}</div>
   <div class="col-md-5 col-xs-5">
@@ -21,7 +22,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-1 col-xs-1 column final">{{ bill.finalTotal }}</div>
+  <div class="col-md-1 col-xs-1 column final">{{ billFinalTotal }}</div>
   <div class="col-md-1 col-xs-1 column cost">{{ totalCostForAllItems }}</div>
   <div class="col-md-1 col-xs-1 column income">{{ totalIncome }}</div>
   <div class="col-md-1 col-xs-1 column">

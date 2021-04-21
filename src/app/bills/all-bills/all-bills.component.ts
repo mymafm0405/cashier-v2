@@ -33,9 +33,11 @@ export class AllBillsComponent implements OnInit, OnDestroy {
 
   calculateTotals() {
     for (let bill of this.allBills) {
-      this.totalFinal = this.totalFinal + bill.finalTotal;
+      this.totalFinal = Math.round(this.totalFinal + bill.finalTotal);
       for (let item of bill.cart) {
-        this.totalCost = this.totalCost + item.quantity * item.item.cost;
+        this.totalCost = Math.round(
+          this.totalCost + item.quantity * item.item.cost
+        );
       }
       this.totalIncome = this.totalFinal - this.totalCost;
     }

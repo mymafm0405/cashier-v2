@@ -37,6 +37,7 @@ export class CartItemComponent implements OnInit {
     );
     if (this.cartItem.quantity === 0) {
       this.cartService.deleteCartItemById(this.cartItem.item.id);
+      this.cartService.cartItemsChanged.next(true);
     }
   }
 
