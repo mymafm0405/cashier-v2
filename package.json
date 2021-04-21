@@ -21,6 +21,8 @@
     "@angular/router": "~11.0.0",
     "bootstrap": "^3.4.1",
     "firebase": "^8.4.1",
+    "firebaseui": "^4.8.0",
+    "firebaseui-angular": "^5.1.2",
     "notyf": "^3.9.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",

@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { CompaniesService } from 'src/app/shared/companies.service';
 import { User } from 'src/app/shared/user.model';
 import { UsersService } from 'src/app/shared/users.service';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 
 @Component({
   selector: 'app-user-data',
@@ -42,6 +44,16 @@ export class UserDataComponent implements OnInit, OnDestroy {
 
   onSignOut() {
     this.usersService.signOutUser();
+    firebase
+      .auth()
+      .signOut()
+      .then((data) => {
+        console.log('signedOut');
+        console.log(data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   getUserCompanyName() {

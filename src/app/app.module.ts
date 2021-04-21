@@ -48,6 +48,8 @@ import { WelcomeComponent } from './welcome/welcome/welcome.component';
 import { BillsFooterComponent } from './bills/bills-footer/bills-footer.component';
 import { ChangePasswordFormComponent } from './users/change-password-form/change-password-form.component';
 import { NOTYF, notyfFactory } from './shared/notyf.token';
+import firebase from 'firebase/app';
+import { environment } from '../environments/environment';
 
 const appRoutes: Routes = [
   { path: '', component: WelcomeComponent },
@@ -99,6 +101,8 @@ const appRoutes: Routes = [
     ],
   },
 ];
+
+firebase.initializeApp(environment.firebaseConfig);
 
 @NgModule({
   declarations: [

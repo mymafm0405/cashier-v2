@@ -3,6 +3,12 @@ import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { UsersService } from 'src/app/shared/users.service';
 
+import firebase from 'firebase/app';
+import * as firebaseui from 'firebaseui';
+import 'firebaseui/dist/firebaseui.css';
+import 'firebase/auth';
+import { GeneralService } from 'src/app/shared/general.service';
+
 @Component({
   selector: 'app-sign-in-form',
   templateUrl: './sign-in-form.component.html',
@@ -13,7 +19,10 @@ export class SignInFormComponent implements OnInit, OnDestroy {
   currentUserChangedSub: Subscription;
   signInFailed = false;
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private generalService: GeneralService
+  ) {}
 
   ngOnInit(): void {
     this.currentUserChangedSub = this.usersService.currentUserChanged.subscribe(
@@ -25,6 +34,23 @@ export class SignInFormComponent implements OnInit, OnDestroy {
           setTimeout(() => {
             this.signInFailed = false;
           }, 3500);
+        } else {
+          var ui = new firebaseui.auth.AuthUI(firebase.auth());
+          // Here if the signed in success
+          firebase
+            .auth()
+            .signInWithEmailAndPassword('mymafm0405@gmail.com', '123456')
+            .then((data) => {
+              ui.start('#firebaseui-auth-container', {
+                signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
+                // Other config options...
+              });
+              console.log(data.user);
+              this.generalService.loadAppData();
+            })
+            .catch((error) => {
+              console.log(error);
+            });
         }
       }
     );
