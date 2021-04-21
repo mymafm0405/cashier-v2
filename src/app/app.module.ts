@@ -47,9 +47,10 @@ import { UserDataComponent } from './users/user-data/user-data.component';
 import { WelcomeComponent } from './welcome/welcome/welcome.component';
 import { BillsFooterComponent } from './bills/bills-footer/bills-footer.component';
 import { ChangePasswordFormComponent } from './users/change-password-form/change-password-form.component';
+import { NOTYF, notyfFactory } from './shared/notyf.token';
 
 const appRoutes: Routes = [
-  {path: '', component: WelcomeComponent},
+  { path: '', component: WelcomeComponent },
   {
     path: 'shopping',
     component: ShoppingCartComponent,
@@ -151,7 +152,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     HttpClientModule,
   ],
-  providers: [],
+  providers: [{ provide: NOTYF, useFactory: notyfFactory }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

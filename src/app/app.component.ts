@@ -7,6 +7,11 @@ import { CompaniesService } from './shared/companies.service';
 import { ItemsService } from './shared/items.service';
 import { User } from './shared/user.model';
 import { UsersService } from './shared/users.service';
+
+import { Inject } from '@angular/core';
+import { NOTYF } from './shared/notyf.token';
+import { Notyf } from 'notyf';
+
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
@@ -26,10 +31,14 @@ export class AppComponent implements OnInit, OnDestroy {
     private itemsService: ItemsService,
     private billsService: BillsService,
     private clientsService: ClientsService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    @Inject(NOTYF) private notyf: Notyf
   ) {}
 
   ngOnInit() {
+    // Test Notyf for notificatioins
+    this.welcomeMessage();
+
     // Firebase Object for this app
     const firebaseConfig = {
       apiKey: 'AIzaSyBLY6oRp_-IBpd0_0vsAtALQWbaQCYfiu4',
@@ -58,6 +67,14 @@ export class AppComponent implements OnInit, OnDestroy {
         this.currentUser = this.usersService.getCurrentUser();
       }
     );
+  }
+
+  welcomeMessage() {
+    this.notyf.success('Welcome To Cashier System');
+    // this.notyf.success({
+    //   message: 'Welcome to my app',
+    //   background: 'blue',
+    // });
   }
 
   ngOnDestroy() {
