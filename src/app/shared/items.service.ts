@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Item } from './item.model';
@@ -11,13 +11,22 @@ export class ItemsService {
   itemsChanged = new Subject<boolean>();
   itemsAddingStatus = new Subject<boolean>();
 
+  idToken = '';
+
   constructor(private http: HttpClient) {}
+
+  setIdToken(idToken: string) {
+    this.idToken = idToken;
+  }
 
   addItems(newItem: Item) {
     this.http
       .post(
         'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/items.json',
-        newItem
+        newItem,
+        {
+          params: new HttpParams().set('auth', this.idToken),
+        }
       )
       .subscribe(
         (res: { name: string }) => {
@@ -54,7 +63,10 @@ export class ItemsService {
           'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/items/' +
             item.itemId +
             '.json',
-          { quantity: item.newQuantity }
+          { quantity: item.newQuantity },
+          {
+            params: new HttpParams().set('auth', this.idToken),
+          }
         )
         .subscribe(() => {
           console.log(item.itemId + ' QUANTITY HAS BEEN UPDATED');
@@ -70,6 +82,9 @@ export class ItemsService {
           '.json',
         {
           [target]: value,
+        },
+        {
+          params: new HttpParams().set('auth', this.idToken),
         }
       )
       .subscribe(
@@ -90,6 +105,9 @@ export class ItemsService {
           '.json',
         {
           status: 'inactive',
+        },
+        {
+          params: new HttpParams().set('auth', this.idToken),
         }
       )
       .subscribe(
@@ -104,7 +122,9 @@ export class ItemsService {
 
   loadItems() {
     this.http
-      .get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/items.json')
+      .get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/items.json', {
+        params: new HttpParams().set('auth', this.idToken),
+      })
       .pipe(
         map((resData): Item[] => {
           const resItems: Item[] = [];

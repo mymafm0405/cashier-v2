@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Company } from './company.model';
 import { map } from 'rxjs/operators';
@@ -11,13 +11,22 @@ export class CompaniesService {
   companiesChanged = new Subject<boolean>();
   companyAddingStatus = new Subject<boolean>();
 
+  idToken = '';
+
   constructor(private http: HttpClient) {}
+
+  setIdToken(idToken: string) {
+    this.idToken = idToken;
+  }
 
   addCompany(newComp: Company) {
     this.http
       .post(
         'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/companies.json',
-        newComp
+        newComp,
+        {
+          params: new HttpParams().set('auth', this.idToken),
+        }
       )
       .subscribe(
         (res: { name: string }) => {
@@ -43,7 +52,10 @@ export class CompaniesService {
   loadCompanies() {
     this.http
       .get(
-        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/companies.json'
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/companies.json',
+        {
+          params: new HttpParams().set('auth', this.idToken),
+        }
       )
       .pipe(
         map((resData): Company[] => {

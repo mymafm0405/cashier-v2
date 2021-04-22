@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Bill } from './bill.model';
@@ -16,17 +16,26 @@ export class BillsService {
   discountChanged = new Subject<boolean>();
   discountStatus: boolean;
 
+  idToken = '';
+
   constructor(
     private http: HttpClient,
     private itemsService: ItemsService,
     private cartService: CartService
   ) {}
 
+  setIdToken(idToken: string) {
+    this.idToken = idToken;
+  }
+
   addBill(newBill: Bill) {
     this.http
       .post(
         'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/bills.json',
-        newBill
+        newBill,
+        {
+          params: new HttpParams().set('auth', this.idToken),
+        }
       )
       .subscribe(
         (res: { name: string }) => {
@@ -88,7 +97,9 @@ export class BillsService {
 
   loadBills() {
     this.http
-      .get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/bills.json')
+      .get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/bills.json', {
+        params: new HttpParams().set('auth', this.idToken),
+      })
       .pipe(
         map((resData): Bill[] => {
           const resBills: Bill[] = [];
@@ -108,7 +119,10 @@ export class BillsService {
 
   getDiscountStatus() {
     return this.http.get(
-      'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/discount.json'
+      'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/discount.json',
+      {
+        params: new HttpParams().set('auth', this.idToken),
+      }
     );
   }
 
@@ -118,6 +132,9 @@ export class BillsService {
         'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/discount.json',
         {
           discount: newStatus,
+        },
+        {
+          params: new HttpParams().set('auth', this.idToken),
         }
       )
       .subscribe(

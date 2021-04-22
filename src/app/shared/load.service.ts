@@ -6,7 +6,7 @@ import { CompaniesService } from './companies.service';
 import { ItemsService } from './items.service';
 
 @Injectable({ providedIn: 'root' })
-export class GeneralService {
+export class LoadService {
   constructor(
     private compsService: CompaniesService,
     private catsService: CatsService,

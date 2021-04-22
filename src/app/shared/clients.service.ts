@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Client } from './client.model';
 import { map } from 'rxjs/operators';
@@ -12,9 +12,14 @@ export class ClientsService {
   clientAddingStatus = new Subject<boolean>();
   clientsChanged = new Subject<boolean>();
   foundClientsChanged = new Subject<Client[]>();
-  // sendNewClientId = new Subject<string>();
+
+  idToken = '';
 
   constructor(private http: HttpClient) {}
+
+  setIdToken(idToken: string) {
+    this.idToken = idToken;
+  }
 
   getClients() {
     return this.allClients;
@@ -42,19 +47,33 @@ export class ClientsService {
   }
 
   findClient(search: string) {
-    this.foundClientsChanged.next(this.allClients.filter(client => client.name.toLowerCase() == search.toLowerCase() || client.phone == +search));
+    this.foundClientsChanged.next(
+      this.allClients.filter(
+        (client) =>
+          client.name.toLowerCase() == search.toLowerCase() ||
+          client.phone == +search
+      )
+    );
   }
 
   addClient(newClient: Client) {
     return this.http.post(
       'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/clients.json',
-      newClient
+      newClient,
+      {
+        params: new HttpParams().set('auth', this.idToken),
+      }
     );
   }
 
   loadClients() {
     this.http
-      .get('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/clients.json')
+      .get(
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/clients.json',
+        {
+          params: new HttpParams().set('auth', this.idToken),
+        }
+      )
       .pipe(
         map((resData): Client[] => {
           const resClients: Client[] = [];

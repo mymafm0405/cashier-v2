@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Category } from './category.model';
@@ -11,7 +11,13 @@ export class CatsService {
   categoriesChanged = new Subject<boolean>();
   categoryAddingStatus = new Subject<boolean>();
 
+  idToken = '';
+
   constructor(private http: HttpClient) {}
+
+  setIdToken(idToken: string) {
+    this.idToken = idToken;
+  }
 
   getCategories() {
     return this.categories;
@@ -29,7 +35,10 @@ export class CatsService {
     this.http
       .post(
         'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/categories.json',
-        newCat
+        newCat,
+        {
+          params: new HttpParams().set('auth', this.idToken),
+        }
       )
       .subscribe(
         (res: { name: string }) => {
@@ -47,7 +56,10 @@ export class CatsService {
   loadCategories() {
     this.http
       .get(
-        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/categories.json'
+        'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/categories.json',
+        {
+          params: new HttpParams().set('auth', this.idToken),
+        }
       )
       .pipe(
         map((resData): Category[] => {

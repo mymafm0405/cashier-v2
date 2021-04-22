@@ -57,8 +57,10 @@ export class UserDataComponent implements OnInit, OnDestroy {
   }
 
   getUserCompanyName() {
-    return this.companiesService.getCompanyById(this.currentUser.companyId)
-      .name;
+    if (this.companiesService.getCompanyById(this.currentUser.companyId)) {
+      return this.companiesService.getCompanyById(this.currentUser.companyId)
+        .name;
+    }
   }
 
   onChangePassword() {

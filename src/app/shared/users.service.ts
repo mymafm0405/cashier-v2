@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from './user.model';
 import { map } from 'rxjs/operators';
@@ -15,8 +15,13 @@ export class UsersService {
 
   // this will be assigned after signed in
   currentUser: User;
+  idToken = '';
 
   constructor(private http: HttpClient) {}
+
+  setIdToken(idToken: string) {
+    this.idToken = idToken;
+  }
 
   getCurrentUser() {
     return this.currentUser;
@@ -48,6 +53,9 @@ export class UsersService {
           '.json',
         {
           password: newPass,
+        },
+        {
+          params: new HttpParams().set('auth', this.idToken),
         }
       )
       .subscribe(() => {
@@ -63,6 +71,9 @@ export class UsersService {
           '.json',
         {
           status: 'inactive',
+        },
+        {
+          params: new HttpParams().set('auth', this.idToken),
         }
       )
       .subscribe(() => {
@@ -80,7 +91,10 @@ export class UsersService {
       this.http
         .post(
           'https://cashier-v1-b2d37-default-rtdb.firebaseio.com/users.json',
-          newUser
+          newUser,
+          {
+            params: new HttpParams().set('auth', this.idToken),
+          }
         )
         .subscribe(
           (res: { name: string }) => {

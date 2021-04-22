@@ -2,12 +2,15 @@ import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { UsersService } from 'src/app/shared/users.service';
+import { environment } from '../../../environments/environment';
 
-import firebase from 'firebase/app';
-import * as firebaseui from 'firebaseui';
-import 'firebaseui/dist/firebaseui.css';
-import 'firebase/auth';
-import { GeneralService } from 'src/app/shared/general.service';
+import { HttpClient } from '@angular/common/http';
+import { LoadService } from 'src/app/shared/load.service';
+import { CompaniesService } from 'src/app/shared/companies.service';
+import { CatsService } from 'src/app/shared/categories.service';
+import { ItemsService } from 'src/app/shared/items.service';
+import { ClientsService } from 'src/app/shared/clients.service';
+import { BillsService } from 'src/app/shared/bills.service';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -21,7 +24,13 @@ export class SignInFormComponent implements OnInit, OnDestroy {
 
   constructor(
     private usersService: UsersService,
-    private generalService: GeneralService
+    private http: HttpClient,
+    private loadService: LoadService,
+    private compsService: CompaniesService,
+    private catsService: CatsService,
+    private itemsService: ItemsService,
+    private clientsService: ClientsService,
+    private billsService: BillsService
   ) {}
 
   ngOnInit(): void {
@@ -35,22 +44,31 @@ export class SignInFormComponent implements OnInit, OnDestroy {
             this.signInFailed = false;
           }, 3500);
         } else {
-          var ui = new firebaseui.auth.AuthUI(firebase.auth());
+          this.http
+            .post(
+              'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' +
+                environment.firebaseConfig.apiKey,
+              {
+                email: 'mymafm0405@gmail.com',
+                password: '123456',
+                returnSecureToken: true,
+              }
+            )
+            .subscribe(
+              (resData: { idToken: string }) => {
+                this.compsService.setIdToken(resData.idToken);
+                this.catsService.setIdToken(resData.idToken);
+                this.itemsService.setIdToken(resData.idToken);
+                this.billsService.setIdToken(resData.idToken);
+                this.clientsService.setIdToken(resData.idToken);
+                this.usersService.setIdToken(resData.idToken);
+                this.loadService.loadAppData();
+              },
+              (error) => {
+                console.log(error);
+              }
+            );
           // Here if the signed in success
-          firebase
-            .auth()
-            .signInWithEmailAndPassword('mymafm0405@gmail.com', '123456')
-            .then((data) => {
-              ui.start('#firebaseui-auth-container', {
-                signInOptions: [firebase.auth.EmailAuthProvider.PROVIDER_ID],
-                // Other config options...
-              });
-              console.log(data.user);
-              this.generalService.loadAppData();
-            })
-            .catch((error) => {
-              console.log(error);
-            });
         }
       }
     );
