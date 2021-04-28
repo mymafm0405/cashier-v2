@@ -1,3 +1,6 @@
+import { Subscription } from 'rxjs';
+import { CatsService } from 'src/app/shared/categories.service';
+import { Category } from 'src/app/shared/category.model';
 import { BillsService } from './../../shared/bills.service';
 import { Bill } from './../../shared/bill.model';
 import { NgForm } from '@angular/forms';
@@ -10,20 +13,35 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class BillsByDateComponent implements OnInit {
   @ViewChild('dateForm', { static: false }) dateForm: NgForm;
+  categories: Category[] = [];
   allBills: Bill[];
   totalFinal = 0;
   totalCost = 0;
   totalIncome = 0;
   totals: { totalFinal: number; totalCost: number; totalIncome: number };
 
-  constructor(private billsService: BillsService) {}
+  catsChangedSub: Subscription;
 
-  ngOnInit(): void {}
+  constructor(private billsService: BillsService, private catsService: CatsService) {}
+
+  ngOnInit(): void {
+    this.categories = this.catsService.getCategories();
+    this.catsChangedSub = this.catsService.categoriesChanged.subscribe(
+      (status: boolean) => {
+        this.categories = this.catsService.getCategories();
+      }
+    )
+  }
 
   onSubmit() {
+    this.totalCost = 0;
+    this.totalFinal = 0;
+    this.totalIncome = 0;
+    console.log(this.dateForm.value.catId);
     this.allBills = this.billsService.getBillsDueDate(
       this.dateForm.value.fromDate,
-      this.dateForm.value.toDate
+      this.dateForm.value.toDate,
+      this.dateForm.value.catId
     );
     this.calculateTotals();
   }

@@ -19,6 +19,10 @@
         ngModel
         required
       />
+      <select name="catId" class="form-control" ngModel>
+        <option value="all" selected>Select category (Optional)</option>
+        <option [value]="category.id" *ngFor="let category of categories">{{ category.name }}</option>
+      </select>
       <button
         class="btn btn-default"
         type="submit"
