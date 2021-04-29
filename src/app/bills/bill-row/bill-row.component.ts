@@ -9,13 +9,16 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class BillRowComponent implements OnInit {
   @Input() allBills: Bill[];
+  @Input() searchType = 'all';
   totalCostForAllItems = 0;
   totalIncome = 0;
   billFinalTotal = 0;
 
   constructor(private billsService: BillsService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.searchType);
+  }
 
   getTotalIncome(bill: Bill) {
     this.totalIncome = 0;

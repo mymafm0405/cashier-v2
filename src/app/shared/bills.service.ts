@@ -87,8 +87,18 @@ export class BillsService {
       );
       const fillteredBill: Bill[] = [];
       for (let currentBill of foundBills) {
-        if (currentBill.cart.filter(item => item.item.catId === catId).length > 0) {
-          currentBill.cart = currentBill.cart.filter(item => item.item.catId === catId)
+        let total = 0;
+        if (
+          currentBill.cart.filter((item) => item.item.catId === catId).length >
+          0
+        ) {
+          currentBill.cart = currentBill.cart.filter(
+            (item) => item.item.catId === catId
+          );
+          for (let it of currentBill.cart) {
+            total = total + it.item.price * it.quantity;
+          }
+          currentBill.finalTotal = total;
           fillteredBill.push(currentBill);
         }
       }

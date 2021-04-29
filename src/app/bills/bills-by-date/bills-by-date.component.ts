@@ -20,9 +20,14 @@ export class BillsByDateComponent implements OnInit {
   totalIncome = 0;
   totals: { totalFinal: number; totalCost: number; totalIncome: number };
 
+  searchType = 'all';
+
   catsChangedSub: Subscription;
 
-  constructor(private billsService: BillsService, private catsService: CatsService) {}
+  constructor(
+    private billsService: BillsService,
+    private catsService: CatsService
+  ) {}
 
   ngOnInit(): void {
     this.categories = this.catsService.getCategories();
@@ -30,7 +35,7 @@ export class BillsByDateComponent implements OnInit {
       (status: boolean) => {
         this.categories = this.catsService.getCategories();
       }
-    )
+    );
   }
 
   onSubmit() {
@@ -38,6 +43,9 @@ export class BillsByDateComponent implements OnInit {
     this.totalFinal = 0;
     this.totalIncome = 0;
     console.log(this.dateForm.value.catId);
+    if (this.dateForm.value.catId !== 'all') {
+      this.searchType = 'category';
+    }
     this.allBills = this.billsService.getBillsDueDate(
       this.dateForm.value.fromDate,
       this.dateForm.value.toDate,
