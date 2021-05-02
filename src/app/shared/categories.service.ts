@@ -20,7 +20,7 @@ export class CatsService {
   }
 
   getCategories() {
-    return this.categories;
+    return this.categories.filter(cat => cat.status === 'active');
   }
 
   getCategoryById(catId: string) {
@@ -28,7 +28,7 @@ export class CatsService {
   }
 
   getCatsByCompId(compId: string) {
-    return this.categories.filter((cat) => cat.companyId === compId);
+    return this.getCategories().filter((cat) => cat.companyId === compId);
   }
 
   addCategory(newCat: Category) {
@@ -81,5 +81,18 @@ export class CatsService {
           console.log(error);
         }
       );
+  }
+
+  updateCategoryStatus(categoryId: string, status: string) {
+    this.http.patch('https://cashier-v1-b2d37-default-rtdb.firebaseio.com/categories/' + categoryId + '.json', {
+      status
+    }, {
+      params: new HttpParams().set('auth', this.idToken),
+    })
+    .subscribe(
+      () => {
+        this.loadCategories();
+      }
+    )
   }
 }
