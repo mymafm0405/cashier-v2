@@ -45,6 +45,8 @@ export class BillsByDateComponent implements OnInit {
     console.log(this.dateForm.value.catId);
     if (this.dateForm.value.catId !== 'all') {
       this.searchType = 'category';
+    } else {
+      this.searchType = 'all';
     }
     this.allBills = this.billsService.getBillsDueDate(
       this.dateForm.value.fromDate,

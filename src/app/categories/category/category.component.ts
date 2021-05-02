@@ -1,3 +1,5 @@
+import { Subscription } from 'rxjs';
+import { ItemsService } from 'src/app/shared/items.service';
 import { Component, Input, OnInit } from '@angular/core';
 import { Category } from 'src/app/shared/category.model';
 
@@ -8,7 +10,23 @@ import { Category } from 'src/app/shared/category.model';
 })
 export class CategoryComponent implements OnInit {
   @Input() category: Category;
-  constructor() {}
+  numOfNoStockItems = 0;
 
-  ngOnInit(): void {}
+  itemsChangedSub: Subscription;
+
+  constructor(private itemsService: ItemsService) {}
+
+  ngOnInit(): void {
+    this.checkEmptyItems();
+
+    this.itemsChangedSub = this.itemsService.itemsChanged.subscribe(
+      () => {
+        this.checkEmptyItems();
+      }
+    )
+  }
+
+  checkEmptyItems() {
+    this.numOfNoStockItems = this.itemsService.getItemsByCatId(this.category.id).filter(item => item.quantity === 0).length
+  }
 }

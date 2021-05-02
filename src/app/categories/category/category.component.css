@@ -13,3 +13,9 @@
   background-color: #ff9633;
   color: #333;
 }
+.notification {
+  padding: 5px;
+  background-color: red;
+  color: white;
+  border-radius: 7px;
+}

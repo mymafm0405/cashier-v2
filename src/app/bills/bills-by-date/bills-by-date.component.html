@@ -19,7 +19,7 @@
         ngModel
         required
       />
-      <h4>Select category: ( Optional )</h4>
+      <h4>Select category:</h4>
       <select name="catId" class="form-control" ngModel required>
         <option value="all" selected>All Categories</option>
         <option [value]="category.id" *ngFor="let category of categories">
