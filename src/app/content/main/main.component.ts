@@ -49,8 +49,8 @@ export class MainComponent implements OnInit, OnDestroy {
       //
       return true;
     } else if (
-      this.currentUser.userType === 'user' &&
-      this.path === 'categories'
+      (this.currentUser.userType === 'user' && this.path === 'categories') ||
+      this.path === 'reports'
     ) {
       // This part of the code only check which url you're visit right now.
       if (
@@ -58,6 +58,9 @@ export class MainComponent implements OnInit, OnDestroy {
         this.route.snapshot.firstChild.url
       ) {
         if (this.route.snapshot.firstChild.url[0].path === 'new-sell') {
+          this.showSelectSentence = false;
+          return true;
+        } else if (this.route.snapshot.firstChild.url[0].path === 'all-bills') {
           this.showSelectSentence = false;
           return true;
         } else {

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/shared/users.service';
 
 @Component({
   selector: 'app-bills-footer',
@@ -12,7 +13,11 @@ export class BillsFooterComponent implements OnInit {
     totalIncome: number;
   };
 
-  constructor() {}
+  currentUserType: string;
 
-  ngOnInit(): void {}
+  constructor(private usersService: UsersService) {}
+
+  ngOnInit(): void {
+    this.currentUserType = this.usersService.getCurrentUser().userType;
+  }
 }

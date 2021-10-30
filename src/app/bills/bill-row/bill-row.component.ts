@@ -1,6 +1,7 @@
 import { BillsService } from './../../shared/bills.service';
 import { Bill } from './../../shared/bill.model';
 import { Component, Input, OnInit } from '@angular/core';
+import { UsersService } from 'src/app/shared/users.service';
 
 @Component({
   selector: 'app-bill-row',
@@ -13,11 +14,16 @@ export class BillRowComponent implements OnInit {
   totalCostForAllItems = 0;
   totalIncome = 0;
   billFinalTotal = 0;
+  currentUserType: string;
 
-  constructor(private billsService: BillsService) {}
+  constructor(
+    private billsService: BillsService,
+    private usersService: UsersService
+  ) {}
 
   ngOnInit(): void {
     console.log(this.searchType);
+    this.currentUserType = this.usersService.getCurrentUser().userType;
   }
 
   getTotalIncome(bill: Bill) {

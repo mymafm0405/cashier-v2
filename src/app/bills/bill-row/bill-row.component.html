@@ -23,8 +23,18 @@
     </div>
   </div>
   <div class="col-md-1 col-xs-1 column final">{{ billFinalTotal }}</div>
-  <div class="col-md-1 col-xs-1 column cost">{{ totalCostForAllItems }}</div>
-  <div class="col-md-1 col-xs-1 column income">{{ totalIncome }}</div>
+  <div
+    class="col-md-1 col-xs-1 column cost"
+    *ngIf="currentUserType === 'admin'"
+  >
+    {{ totalCostForAllItems }}
+  </div>
+  <div
+    class="col-md-1 col-xs-1 column income"
+    *ngIf="currentUserType === 'admin'"
+  >
+    {{ totalIncome }}
+  </div>
   <div class="col-md-1 col-xs-1 column" *ngIf="searchType === 'all'">
     <a [routerLink]="['../../print-bill', bill.id]" class="print">Print</a>
   </div>
