@@ -16,7 +16,11 @@
     </div>
   </div>
   <div class="col-md-1 col-xs-1 column">Final Price</div>
-  <div class="col-md-1 col-xs-1 column">Total Cost</div>
-  <div class="col-md-1 col-xs-1 column">Income</div>
+  <div class="col-md-1 col-xs-1 column" *ngIf="currentUserType === 'admin'">
+    Total Cost
+  </div>
+  <div class="col-md-1 col-xs-1 column" *ngIf="currentUserType === 'admin'">
+    Income
+  </div>
   <div class="col-md-1 col-xs-1 column">Action</div>
 </div>

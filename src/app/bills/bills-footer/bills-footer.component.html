@@ -1,7 +1,17 @@
 <div class="row bill-row">
   <div class="col-md-8 col-xs-4 column total">Total</div>
   <div class="col-md-1 col-xs-2 column final">{{ totals.totalFinal }}</div>
-  <div class="col-md-1 col-xs-2 column cost">{{ totals.totalCost }}</div>
-  <div class="col-md-1 col-xs-2 column income">{{ totals.totalIncome }}</div>
+  <div
+    class="col-md-1 col-xs-2 column cost"
+    *ngIf="currentUserType === 'admin'"
+  >
+    {{ totals.totalCost }}
+  </div>
+  <div
+    class="col-md-1 col-xs-2 column income"
+    *ngIf="currentUserType === 'admin'"
+  >
+    {{ totals.totalIncome }}
+  </div>
   <div class="col-md-1 col-xs-2 column"></div>
 </div>
