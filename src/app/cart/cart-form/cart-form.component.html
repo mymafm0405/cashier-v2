@@ -12,15 +12,21 @@
         name="name"
         class="form-control"
         placeholder="Client name"
-        ngModel
+        [(ngModel)]="currentName"
+        list="details"
         required
+        (change)="onNameChange()"
       />
+      <datalist id="details">
+        <option [value]="cl.name" *ngFor="let cl of allClients"></option>
+      </datalist>
+
       <input
         type="number"
         name="phone"
         class="form-control"
         placeholder="Phone number"
-        ngModel
+        [(ngModel)]="currentClient.phone"
         required
       />
       <input
@@ -28,7 +34,7 @@
         name="address"
         class="form-control"
         placeholder="Address"
-        ngModel
+        [(ngModel)]="currentClient.address"
         required
       />
       <p>Discount:</p>

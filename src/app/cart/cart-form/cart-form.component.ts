@@ -33,6 +33,10 @@ export class CartFormComponent implements OnInit, OnDestroy {
 
   totalAfterDiscount = 0;
 
+  allClients: Client[] = [];
+  currentClient: Client = new Client('', 0, '');
+  currentName: string;
+
   // sendClientIdSub: Subscription;
   // clientId: string;
 
@@ -89,6 +93,8 @@ export class CartFormComponent implements OnInit, OnDestroy {
         }
       }
     );
+
+    this.allClients = this.clientsService.getClients();
   }
 
   onSubmit() {
@@ -161,6 +167,15 @@ export class CartFormComponent implements OnInit, OnDestroy {
     this.totalAfterDiscount = Math.round(
       (this.currentTotal * (100 - this.discount)) / 100
     );
+  }
+
+  onNameChange() {
+    this.currentClient = this.clientsService.getClientByName(this.currentName);
+    if (this.currentName === '') {
+      this.currentClient = new Client('', 0, '');
+    }
+    // console.log(this.currentName);
+    // console.log(this.currentClient);
   }
 
   ngOnDestroy() {

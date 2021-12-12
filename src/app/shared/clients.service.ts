@@ -96,4 +96,8 @@ export class ClientsService {
         }
       );
   }
+
+  getClientByName(name: string) {
+    return this.allClients.find((cl) => cl.name === name);
+  }
 }
