@@ -12,6 +12,7 @@ export class CartItemComponent implements OnInit {
   @Input() cartItem: CartItem;
   remaining: number;
   shoppingPage = false;
+  itemDiscount = 0;
 
   constructor(
     private cartService: CartService,
@@ -52,5 +53,14 @@ export class CartItemComponent implements OnInit {
         changeTotalCartCount
       );
     }
+  }
+
+  calcItemTotal() {
+    return (
+      (this.cartItem.quantity *
+        this.cartItem.item.price *
+        Math.round(100 - this.itemDiscount)) /
+      100
+    );
   }
 }
