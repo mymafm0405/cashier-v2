@@ -13,6 +13,8 @@ export class CartItemComponent implements OnInit {
   remaining: number;
   shoppingPage = false;
   itemDiscount = 0;
+  itemTotal = 0;
+  start = 0;
 
   constructor(
     private cartService: CartService,
@@ -25,6 +27,7 @@ export class CartItemComponent implements OnInit {
         this.shoppingPage = true;
       }
     });
+    this.calcItemTotal();
   }
 
   onLeftClick() {
@@ -40,6 +43,7 @@ export class CartItemComponent implements OnInit {
       this.cartService.deleteCartItemById(this.cartItem.item.id);
       this.cartService.cartItemsChanged.next(true);
     }
+    this.calcItemTotal();
   }
 
   onRightClick() {
@@ -53,14 +57,51 @@ export class CartItemComponent implements OnInit {
         changeTotalCartCount
       );
     }
+    this.calcItemTotal();
   }
 
   calcItemTotal() {
-    return (
-      (this.cartItem.quantity *
-        this.cartItem.item.price *
-        Math.round(100 - this.itemDiscount)) /
-      100
-    );
+    // console.log('start calcItemTotal func');
+    // const itemCopy = { ...this.cartItem.item };
+    this.cartItem.item.price =
+      (this.cartItem.item.price * Math.round(100 - this.itemDiscount)) / 100;
+    this.itemTotal = this.cartItem.quantity * this.cartItem.item.price;
+    // if (this.start > 0) {
+    //   this.cartService.itemPriceChanged.next({
+    //     itemId: itemCopy.id,
+    //     price: itemCopy.price,
+    //   });
+    // }
+    // this.start++;
+    // if (this.start > 0) {
+    //   this.cartService.itemPriceChanged.next({
+    //     itemId: this.cartItem.item.id,
+    //     price: this.cartItem.item.price,
+    //   });
+    // }
+    // this.start++;
+  }
+  // calcItemTotal() {
+  //   const newTotalPriceForItem =
+  //     (this.cartItem.quantity *
+  //       this.cartItem.item.price *
+  //       Math.round(100 - this.itemDiscount)) /
+  //     100;
+  //   this.itemTotal = newTotalPriceForItem;
+  //   const priceDiff =
+  //     this.cartItem.quantity * this.cartItem.item.price - newTotalPriceForItem;
+  //   if (this.start > 1) {
+  //     this.cartService.itemPriceChanged.next(priceDiff);
+  //     console.log('discount sent');
+  //   }
+  //   // const priceDiff =
+  //   //   this.cartItem.quantity * this.cartItem.item.price - newPrice;
+  //   // this.cartService.itemPriceChanged.next(priceDiff);
+  //   this.start++;
+  //   console.log(this.start);
+  // }
+
+  onDiscountChange() {
+    this.calcItemTotal();
   }
 }

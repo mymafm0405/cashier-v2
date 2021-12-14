@@ -17,9 +17,15 @@
   </div>
   <div class="col-md-2 col-xs-2 column">{{ cartItem.item.price }}</div>
   <div class="col-md-2 col-xs-2 column">
-    <input type="number" class="form-control" [(ngModel)]="itemDiscount" />
+    <p>Under Dev...</p>
+    <!-- <input
+      type="number"
+      class="form-control"
+      (change)="onDiscountChange()"
+      [(ngModel)]="itemDiscount"
+    /> -->
   </div>
   <div class="col-md-2 col-xs-2 column">
-    {{ calcItemTotal() }}
+    {{ itemTotal }}
   </div>
 </div>

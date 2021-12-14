@@ -181,5 +181,6 @@ export class CartFormComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.billAddingSub.unsubscribe();
     this.discountChangedSub.unsubscribe();
+    this.cartItemsChanged.unsubscribe();
   }
 }

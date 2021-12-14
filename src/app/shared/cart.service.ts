@@ -9,6 +9,7 @@ export class CartService {
   totalQuantity = 0;
 
   cartItemsChanged = new Subject<boolean>();
+  itemPriceChanged = new Subject<{ itemId: string; price: number }>();
 
   constructor() {}
 
@@ -52,13 +53,21 @@ export class CartService {
   }
 
   deleteCartItemById(itemId: string) {
-    this.cartItems = this.cartItems.filter(item => item.item.id !== itemId);
+    this.cartItems = this.cartItems.filter((item) => item.item.id !== itemId);
     this.cartItemsChanged.next(true);
   }
 
   changeQuantity(itemId: string, newQuantity: number, changeCartCount: number) {
     this.totalQuantity = this.totalQuantity + changeCartCount;
-    this.cartItems.find(item => item.item.id === itemId).quantity = newQuantity;
+    this.cartItems.find((item) => item.item.id === itemId).quantity =
+      newQuantity;
     this.cartItemsChanged.next(true);
   }
+
+  // Not working correctly
+  // changeItemPriceForItemDiscount(itemId: string, newPrice: number) {
+  //   this.cartItems.find((item) => item.item.id === itemId).item.price =
+  //     newPrice;
+  //   this.cartItemsChanged.next(true);
+  // }
 }
