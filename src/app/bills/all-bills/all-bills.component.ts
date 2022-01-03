@@ -2,6 +2,7 @@ import { Bill } from './../../shared/bill.model';
 import { BillsService } from 'src/app/shared/bills.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { UsersService } from 'src/app/shared/users.service';
 
 @Component({
   selector: 'app-all-bills',
@@ -17,18 +18,38 @@ export class AllBillsComponent implements OnInit, OnDestroy {
 
   billsChangedSub: Subscription;
 
-  constructor(private billsService: BillsService) {}
+  constructor(
+    private billsService: BillsService,
+    private usersService: UsersService
+  ) {}
 
   ngOnInit(): void {
     this.allBills = this.billsService.getBills();
     this.calculateTotals();
+    console.log(this.allBills.length);
+    if (this.usersService.getCurrentUser().userType === 'user') {
+      this.allBills = this.allBills.slice(
+        this.allBills.length - 30,
+        this.allBills.length
+      );
+      console.log(this.allBills.length);
+    }
     this.billsChangedSub = this.billsService.billsChanged.subscribe(
       (status: boolean) => {
         if (status) {
           this.allBills = this.billsService.getBills();
+          console.log(this.allBills.length);
+          if (this.usersService.getCurrentUser().userType === 'user') {
+            this.allBills = this.allBills.slice(
+              this.allBills.length - 30,
+              this.allBills.length
+            );
+            console.log(this.allBills.length);
+          }
         }
       }
     );
+    console.log(this.allBills.length);
   }
 
   calculateTotals() {

@@ -19,5 +19,11 @@ export class BillsFooterComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentUserType = this.usersService.getCurrentUser().userType;
+    this.usersService.currentUserChanged.subscribe((status: boolean) => {
+      if (status) {
+        this.currentUserType = this.usersService.getCurrentUser().userType;
+        console.log('helllooooo');
+      }
+    });
   }
 }
