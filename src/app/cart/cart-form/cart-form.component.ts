@@ -171,7 +171,7 @@ export class CartFormComponent implements OnInit, OnDestroy {
 
   onNameChange() {
     this.currentClient = this.clientsService.getClientByName(this.currentName);
-    if (this.currentName === '') {
+    if (this.currentClient === undefined) {
       this.currentClient = new Client('', 0, '');
     }
     // console.log(this.currentName);
