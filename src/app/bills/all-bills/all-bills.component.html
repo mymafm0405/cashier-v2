@@ -1,4 +1,22 @@
-<div class="row">
+<div class="row text-center">
+  <div class="col-md-12">
+    <h2>Choose company</h2>
+    <button
+      *ngFor="let company of companies"
+      class="btn btn-primary add-margin"
+      (click)="onCompanyClick(company.id)"
+    >
+      {{ company.name }}
+    </button>
+  </div>
+</div>
+<div class="row" *ngIf="companyClicked">
+  <div class="col-md-10 col-md-offset-1 text-center">
+    <h3>
+      Report for company (
+      <span class="company-name">{{ currentCompany.name }}</span> )
+    </h3>
+  </div>
   <div class="col-md-10 col-md-offset-1 all-bills">
     <app-bills-header></app-bills-header>
     <app-bill-row

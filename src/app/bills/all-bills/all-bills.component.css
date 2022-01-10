@@ -10,3 +10,11 @@
   text-align: center;
   margin: 25px 0;
 }
+.add-margin {
+  margin: 0 5px;
+}
+.company-name {
+  color: red;
+  font-weight: bold;
+  font-size: 25px;
+}

@@ -171,4 +171,14 @@ export class BillsService {
         }
       );
   }
+
+  getBillsForCompanyById(companyId: string) {
+    const companyBills = this.allBills.filter(
+      (bill) =>
+        bill.cart.find((item) => item.item.companyId === companyId) !==
+        undefined
+    );
+    console.log(companyBills);
+    return companyBills;
+  }
 }
