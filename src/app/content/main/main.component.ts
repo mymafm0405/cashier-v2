@@ -60,9 +60,6 @@ export class MainComponent implements OnInit, OnDestroy {
         if (this.route.snapshot.firstChild.url[0].path === 'new-sell') {
           this.showSelectSentence = false;
           return true;
-        } else if (this.route.snapshot.firstChild.url[0].path === 'all-bills') {
-          this.showSelectSentence = false;
-          return true;
         } else {
           this.showSelectSentence = false;
           return false;

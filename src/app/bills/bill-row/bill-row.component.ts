@@ -22,7 +22,6 @@ export class BillRowComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.searchType);
     this.currentUserType = this.usersService.getCurrentUser().userType;
   }
 

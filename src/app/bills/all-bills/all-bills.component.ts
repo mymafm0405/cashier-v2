@@ -38,13 +38,11 @@ export class AllBillsComponent implements OnInit, OnDestroy {
       (status: boolean) => {
         if (status) {
           this.allBills = this.billsService.getBills();
-          console.log(this.allBills.length);
           if (this.usersService.getCurrentUser().userType === 'user') {
             this.allBills = this.allBills.slice(
               this.allBills.length - 30,
               this.allBills.length
             );
-            console.log(this.allBills.length);
           }
         }
       }
