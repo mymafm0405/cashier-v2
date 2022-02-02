@@ -15,17 +15,8 @@
   <div class="col-md-3 col-xs-3 column" *ngIf="!shoppingPage">
     {{ cartItem.quantity }}
   </div>
-  <div class="col-md-2 col-xs-2 column">{{ cartItem.item.price }}</div>
-  <div class="col-md-2 col-xs-2 column">
-    <p>Under Dev...</p>
-    <!-- <input
-      type="number"
-      class="form-control"
-      (change)="onDiscountChange()"
-      [(ngModel)]="itemDiscount"
-    /> -->
-  </div>
-  <div class="col-md-2 col-xs-2 column">
+  <div class="col-md-3 col-xs-3 column">{{ cartItem.item.price }}</div>
+  <div class="col-md-3 col-xs-3 column">
     {{ itemTotal }}
   </div>
 </div>

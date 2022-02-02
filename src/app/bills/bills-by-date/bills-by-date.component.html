@@ -26,6 +26,12 @@
           {{ category.name }}
         </option>
       </select>
+      <h4>Select company:</h4>
+      <select name="companyId" class="form-control" ngModel required>
+        <option [value]="company.id" *ngFor="let company of companies">
+          {{ company.name }}
+        </option>
+      </select>
       <button
         class="btn btn-default"
         type="submit"
